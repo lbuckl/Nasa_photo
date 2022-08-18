@@ -4,8 +4,12 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import com.vados.nasa_photo.model.PictureDTO
 import com.vados.nasa_photo.utils.NASA_PICTURE_API_KEY
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 import java.net.UnknownHostException
 
 object PictureRequestRetrofit {
@@ -15,7 +19,7 @@ object PictureRequestRetrofit {
         Log.d("@@@", "Request:request")
         try {
             retrofitImpl.baseUrl("https://api.nasa.gov/")
-            retrofitImpl.addConverterFactory(
+                .addConverterFactory(
                 GsonConverterFactory.create(
                     GsonBuilder().setLenient().create()
                 )
