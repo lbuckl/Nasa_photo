@@ -26,6 +26,7 @@ class PictureViewModel(private val liveData: MutableLiveData<AppState> = Mutable
     }
 
     override fun setError(errorMsg: String) {
+        liveData.postValue(AppState.Error(Exception(errorMsg)))
         Log.d("@@@", errorMsg)
     }
 
