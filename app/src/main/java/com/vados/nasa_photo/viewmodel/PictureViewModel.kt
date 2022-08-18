@@ -32,6 +32,8 @@ class PictureViewModel(private val liveData: MutableLiveData<AppState> = Mutable
 
     override fun setSucces(pictureDTO: PictureDTO) {
         Log.d("@@@", "VM:setSucces")
+        //val result = PictureDTO("video",pictureDTO.url)
+        //liveData.postValue(AppState.Succes(result))
         liveData.postValue(AppState.Succes(pictureDTO))
     }
 }
