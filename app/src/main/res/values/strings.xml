@@ -2,5 +2,6 @@
     <string name="app_name">Nasa_photo</string>
     <string name="info">Info</string>
     <string name="error">Error</string>
+    <string name="photo_of_the_day_stub">Photo of the day</string>
 
 </resources>

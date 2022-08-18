@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import coil.load
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.viewmodel.AppState
@@ -36,9 +37,12 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     private fun renderData(appState: AppState){
-
+        when (appState){
+            is AppState.Succes ->{
+                binding.imageViewPOTD.load(appState.pictureDTO.url)
+            }
+        }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
