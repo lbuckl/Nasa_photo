@@ -11,8 +11,8 @@ import java.net.UnknownHostException
 object PictureRequestRetrofit {
 
     private val retrofitImpl = Retrofit.Builder()
-
     fun request():PictureDTO? {
+        Log.d("@@@", "Request:request")
         try {
             retrofitImpl.baseUrl("https://api.nasa.gov/")
             retrofitImpl.addConverterFactory(
