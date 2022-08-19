@@ -4,4 +4,8 @@
     <string name="error">Error</string>
     <string name="photo_of_the_day_stub">Photo of the day</string>
 
+    <string name="share">Share</string>
+    <string name="like">Like</string>
+
+
 </resources>

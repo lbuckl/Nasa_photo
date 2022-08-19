@@ -5,9 +5,13 @@
       <map>
         <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/drawable-v24/ic_no_photo_vector.xml" value="0.1" />
         <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/bottom_navigation_layout.xml" value="0.175" />
+        <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.16510416666666666" />
+        <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_loading.xml" value="0.2078125" />
         <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_main.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_picture_of_the_day.xml" value="0.264" />
+        <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.20185185185185187" />
         <entry key="..\:/Users/Molchanov/AndroidStudioProjects/Nasa_photo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>

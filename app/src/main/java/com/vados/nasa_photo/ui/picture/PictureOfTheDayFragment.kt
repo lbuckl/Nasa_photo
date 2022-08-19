@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
+import com.vados.nasa_photo.databinding.BottomSheetLayoutBinding
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.ui.other.LoadingFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
@@ -19,6 +22,7 @@ class PictureOfTheDayFragment : Fragment() {
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
     private val loadingFragment = LoadingFragment()
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     companion object {
         lateinit var viewModel: PictureViewModel
@@ -37,6 +41,8 @@ class PictureOfTheDayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[PictureViewModel::class.java]
         viewModel.getLiveData().observe(viewLifecycleOwner) { t -> renderData(t) }
+
+        setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
     }
 
     private fun renderData(appState: AppState){
@@ -74,6 +80,11 @@ class PictureOfTheDayFragment : Fragment() {
             .beginTransaction()
             .remove(loadingFragment)
             .commit()
+    }
+
+    private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     override fun onDestroyView() {
