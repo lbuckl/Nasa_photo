@@ -9,7 +9,7 @@
     android:background="#f6f6fa"
     app:behavior_hideable="true"
     app:behavior_peekHeight="50dp"
-    app:layout_behavior="com.google.android.material.bottomed.BottomSheetBehavior">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
         <View
         android:id="@+id/bottomSheetLine"
         android:layout_width="25dp"
