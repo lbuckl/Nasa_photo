@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -53,7 +54,13 @@ class PictureOfTheDayFragment : Fragment() {
                     if (it.mediaType == "image") {
                         binding.imageViewPOTD.load(it.url)
                         binding.textViewPhotoName.text = it.title
-                        binding.textViewPhotoDescription.text = it.explanation
+                        view?.findViewById<TextView>(R.id.bottomSheetDescriptionHeader)?.let {textView ->
+                            textView.text = it.title
+                        }
+                        view?.findViewById<TextView>(R.id.bottomSheetDescription)?.let {textView ->
+                            textView.text = it.explanation
+                        }
+
                     }
                     else {
                         binding.imageViewPOTD.load(R.drawable.img)
