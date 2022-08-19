@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 class PictureDTO (
         @field:SerializedName("media_type") val mediaType: String?, //тип данных "видео" или "изображение"
         @field:SerializedName("url") val url: String?, //URL для загрузки
+        @field:SerializedName("explanation") val explanation: String?, // описание изображения
+        @field:SerializedName("title") val title: String?, //Название
 )
 
 //Notused

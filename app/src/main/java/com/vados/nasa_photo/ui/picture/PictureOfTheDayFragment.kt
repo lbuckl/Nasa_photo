@@ -43,11 +43,18 @@ class PictureOfTheDayFragment : Fragment() {
         when (appState){
             is AppState.Succes ->{
                 removeLoadFragment()
-                if (appState.pictureDTO.mediaType == "image") binding.imageViewPOTD.load(appState.pictureDTO.url)
-                else {
-                    binding.imageViewPOTD.load(R.drawable.img)
-                    view?.showSnackBarErrorMsg("No photo today")
+                appState.pictureDTO.let {
+                    if (it.mediaType == "image") {
+                        binding.imageViewPOTD.load(it.url)
+                        binding.textViewPhotoName.text = it.title
+                        binding.textViewPhotoDescription.text = it.explanation
+                    }
+                    else {
+                        binding.imageViewPOTD.load(R.drawable.img)
+                        view?.showSnackBarErrorMsg("No photo today")
+                    }
                 }
+
             }
             is AppState.Loading -> {
                 requireActivity().supportFragmentManager
