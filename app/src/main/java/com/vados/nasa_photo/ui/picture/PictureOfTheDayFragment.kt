@@ -45,7 +45,9 @@ class PictureOfTheDayFragment : Fragment() {
         viewModel.getLiveData().observe(viewLifecycleOwner) { t -> renderData(t) }
 
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-        setBottomAppBar(view)
+
+        //Эта функция позволяет реализовать верхнее меню, оставляю на будущее
+        //setBottomAppBar(view)
     }
 
     private fun renderData(appState: AppState){
@@ -107,11 +109,8 @@ class PictureOfTheDayFragment : Fragment() {
             }
         })
     }
-
+    //region Эта функция позволяет реализовать верхнее меню, оставляю на будущее
     private fun setBottomAppBar(view: View) {
-        //val mainActivity = activity as MainActivity
-        //mainActivity.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
-        //setHasOptionsMenu(false)
         //setHasOptionsMenu(true)
     }
 
@@ -119,6 +118,7 @@ class PictureOfTheDayFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
+    //endregion
 
     override fun onDestroyView() {
         super.onDestroyView()
