@@ -1,5 +1,7 @@
 package com.vados.nasa_photo.ui.picture
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -55,6 +57,13 @@ class PictureOfTheDayFragment : Fragment() {
 
         //Эта функция позволяет реализовать верхнее меню, оставляю на будущее
         //setBottomAppBar(view)
+
+        //Работа кнопки поиска ВИКИПЕДИЯ
+        binding.inputLayout.setEndIconOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+            })
+        }
     }
 
     private fun renderData(appState: AppState){
