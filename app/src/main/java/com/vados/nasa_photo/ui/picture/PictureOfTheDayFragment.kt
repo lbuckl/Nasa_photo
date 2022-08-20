@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.ButtonBarLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.forEach
+import androidx.core.view.marginBottom
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -19,7 +20,9 @@ import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.BottomSheetLayoutBinding
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.ui.other.LoadingFragment
+import com.vados.nasa_photo.ui.other.SettingsFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
+import com.vados.nasa_photo.utils.showSnackBarInfoMsg
 import com.vados.nasa_photo.viewmodel.AppState
 import com.vados.nasa_photo.viewmodel.PictureViewModel
 
@@ -60,7 +63,7 @@ class PictureOfTheDayFragment : Fragment() {
                 removeLoadFragment()
                 appState.pictureDTO.let {
                     if (it.mediaType == "image") {
-                        binding.imageViewPOTD.load(it.url)
+                        binding.imageViewPOTD.load(it.hdurl)
                         binding.textViewPhotoName.text = it.title
                         view?.findViewById<TextView>(R.id.bottomSheetDescriptionHeader)?.let {textView ->
                             textView.text = it.title
@@ -103,11 +106,13 @@ class PictureOfTheDayFragment : Fragment() {
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                //TODO("Not yet implemented")
+                //TODO
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 binding.fab.animate()?.scaleX(1 - slideOffset)?.scaleY(1 - slideOffset)?.setDuration(0)?.start()
+                binding.bottomAppBar.fabCradleRoundedCornerRadius = 160*slideOffset
+                binding.bottomAppBar.fabCradleMargin = 12*(1-slideOffset)
             }
         })
 
@@ -123,10 +128,15 @@ class PictureOfTheDayFragment : Fragment() {
             it.setOnMenuItemClickListener {item ->
                 when (item.itemId) {
                     R.id.app_bar_fav -> {
-                        Log.d("@@@","item1")
+                        view?.showSnackBarInfoMsg("Button Favorite")
                     }
                     R.id.app_bar_settings -> {
-                        Log.d("@@@","item2")
+                        requireActivity().supportFragmentManager
+                            .beginTransaction()
+                            .hide(this)
+                            .add(R.id.container,SettingsFragment())
+                            .addToBackStack("main")
+                            .commit()
                     }
                 }
                 true

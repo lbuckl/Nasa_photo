@@ -8,6 +8,7 @@ class PictureDTO (
         @field:SerializedName("explanation") val explanation: String?, // описание изображения
         @field:SerializedName("title") val title: String?, //Название
         @field:SerializedName("date") val date: String?, //Дата изображения
+        @field:SerializedName("hdurl") val hdurl: String? //URL для загрузки в формате HD
 )
 
 //Notused
