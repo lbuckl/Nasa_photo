@@ -11,7 +11,7 @@ class EquilateralImageView @JvmOverloads constructor(
 ) : AppCompatImageView(context, attrs, defStyleAttr) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val heigh = widthMeasureSpec + widthMeasureSpec/2
+        val heigh = widthMeasureSpec + widthMeasureSpec/4
         super.onMeasure(widthMeasureSpec, heigh)
     }
 }

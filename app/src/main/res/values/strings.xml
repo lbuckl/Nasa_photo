@@ -3,6 +3,8 @@
     <string name="info">Info</string>
     <string name="error">Error</string>
     <string name="photo_of_the_day_stub">Photo of the day</string>
+    <string name="search_wiki">Найти в Википедии</string>
+    <string name="wiki_helper_text">Поищите термин в википедии</string>
 
     <string name="share">Share</string>
     <string name="like">Like</string>
