@@ -1,10 +1,8 @@
 package com.vados.nasa_photo.ui.picture
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.ButtonBarLayout
@@ -12,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.vados.nasa_photo.MainActivity
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.BottomSheetLayoutBinding
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
@@ -46,6 +45,7 @@ class PictureOfTheDayFragment : Fragment() {
         viewModel.getLiveData().observe(viewLifecycleOwner) { t -> renderData(t) }
 
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+        setBottomAppBar(view)
     }
 
     private fun renderData(appState: AppState){
@@ -93,7 +93,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         val fab = binding.fab
-        val bab = binding.bottomAppBar
+        binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         bottomSheetBehavior.addBottomSheetCallback(object :
@@ -105,8 +105,19 @@ class PictureOfTheDayFragment : Fragment() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 fab.animate()?.scaleX(1 - slideOffset)?.scaleY(1 - slideOffset)?.setDuration(0)?.start()
             }
-
         })
+    }
+
+    private fun setBottomAppBar(view: View) {
+        //val mainActivity = activity as MainActivity
+        //mainActivity.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
+        //setHasOptionsMenu(false)
+        //setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
 
     override fun onDestroyView() {
