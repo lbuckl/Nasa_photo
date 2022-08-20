@@ -1,14 +1,18 @@
 package com.vados.nasa_photo.ui.picture
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.ButtonBarLayout
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.forEach
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.MainActivity
 import com.vados.nasa_photo.R
@@ -94,8 +98,6 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
-        val fab = binding.fab
-        binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         bottomSheetBehavior.addBottomSheetCallback(object :
@@ -105,10 +107,34 @@ class PictureOfTheDayFragment : Fragment() {
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                fab.animate()?.scaleX(1 - slideOffset)?.scaleY(1 - slideOffset)?.setDuration(0)?.start()
+                binding.fab.animate()?.scaleX(1 - slideOffset)?.scaleY(1 - slideOffset)?.setDuration(0)?.start()
             }
         })
+
+        //Инициализируем иконок в нижнем меню и навешиваем лисенеры
+        binding.bottomAppBar.let{
+            it.replaceMenu(R.menu.menu_bottom_bar)
+            onMenuItemSelected(it.menu)
+        }
     }
+
+    private fun onMenuItemSelected(menu: Menu){
+        menu.forEach{
+            it.setOnMenuItemClickListener {item ->
+                when (item.itemId) {
+                    R.id.app_bar_fav -> {
+                        Log.d("@@@","item1")
+                    }
+                    R.id.app_bar_settings -> {
+                        Log.d("@@@","item2")
+                    }
+                }
+                true
+            }
+        }
+
+    }
+
     //region Эта функция позволяет реализовать верхнее меню, оставляю на будущее
     private fun setBottomAppBar(view: View) {
         //setHasOptionsMenu(true)
@@ -119,6 +145,13 @@ class PictureOfTheDayFragment : Fragment() {
         inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
     //endregion
+
+    private fun Fragment.toast(string: String?) {
+        Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
+            setGravity(Gravity.BOTTOM, 0, 250)
+            show()
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
