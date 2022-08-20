@@ -58,7 +58,8 @@
         app:layout_anchorGravity="top|end"
         app:backgroundTint="@color/design_default_color_primary"
         app:fabAlignmentMode="center"
-        app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar"/>
+        app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar"
+        app:fabCradleMargin="@dimen/fabMargin"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
