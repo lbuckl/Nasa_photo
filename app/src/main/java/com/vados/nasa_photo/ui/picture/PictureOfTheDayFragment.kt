@@ -3,35 +3,34 @@ package com.vados.nasa_photo.ui.picture
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.ButtonBarLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
-import androidx.core.view.marginBottom
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.vados.nasa_photo.MainActivity
 import com.vados.nasa_photo.R
-import com.vados.nasa_photo.databinding.BottomSheetLayoutBinding
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.ui.other.LoadingFragment
 import com.vados.nasa_photo.ui.other.SettingsFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import com.vados.nasa_photo.utils.showSnackBarInfoMsg
+import com.vados.nasa_photo.utils.toast
 import com.vados.nasa_photo.viewmodel.AppState
 import com.vados.nasa_photo.viewmodel.PictureViewModel
 
+/**
+ * Главный фрагмент реализует функции:
+ * - отображение фотограции получаемой с сайта NASA
+ * - работа нижнего меню BottomAppBar и кнопки FAB
+ * - работа перетаскиваемого ифнормационного окна "BottomSheetBehavior"
+ */
 class PictureOfTheDayFragment : Fragment() {
-
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
     private val loadingFragment = LoadingFragment()
@@ -40,7 +39,7 @@ class PictureOfTheDayFragment : Fragment() {
     companion object {
         lateinit var viewModel: PictureViewModel
         fun newInstance() = PictureOfTheDayFragment()
-        private var isMain = true
+        private var isMain = true // Переменная хранящая состояние кнопки FAB
     }
 
     override fun onCreateView(
@@ -61,31 +60,37 @@ class PictureOfTheDayFragment : Fragment() {
         //Эта функция позволяет реализовать верхнее меню, оставляю на будущее
         //setBottomAppBar(view)
 
+        //Инициализируем работу нижнего меню
+        initBottomAppBar()
+        //Инициализируем работу FAB
+        initFAB()
+
         //Работа кнопки поиска ВИКИПЕДИЯ
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+                data =
+                    Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
         }
     }
 
-    private fun renderData(appState: AppState){
-        when (appState){
-            is AppState.Succes ->{
+    //Функция работы с состояниями ViewModel
+    private fun renderData(appState: AppState) {
+        when (appState) {
+            is AppState.Succes -> {
                 removeLoadFragment()
                 appState.pictureDTO.let {
                     if (it.mediaType == "image") {
                         binding.imageViewPOTD.load(it.hdurl)
                         binding.textViewPhotoName.text = it.title
-                        view?.findViewById<TextView>(R.id.bottomSheetDescriptionHeader)?.let {textView ->
-                            textView.text = it.title
-                        }
-                        view?.findViewById<TextView>(R.id.bottomSheetDescription)?.let {textView ->
+                        view?.findViewById<TextView>(R.id.bottomSheetDescriptionHeader)
+                            ?.let { textView ->
+                                textView.text = it.title
+                            }
+                        view?.findViewById<TextView>(R.id.bottomSheetDescription)?.let { textView ->
                             textView.text = it.explanation
                         }
-
-                    }
-                    else {
+                    } else {
                         binding.imageViewPOTD.load(R.drawable.img)
                         view?.showSnackBarErrorMsg("No photo today")
                     }
@@ -95,7 +100,7 @@ class PictureOfTheDayFragment : Fragment() {
             is AppState.Loading -> {
                 requireActivity().supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.container,loadingFragment)
+                    .add(R.id.container, loadingFragment)
                     .commit()
             }
             is AppState.Error -> {
@@ -105,13 +110,15 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
-    private fun removeLoadFragment(){
+    //функция удаляет фрагмент Loading
+    private fun removeLoadFragment() {
         requireActivity().supportFragmentManager
             .beginTransaction()
             .remove(loadingFragment)
             .commit()
     }
 
+    //функция инициализирует BottomSheet (Нижнее перетаскиваемое окно)
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -121,22 +128,20 @@ class PictureOfTheDayFragment : Fragment() {
                 //TODO
             }
 
+            //Дейтсвия при перетаскивании
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                binding.fab.animate()?.scaleX(1 - slideOffset)?.scaleY(1 - slideOffset)?.setDuration(0)?.start()
-                binding.bottomAppBar.fabCradleRoundedCornerRadius = 160*slideOffset
-                binding.bottomAppBar.fabCradleMargin = 12*(1-slideOffset)
+                binding.fab.animate()?.scaleX(1 - slideOffset)?.scaleY(1 - slideOffset)
+                    ?.setDuration(0)?.start()
+                binding.bottomAppBar.fabCradleRoundedCornerRadius = 160 * slideOffset
+                binding.bottomAppBar.fabCradleMargin = 12 * (1 - slideOffset)
             }
         })
-
-        //Инициализируем работу нижнего меню
-        initBottomAppBar()
-        //Инициализируем работу FAB
-        initFAB()
     }
 
-    private fun onMenuItemSelected(menu: Menu){
-        menu.forEach{
-            it.setOnMenuItemClickListener {item ->
+    //функция реализует логику работы по клику на иконки меню BottomAppBar
+    private fun onMenuItemSelected(menu: Menu) {
+        menu.forEach {
+            it.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.app_bar_fav -> {
                         view?.showSnackBarInfoMsg("Button Favorite")
@@ -145,7 +150,7 @@ class PictureOfTheDayFragment : Fragment() {
                         requireActivity().supportFragmentManager
                             .beginTransaction()
                             .hide(this)
-                            .add(R.id.container,SettingsFragment())
+                            .add(R.id.container, SettingsFragment())
                             .addToBackStack("main")
                             .commit()
                     }
@@ -166,18 +171,23 @@ class PictureOfTheDayFragment : Fragment() {
     }
     //endregion
 
-    private fun initBottomAppBar(){
-        binding.bottomAppBar.let{ it ->
+    //Функция инициализирует и устанавливает логику работы BottomAppBar
+    private fun initBottomAppBar() {
+        binding.bottomAppBar.let { it ->
             it.replaceMenu(R.menu.menu_bottom_bar)
             onMenuItemSelected(it.menu)
-            it.setNavigationOnClickListener {itView->
-                val popupMenu = PopupMenu(context,itView)
-                popupMenu.menuInflater.inflate(R.menu.menu_bottom_navigation,popupMenu.menu)
+            it.setNavigationOnClickListener { itView ->
+                val popupMenu = PopupMenu(context, itView)
+                popupMenu.menuInflater.inflate(R.menu.menu_bottom_navigation, popupMenu.menu)
                 popupMenu.show()
                 popupMenu.setOnMenuItemClickListener { item ->
-                    when (item.itemId){
-                        R.id.navigation_archive -> {itView?.showSnackBarInfoMsg("Button Archive")}
-                        R.id.navigation_send -> {itView?.showSnackBarInfoMsg("Button Send")}
+                    when (item.itemId) {
+                        R.id.navigation_archive -> {
+                            itView?.showSnackBarInfoMsg("Button Archive")
+                        }
+                        R.id.navigation_send -> {
+                            itView?.toast("Button Send")
+                        }
                     }
                     true
                 }
@@ -185,29 +195,38 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
-    private fun  initFAB(){
-        binding.fab.setOnClickListener {
-            if (isMain) {
-                isMain = false
-                binding.bottomAppBar.navigationIcon = null
-                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_back_fab))
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
-            } else {
-                isMain = true
-                binding.bottomAppBar.navigationIcon =
-                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_hamburger_menu_bottom_bar)
-                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_plus_fab))
-                initBottomAppBar()
+    //Функция инициализирует и устанавливает логику работы FAB
+    private fun initFAB() {
+        with(binding) {
+            fab.setOnClickListener {
+                if (isMain) {
+                    isMain = false
+                    bottomAppBar.navigationIcon = null
+                    bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                    binding.fab.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_back_fab
+                        )
+                    )
+                    bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+                } else {
+                    isMain = true
+                    bottomAppBar.navigationIcon =
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_hamburger_menu_bottom_bar
+                        )
+                    bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                    fab.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_plus_fab
+                        )
+                    )
+                    initBottomAppBar()
+                }
             }
-        }
-    }
-
-    private fun Fragment.toast(string: String?) {
-        Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
-            setGravity(Gravity.BOTTOM, 0, 250)
-            show()
         }
     }
 

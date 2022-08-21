@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.vados.nasa_photo.databinding.FragmentLoadingBinding
 
+/**
+ * Фрагмент оборажающий анимированную иконку загрузки
+ */
 class LoadingFragment: Fragment() {
     private lateinit var binding_load: FragmentLoadingBinding
 

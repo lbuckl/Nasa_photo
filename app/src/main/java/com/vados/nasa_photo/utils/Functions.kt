@@ -1,6 +1,8 @@
 package com.vados.nasa_photo.utils
 
+import android.view.Gravity
 import android.view.View
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.vados.nasa_photo.R
 
@@ -21,4 +23,11 @@ fun View.showSnackBarInfoMsg(
     length: Int = Snackbar.LENGTH_LONG
 ) {
     Snackbar.make(this, text, length).show()
+}
+
+fun View.toast(string: String?) {
+    Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
+        setGravity(Gravity.BOTTOM, 0, 250)
+        show()
+    }
 }

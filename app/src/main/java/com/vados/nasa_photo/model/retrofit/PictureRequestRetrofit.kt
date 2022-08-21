@@ -3,19 +3,15 @@ package com.vados.nasa_photo.model.retrofit
 import android.util.Log
 import com.google.gson.GsonBuilder
 import com.vados.nasa_photo.model.PictureDTO
+import com.vados.nasa_photo.model.RequestInterface
 import com.vados.nasa_photo.utils.NASA_PICTURE_API_KEY
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
 import java.net.UnknownHostException
 
-object PictureRequestRetrofit {
-
+object PictureRequestRetrofit: RequestInterface {
     private val retrofitImpl = Retrofit.Builder()
-    fun request():PictureDTO? {
+    override fun request():PictureDTO? {
         Log.d("@@@", "Request:request")
         try {
             retrofitImpl.baseUrl("https://api.nasa.gov/")
@@ -24,8 +20,9 @@ object PictureRequestRetrofit {
                     GsonBuilder().setLenient().create()
                 )
             )
-            val api = retrofitImpl.build().create(PictureRequestInterface::class.java)
+            val api = retrofitImpl.build().create(NasaPictureRequestInterface::class.java)
             return api.getPicture(NASA_PICTURE_API_KEY).execute().body()
+
         } catch (e: IllegalStateException) {
             e.printStackTrace()
             Log.d("@@@", "IllegalStateException")

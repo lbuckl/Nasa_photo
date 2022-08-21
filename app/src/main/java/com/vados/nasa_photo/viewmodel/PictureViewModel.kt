@@ -8,6 +8,10 @@ import com.vados.nasa_photo.model.RepositoryRemoteImpl
 import com.vados.nasa_photo.utils.CallbackError
 import com.vados.nasa_photo.utils.CallbackSucces
 
+/**
+ * ViewModel реализующая бизнес-логику работы фрагмента для отображения
+ * фотографии получаемой с сайта NASA
+ */
 class PictureViewModel(private val liveData: MutableLiveData<AppState> = MutableLiveData<AppState>()
 ): ViewModel(),CallbackSucces,CallbackError {
     var repository = RepositoryRemoteImpl()
@@ -17,6 +21,7 @@ class PictureViewModel(private val liveData: MutableLiveData<AppState> = Mutable
         liveData
     }
 
+    //
     private fun getPictureDTO(){
         Log.d("@@@", "VM:getPictureDTO")
         repository.getPictureDTO(this,this)

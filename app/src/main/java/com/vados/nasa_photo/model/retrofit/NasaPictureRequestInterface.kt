@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface PictureRequestInterface {
+interface NasaPictureRequestInterface {
     @GET("planetary/apod")
     fun getPicture(@Query("api_key") apiKey: String): Call<PictureDTO>
 }

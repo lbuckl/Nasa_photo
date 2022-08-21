@@ -1,8 +1,7 @@
 package com.vados.nasa_photo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.vados.nasa_photo.ui.picture.PictureOfTheDayFragment
 
 class MainActivity : AppCompatActivity() {
@@ -15,25 +14,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, PictureOfTheDayFragment.newInstance())
                 .commitNow()
-        }
-    }
-
-
-    /**
-     * Функция для замены фрагмента в контейнере
-     * если фрагмент ещё живой, то возвращает его в контейнер
-     * если фрагмента нет, то создаёт новый
-     */
-    private fun replaceFragment(findFragment: Fragment?, newFragment: Fragment, comint:String){
-        supportFragmentManager.beginTransaction().apply {
-            if (findFragment == null) {
-                replace(R.id.container, newFragment, comint)
-                    .addToBackStack("Contacts")
-                    .commitAllowingStateLoss()
-            } else {
-                replace(R.id.container, findFragment, comint)
-                    .commitAllowingStateLoss()
-            }
         }
     }
 }
