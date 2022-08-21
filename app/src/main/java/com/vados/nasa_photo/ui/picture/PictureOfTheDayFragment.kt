@@ -7,10 +7,12 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.ButtonBarLayout
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
 import androidx.core.view.marginBottom
 import androidx.lifecycle.ViewModelProvider
@@ -38,6 +40,7 @@ class PictureOfTheDayFragment : Fragment() {
     companion object {
         lateinit var viewModel: PictureViewModel
         fun newInstance() = PictureOfTheDayFragment()
+        private var isMain = true
     }
 
     override fun onCreateView(
@@ -125,11 +128,10 @@ class PictureOfTheDayFragment : Fragment() {
             }
         })
 
-        //Инициализируем иконок в нижнем меню и навешиваем лисенеры
-        binding.bottomAppBar.let{
-            it.replaceMenu(R.menu.menu_bottom_bar)
-            onMenuItemSelected(it.menu)
-        }
+        //Инициализируем работу нижнего меню
+        initBottomAppBar()
+        //Инициализируем работу FAB
+        initFAB()
     }
 
     private fun onMenuItemSelected(menu: Menu){
@@ -151,7 +153,6 @@ class PictureOfTheDayFragment : Fragment() {
                 true
             }
         }
-
     }
 
     //region Эта функция позволяет реализовать верхнее меню, оставляю на будущее
@@ -164,6 +165,44 @@ class PictureOfTheDayFragment : Fragment() {
         inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
     //endregion
+
+    private fun initBottomAppBar(){
+        binding.bottomAppBar.let{ it ->
+            it.replaceMenu(R.menu.menu_bottom_bar)
+            onMenuItemSelected(it.menu)
+            it.setNavigationOnClickListener {itView->
+                val popupMenu = PopupMenu(context,itView)
+                popupMenu.menuInflater.inflate(R.menu.menu_bottom_navigation,popupMenu.menu)
+                popupMenu.show()
+                popupMenu.setOnMenuItemClickListener { item ->
+                    when (item.itemId){
+                        R.id.navigation_archive -> {itView?.showSnackBarInfoMsg("Button Archive")}
+                        R.id.navigation_send -> {itView?.showSnackBarInfoMsg("Button Send")}
+                    }
+                    true
+                }
+            }
+        }
+    }
+
+    private fun  initFAB(){
+        binding.fab.setOnClickListener {
+            if (isMain) {
+                isMain = false
+                binding.bottomAppBar.navigationIcon = null
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_back_fab))
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+            } else {
+                isMain = true
+                binding.bottomAppBar.navigationIcon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_hamburger_menu_bottom_bar)
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_plus_fab))
+                initBottomAppBar()
+            }
+        }
+    }
 
     private fun Fragment.toast(string: String?) {
         Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
