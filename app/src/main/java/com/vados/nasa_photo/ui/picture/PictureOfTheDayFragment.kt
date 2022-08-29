@@ -16,8 +16,8 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
-import com.vados.nasa_photo.ui.other.LoadingFragment
-import com.vados.nasa_photo.ui.other.SettingsFragment
+import com.vados.nasa_photo.ui.support.LoadingFragment
+import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import com.vados.nasa_photo.utils.showSnackBarInfoMsg
 import com.vados.nasa_photo.utils.toast

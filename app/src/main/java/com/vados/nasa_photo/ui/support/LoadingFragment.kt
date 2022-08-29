@@ -1,4 +1,4 @@
-package com.vados.nasa_photo.ui.other
+package com.vados.nasa_photo.ui.support
 
 import android.os.Bundle
 import android.view.LayoutInflater
