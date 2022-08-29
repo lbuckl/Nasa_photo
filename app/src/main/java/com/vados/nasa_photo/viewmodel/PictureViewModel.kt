@@ -23,20 +23,18 @@ class PictureViewModel(private val liveData: MutableLiveData<AppState> = Mutable
 
     //
     private fun getPictureDTO(){
-        Log.d("@@@", "VM:getPictureDTO")
+        Log.v("@@@", "VM:getPictureDTO")
         repository.getPictureDTO(this,this)
         liveData.postValue(AppState.Loading)
     }
 
     override fun setError(errorMsg: String) {
         liveData.postValue(AppState.Error(Exception(errorMsg)))
-        Log.d("@@@", errorMsg)
+        Log.v("@@@", errorMsg)
     }
 
     override fun setSucces(pictureDTO: PictureDTO) {
-        Log.d("@@@", "VM:setSucces")
-        //val result = PictureDTO("video",pictureDTO.url)
-        //liveData.postValue(AppState.Succes(result))
+        Log.v("@@@", "VM:setSucces")
         liveData.postValue(AppState.Succes(pictureDTO))
     }
 }

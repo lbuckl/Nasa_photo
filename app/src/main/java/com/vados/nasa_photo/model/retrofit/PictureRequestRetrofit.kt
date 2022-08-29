@@ -12,7 +12,7 @@ import java.net.UnknownHostException
 object PictureRequestRetrofit: RequestInterface {
     private val retrofitImpl = Retrofit.Builder()
     override fun request():PictureDTO? {
-        Log.d("@@@", "Request:request")
+        Log.v("@@@", "Request:request")
         try {
             retrofitImpl.baseUrl("https://api.nasa.gov/")
                 .addConverterFactory(
@@ -25,15 +25,15 @@ object PictureRequestRetrofit: RequestInterface {
 
         } catch (e: IllegalStateException) {
             e.printStackTrace()
-            Log.d("@@@", "IllegalStateException")
+            Log.v("@@@", "IllegalStateException")
             return null
         } catch (e: RuntimeException) {
             e.printStackTrace()
-            Log.d("@@@", "RuntimeException")
+            Log.v("@@@", "RuntimeException")
             return null
         } catch (e: UnknownHostException) {
             e.printStackTrace()
-            Log.d("@@@", "UnknownHostException")
+            Log.v("@@@", "UnknownHostException")
             return null
         }
     }

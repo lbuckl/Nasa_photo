@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fabMargin">6dp</dimen>
+    <dimen name="behavior_heigh">65dp</dimen>
+    <dimen name="bottom_sheet_line_height">1dp</dimen>
+    <dimen name="bottom_sheet_line_width">25dp</dimen>
+    <dimen name="bottom_sheet_line_margin_top">5dp</dimen>
+    <dimen name="bottom_sheet_description_padding_default">10dp</dimen>
+    <dimen name="bottom_sheet_description_margin_top">64dp</dimen>
 </resources>

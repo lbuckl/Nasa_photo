@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -16,7 +17,6 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
-import com.vados.nasa_photo.ui.support.LoadingFragment
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import com.vados.nasa_photo.utils.showSnackBarInfoMsg
@@ -33,7 +33,6 @@ import com.vados.nasa_photo.viewmodel.PictureViewModel
 class PictureOfTheDayFragment : Fragment() {
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
-    private val loadingFragment = LoadingFragment()
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     companion object {
@@ -54,11 +53,7 @@ class PictureOfTheDayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[PictureViewModel::class.java]
         viewModel.getLiveData().observe(viewLifecycleOwner) { t -> renderData(t) }
-
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-
-        //Эта функция позволяет реализовать верхнее меню, оставляю на будущее
-        //setBottomAppBar(view)
 
         //Инициализируем работу нижнего меню
         initBottomAppBar()
@@ -78,7 +73,7 @@ class PictureOfTheDayFragment : Fragment() {
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Succes -> {
-                removeLoadFragment()
+                binding.progressBarPictureOTD.isVisible = false
                 appState.pictureDTO.let {
                     if (it.mediaType == "image") {
                         binding.imageViewPOTD.load(it.hdurl)
@@ -98,24 +93,13 @@ class PictureOfTheDayFragment : Fragment() {
 
             }
             is AppState.Loading -> {
-                requireActivity().supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.container, loadingFragment)
-                    .commit()
+                binding.progressBarPictureOTD.isVisible = true
             }
             is AppState.Error -> {
-                removeLoadFragment()
+                binding.progressBarPictureOTD.isVisible = false
                 view?.showSnackBarErrorMsg(appState.error.message.toString())
             }
         }
-    }
-
-    //функция удаляет фрагмент Loading
-    private fun removeLoadFragment() {
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .remove(loadingFragment)
-            .commit()
     }
 
     //функция инициализирует BottomSheet (Нижнее перетаскиваемое окно)
@@ -158,11 +142,6 @@ class PictureOfTheDayFragment : Fragment() {
                 true
             }
         }
-    }
-
-    //region Эта функция позволяет реализовать верхнее меню, оставляю на будущее
-    private fun setBottomAppBar(view: View) {
-        //setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

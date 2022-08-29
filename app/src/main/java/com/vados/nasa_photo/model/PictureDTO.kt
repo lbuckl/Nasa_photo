@@ -13,6 +13,3 @@ data class PictureDTO (
         @field:SerializedName("date") val date: String?, //Дата изображения
         @field:SerializedName("hdurl") val hdurl: String? //URL для загрузки в формате HD
 )
-
-//Notused
-//@field:SerializedName("copyright") val copyright: String?, //кому пренадлежат права
