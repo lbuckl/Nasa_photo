@@ -135,7 +135,7 @@ class PictureOfTheDayFragment : Fragment() {
                         requireActivity().supportFragmentManager
                             .beginTransaction()
                             .hide(this)
-                            .add(R.id.container, SettingsFragment())
+                            .add(R.id.container, SettingsFragment.newInstance())
                             .addToBackStack("main")
                             .commit()
                     }
