@@ -23,7 +23,6 @@ class PictureViewModel(private val liveData: MutableLiveData<AppState> = Mutable
 
     //
     private fun getPictureDTO(){
-        Log.v("@@@", "VM:getPictureDTO")
         repository.getPictureDTO(this,this)
         liveData.postValue(AppState.Loading)
     }
