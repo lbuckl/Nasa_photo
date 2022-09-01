@@ -11,7 +11,7 @@ import com.vados.nasa_photo.BuildConfig
  */
 const val NASA_PICTURE_API_KEY = BuildConfig.NASA_PICTURE_API_KEY
 
-const val PREF_SETTNGS = "PREF_SETTNGS"
+const val PREF_SETTINGS = "PREF_SETTINGS"
 const val PREF_THEME_INT = "PREF_THEME_INT"
 const val THEME_LIGHT = 0
 const val THEME_DARK = 1

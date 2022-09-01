@@ -1,6 +1,8 @@
 package com.vados.nasa_photo.ui.support
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -20,8 +22,7 @@ class SettingsFragment:Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-    private var appTheme:Int = 0
-    lateinit var sharedPref:SharedPreferences
+    private var isChose = false
 
     companion object {
         fun newInstance() = SettingsFragment()
@@ -32,32 +33,38 @@ class SettingsFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSettingsBinding.inflate(inflater)
-        initialization()
         return binding.root
-    }
-
-    private fun initialization(){
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //инициализация чип группы для смены темы
         binding.chipGroupStyles.setOnCheckedStateChangeListener{chipGroup: ChipGroup,
                                                                 mutableList: MutableList<Int> ->
+            //Log.v("@@@",binding.chipLight.id.toString())
+            //Log.v("@@@",chipGroup.checkedChipId.toString())
+
             when (chipGroup.checkedChipId){
-                mutableList[0] -> setAppTheme(THEME_LIGHT)
-                mutableList[1] -> setAppTheme(THEME_DARK)
-                mutableList[2] -> setAppTheme(THEME_RED)
-                mutableList[3] -> setAppTheme(THEME_SPACE)
+                binding.chipLight.id -> setAppTheme(THEME_LIGHT)
+                binding.chipDark.id -> setAppTheme(THEME_DARK)
+                binding.chipRed.id -> setAppTheme(THEME_RED)
+                binding.chipSpace.id -> setAppTheme(THEME_SPACE)
             }
+        }
+
+        //инициализация кнопки "Применить"
+        binding.buttonApply.setOnClickListener {
+            requireActivity().recreate()
         }
     }
 
     // Сохранение настроек стиля
     private fun setAppTheme(styleCode:Int){
-        requireContext().getSharedPreferences(PREF_SETTNGS,0).apply {
-            edit().putInt(PREF_THEME_INT,styleCode).apply()
-        }
+        Log.v("@@@",styleCode.toString())
+        val sharedPrefer = requireContext().getSharedPreferences(PREF_SETTINGS,Context.MODE_PRIVATE)
+        val editor = sharedPrefer.edit()
+        editor.putInt(PREF_THEME_INT,styleCode).apply()
     }
 
     override fun onDestroyView() {

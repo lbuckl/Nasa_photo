@@ -37,6 +37,7 @@
     <string name="language">Language</string>
     <string name="russian">Russian</string>
     <string name="english">English</string>
+    <string name="apply">Apply</string>
 
 
 </resources>
