@@ -9,4 +9,12 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <!-- Style names -->
+    <string-array name="styles">
+        <item>light</item>
+        <item>dark</item>
+        <item>red</item>
+        <item>space</item>
+    </string-array>
 </resources>

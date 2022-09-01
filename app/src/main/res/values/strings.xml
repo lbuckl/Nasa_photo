@@ -29,7 +29,14 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="red">Red</string>
+    <string name="space">Space</string>
+    <string name="style">Style</string>
+    <string name="language">Language</string>
+    <string name="russian">Russian</string>
+    <string name="english">English</string>
 
 
 </resources>
