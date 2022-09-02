@@ -12,6 +12,7 @@
 
         <TextView
             android:id="@+id/app_name"
+            style="@style/GeneralSettingStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -28,6 +29,7 @@
 
         <TextView
             android:id="@+id/textView_styles"
+            style="@style/SettingTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/style" />
@@ -67,6 +69,7 @@
 
         <TextView
             android:id="@+id/textView_lang"
+            style="@style/SettingTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/language" />

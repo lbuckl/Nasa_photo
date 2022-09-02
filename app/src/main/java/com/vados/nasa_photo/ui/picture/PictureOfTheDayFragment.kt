@@ -1,5 +1,6 @@
 package com.vados.nasa_photo.ui.picture
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -152,6 +153,7 @@ class PictureOfTheDayFragment : Fragment() {
     //endregion
 
     //Функция инициализирует и устанавливает логику работы BottomAppBar
+    @SuppressLint("ResourceAsColor")
     private fun initBottomAppBar() {
         binding.bottomAppBar.let { it ->
             it.replaceMenu(R.menu.menu_bottom_bar)
