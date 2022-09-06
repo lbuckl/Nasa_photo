@@ -18,13 +18,14 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
-import com.vados.nasa_photo.ui.support.PreferencesFragment
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import com.vados.nasa_photo.utils.showSnackBarInfoMsg
 import com.vados.nasa_photo.utils.toast
 import com.vados.nasa_photo.viewmodel.AppState
 import com.vados.nasa_photo.viewmodel.PictureViewModel
+import java.security.KeyStore
+import java.util.jar.Attributes
 
 /**
  * Главный фрагмент реализует функции:
@@ -145,23 +146,16 @@ class PictureOfTheDayFragment : Fragment() {
             }
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_bottom_bar, menu)
-    }
     //endregion
 
     //Функция инициализирует и устанавливает логику работы BottomAppBar
-    @SuppressLint("ResourceAsColor")
     private fun initBottomAppBar() {
-        binding.bottomAppBar.let { it ->
+        binding.bottomAppBar.let {
             it.replaceMenu(R.menu.menu_bottom_bar)
             onMenuItemSelected(it.menu)
             it.setNavigationOnClickListener { itView ->
-                val popupMenu = PopupMenu(context, itView)
-                popupMenu.menuInflater.inflate(R.menu.menu_bottom_navigation, popupMenu.menu)
-                popupMenu.show()
+                val popupMenu = PopupMenu(context,itView)
+                requireActivity().menuInflater.inflate(R.menu.menu_bottom_navigation, popupMenu.menu)
                 popupMenu.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.navigation_archive -> {
@@ -173,19 +167,22 @@ class PictureOfTheDayFragment : Fragment() {
                     }
                     true
                 }
+                popupMenu.show()
             }
         }
     }
 
     //Функция инициализирует и устанавливает логику работы FAB
+    @SuppressLint("ResourceType")
     private fun initFAB() {
         with(binding) {
             fab.setOnClickListener {
                 if (isMain) {
                     isMain = false
                     bottomAppBar.navigationIcon = null
+                    //Перемещаем fab вправо
                     bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                    binding.fab.setImageDrawable(
+                    fab.setImageDrawable(
                         ContextCompat.getDrawable(
                             requireContext(),
                             R.drawable.ic_back_fab
@@ -199,6 +196,7 @@ class PictureOfTheDayFragment : Fragment() {
                             requireContext(),
                             R.drawable.ic_hamburger_menu_bottom_bar
                         )
+                    //Перемещаем fab в центр
                     bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                     fab.setImageDrawable(
                         ContextCompat.getDrawable(

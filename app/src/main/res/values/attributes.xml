@@ -2,4 +2,5 @@
 <resources>
     <attr name="mainBackground" format="color"/>
     <attr name="fabBackgroundColor" format="color"/>
+    <attr format="reference" name="fab_icon"/>
 </resources>

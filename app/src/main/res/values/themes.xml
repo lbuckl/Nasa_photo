@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Nasa_photo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Nasa_photo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,14 +13,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="mainBackground">@color/white</item>
+        <item name="background">@color/white</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fabBackgroundColor">@color/teal_200</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/white</item>
-        <item name="popupMenuStyle">@color/white</item>
+        <item name="popupMenuStyle">@style/Theme.Nasa_photo</item>
+        <!-- FAB. -->
+        <item name="fabBackgroundColor">@color/teal_200</item>
+        <item name="fab_icon">@drawable/ic_plus_fab</item>
     </style>
 
-    <style name="Theme.Dark" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -34,13 +37,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="mainBackground">@color/black</item>
+        <item name="background">@color/black</item>
         <item name="android:textColor">@color/white</item>
-        <item name="fabBackgroundColor">@color/teal_200</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/cardview_dark_background</item>
+        <item name="popupMenuStyle">@style/Theme.Dark</item>
+        <!-- FAB. -->
+        <item name="fabBackgroundColor">@color/teal_200</item>
+        <item name="fab_icon">@drawable/ic_plus_fab</item>
     </style>
 
-    <style name="Theme.Red" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Red" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/redPrymary</item>
         <item name="colorPrimaryVariant">@color/redPrimaryVariant</item>
@@ -54,13 +61,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="mainBackground">@color/redBack</item>
+        <item name="background">@color/redBack</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fabBackgroundColor">@color/redPrimaryVariant</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/redBack</item>
+        <item name="popupMenuStyle">@style/Theme.Red</item>
+        <!-- FAB. -->
+        <item name="fabBackgroundColor">@color/redPrimaryVariant</item>
+        <item name="fab_icon">@drawable/ic_plus_fab</item>
     </style>
 
-    <style name="Theme.Space" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Space" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -74,10 +85,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="mainBackground">@color/black</item>
+        <item name="background">@color/black</item>
         <item name="android:textColor">@color/white</item>
-        <item name="fabBackgroundColor">@color/teal_200</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/cardview_dark_background</item>
+        <item name="popupMenuStyle">@style/Theme.Space</item>
+        <!-- FAB. -->
+        <item name="fabBackgroundColor">@color/teal_200</item>
+        <item name="fab_icon">@drawable/ic_star</item>
     </style>
 </resources>
 
