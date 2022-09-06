@@ -1,6 +1,7 @@
 package com.vados.nasa_photo.ui.picture
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -19,9 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.ui.support.SettingsFragment
-import com.vados.nasa_photo.utils.showSnackBarErrorMsg
-import com.vados.nasa_photo.utils.showSnackBarInfoMsg
-import com.vados.nasa_photo.utils.toast
+import com.vados.nasa_photo.utils.*
 import com.vados.nasa_photo.viewmodel.AppState
 import com.vados.nasa_photo.viewmodel.PictureViewModel
 import java.security.KeyStore
@@ -182,12 +181,7 @@ class PictureOfTheDayFragment : Fragment() {
                     bottomAppBar.navigationIcon = null
                     //Перемещаем fab вправо
                     bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                    fab.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_back_fab
-                        )
-                    )
+                    setFABicon(R.drawable.ic_back_fab)
                     bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
                 } else {
                     isMain = true
@@ -198,16 +192,31 @@ class PictureOfTheDayFragment : Fragment() {
                         )
                     //Перемещаем fab в центр
                     bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    fab.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_plus_fab
-                        )
-                    )
+                    if (getCodeTheme() == THEME_SPACE){
+                        setFABicon(R.drawable.ic_star)
+                    }
+                    else{
+                        setFABicon(R.drawable.ic_plus_fab)
+                    }
+
                     initBottomAppBar()
                 }
             }
         }
+    }
+
+    private fun getCodeTheme():Int{
+        val sharedPref = requireContext().getSharedPreferences(PREF_SETTINGS, Context.MODE_PRIVATE)
+        return sharedPref.getInt(PREF_THEME_INT, THEME_LIGHT)
+    }
+
+    private fun setFABicon(id:Int){
+        binding.fab.setImageDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                id
+            )
+        )
     }
 
     override fun onDestroyView() {

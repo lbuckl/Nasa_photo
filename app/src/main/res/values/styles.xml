@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- SettingStyle. -->
     <style name="GeneralSettingStyle">
         <item name="android:textSize">20sp</item>
         <item name="android:typeface">monospace</item>
@@ -9,6 +10,8 @@
     <style name="SettingTextStyle">
         <item name="android:textSize">16sp</item>
     </style>
+    <!-- ______________________________________. -->
+
 
     <style name="AppShapeAppearance.SmallComponent"
         parent="ShapeAppearance.MaterialComponents.SmallComponent">

@@ -6,7 +6,6 @@
     android:id="@+id/bottom_sheet_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/mainBackground"
     app:behavior_hideable="false"
     app:behavior_peekHeight="@dimen/behavior_heigh"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">

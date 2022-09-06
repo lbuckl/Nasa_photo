@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getCodeTheme():Int{
+    fun getCodeTheme():Int{
         val sharedPref = getSharedPreferences(PREF_SETTINGS,Context.MODE_PRIVATE)
         return sharedPref.getInt(PREF_THEME_INT, THEME_LIGHT)
     }
