@@ -13,9 +13,9 @@
     <color name="redSecondaryVariant">#BF062C</color>
     <color name="redBack">#FAB4B4</color>
     <!-- SpaceStyle. -->
-    <color name="bluePrymary">#0B5FA5</color>
-    <color name="bluePrimaryVariant">#25547B</color>
+    <color name="bluePrymary">#043C6B</color>
+    <color name="bluePrimaryVariant">#0B5FA5</color>
     <color name="blueSecondaryVariant">#3F8FD2</color>
-    <color name="blueBack">#043C6B</color>
+    <color name="blueBack">#25547B</color>
     <color name="spaceStyleText">#FF9400</color>
 </resources>

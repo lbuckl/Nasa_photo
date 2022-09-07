@@ -6,6 +6,7 @@
     android:id="@+id/bottom_sheet_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/BottomSheetFragmentStyle"
     app:behavior_hideable="false"
     app:behavior_peekHeight="@dimen/behavior_heigh"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -20,18 +21,19 @@
 
     <TextView
         android:id="@+id/bottomSheetDescriptionHeader"
+        style="@style/BottomSheetFragmentStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/bottom_sheet_description_margin_top"
         android:paddingStart="@dimen/bottom_sheet_description_padding_default"
         android:paddingEnd="@dimen/bottom_sheet_description_padding_default"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottomSheetLine"
         tools:text="Two Clusters and a Comet" />
         <TextView
         android:id="@+id/bottomSheetDescription"
+        style="@style/BottomSheetFragmentStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/bottom_sheet_description_padding_default"

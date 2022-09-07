@@ -7,4 +7,5 @@
     <dimen name="bottom_sheet_line_margin_top">5dp</dimen>
     <dimen name="bottom_sheet_description_padding_default">10dp</dimen>
     <dimen name="bottom_sheet_description_margin_top">64dp</dimen>
+    <dimen name="settingsGeneralMargin">8dp</dimen>
 </resources>

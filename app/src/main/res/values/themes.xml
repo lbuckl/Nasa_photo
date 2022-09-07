@@ -86,7 +86,7 @@
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="mainBackground">@color/blueBack</item>
-        <item name="android:background">@color/blueBack</item>
+        <item name="android:background">@color/bluePrymary</item>
         <item name="android:textColor">@color/spaceStyleText</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/blueBack</item>

@@ -12,7 +12,7 @@
     </style>
     <!-- ______________________________________. -->
 
-
+    <!-- ElementFormStyle. -->
     <style name="AppShapeAppearance.SmallComponent"
         parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">cut</item>
@@ -23,5 +23,22 @@
         parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">8dp</item>
+    </style>
+    <!-- ______________________________________. -->
+
+    <!-- PictureOfTheDayFragmentStyle. -->
+    <style name="POTDFStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint">?mainBackground</item>
+        <item name="android:background">?mainBackground</item>
+    </style>
+
+    <!-- PictureOfTheDayFragmentStyle. -->
+    <style name="BottomSheetFragmentStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint">?mainBackground</item>
+        <item name="android:background">?mainBackground</item>
     </style>
 </resources>
