@@ -7,13 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- DarkStyle. -->
+    <color name="DarkPrimary">#1C191B</color>
     <!-- RedStyle. -->
-    <color name="redPrymary">#EE0083</color>
-    <color name="redPrimaryVariant">#EE0030</color>
+    <color name="redPrimary">#EE0083</color>
+    <color name="redPrimaryVariant">#F3244E</color>
     <color name="redSecondaryVariant">#BF062C</color>
     <color name="redBack">#FAB4B4</color>
     <!-- SpaceStyle. -->
-    <color name="bluePrymary">#043C6B</color>
+    <color name="bluePrimary">#043C6B</color>
     <color name="bluePrimaryVariant">#0B5FA5</color>
     <color name="blueSecondaryVariant">#3F8FD2</color>
     <color name="blueBack">#25547B</color>

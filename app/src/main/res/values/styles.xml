@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- SettingStyle. -->
-    <style name="GeneralSettingStyle">
+    <style name="GeneralSettingsStyle">
+        <item name="android:background">?settingsBackground</item>
+    </style>
+
+    <style name="HeaderSettingTextStyle">
         <item name="android:textSize">20sp</item>
         <item name="android:typeface">monospace</item>
         <item name="android:textStyle">bold</item>
