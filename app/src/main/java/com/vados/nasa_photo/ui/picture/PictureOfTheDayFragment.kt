@@ -5,7 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -23,8 +26,6 @@ import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
 import com.vados.nasa_photo.viewmodel.AppState
 import com.vados.nasa_photo.viewmodel.PictureViewModel
-import java.security.KeyStore
-import java.util.jar.Attributes
 
 /**
  * Главный фрагмент реализует функции:

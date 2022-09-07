@@ -2,15 +2,12 @@ package com.vados.nasa_photo.ui.support
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.ChipGroup
-import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentSettingsBinding
-import com.vados.nasa_photo.ui.picture.PictureOfTheDayFragment
 import com.vados.nasa_photo.utils.*
 
 class SettingsFragment:Fragment() {

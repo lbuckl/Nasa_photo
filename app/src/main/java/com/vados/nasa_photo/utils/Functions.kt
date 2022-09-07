@@ -1,6 +1,5 @@
 package com.vados.nasa_photo.utils
 
-import android.content.Context
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast

@@ -2,9 +2,8 @@ package com.vados.nasa_photo
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.vados.nasa_photo.ui.picture.PictureOfTheDayFragment
+import com.vados.nasa_photo.ui.support.GreetingsFragment
 import com.vados.nasa_photo.utils.PREF_SETTINGS
 import com.vados.nasa_photo.utils.PREF_THEME_INT
 import com.vados.nasa_photo.utils.THEME_LIGHT
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
+                .replace(R.id.container, GreetingsFragment())
                 .commitNow()
         }
     }
