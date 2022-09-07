@@ -10,13 +10,15 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.chip.ChipGroup
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentSettingsBinding
+import com.vados.nasa_photo.ui.picture.PictureOfTheDayFragment
 import com.vados.nasa_photo.utils.*
 
 class SettingsFragment:Fragment() {
 
     private var _bindingSettings: FragmentSettingsBinding? = null
     private val bindingSettings get() = _bindingSettings!!
-    private var isChose = false
+    private var oldTheme = THEME_LIGHT
+    private var newTheme = THEME_LIGHT
 
     companion object {
         fun newInstance() = SettingsFragment()
@@ -39,10 +41,10 @@ class SettingsFragment:Fragment() {
                 mutableList: MutableList<Int> ->
             with(bindingSettings){
                 when (chipGroup.checkedChipId){
-                    chipLight.id -> setAppTheme(THEME_LIGHT)
-                    chipDark.id -> setAppTheme(THEME_DARK)
-                    chipRed.id -> setAppTheme(THEME_RED)
-                    chipSpace.id -> setAppTheme(THEME_SPACE)
+                    chipLight.id -> newTheme = THEME_LIGHT
+                    chipDark.id -> newTheme = THEME_DARK
+                    chipRed.id -> newTheme = THEME_RED
+                    chipSpace.id -> newTheme = THEME_SPACE
                     else -> {}
                 }
             }
@@ -50,12 +52,32 @@ class SettingsFragment:Fragment() {
 
         //инициализация кнопки "Применить"
         bindingSettings.buttonApply.setOnClickListener {
-            requireActivity().recreate()
+            val lastFragment = requireActivity()
+                .supportFragmentManager.findFragmentByTag("POTD")
+
+            if (oldTheme != newTheme){
+                setAppTheme(newTheme)
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .remove(this)
+                    .show(lastFragment!!)
+                    .commit()
+                requireActivity().recreate()
+            }
+            else {
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .remove(this)
+                    .show(lastFragment!!)
+                    .commit()
+            }
         }
     }
 
     private fun initialization(){
-        when (getCodeTheme()){
+        oldTheme = getCodeTheme()
+        newTheme = oldTheme
+        when (oldTheme){
             THEME_LIGHT -> bindingSettings.chipLight.isChecked = true
             THEME_DARK -> bindingSettings.chipDark.isChecked = true
             THEME_RED-> bindingSettings.chipRed.isChecked = true
