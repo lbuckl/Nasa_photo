@@ -8,7 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <!-- DarkStyle. -->
-    <color name="DarkPrimary">#1C191B</color>
+    <color name="DarkPrimary">#512882</color>
+    <color name="DarkPrimaryVariant">#360570</color>
+    <color name="DarkOnPrimary">#FFF473</color>
+    <color name="DarkBack">#26365F</color>
     <!-- RedStyle. -->
     <color name="redPrimary">#EE0083</color>
     <color name="redPrimaryVariant">#F3244E</color>
