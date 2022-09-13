@@ -17,3 +17,6 @@ const val THEME_LIGHT = 0
 const val THEME_DARK = 1
 const val THEME_RED = 2
 const val THEME_SPACE = 3
+
+//Константы для permissions
+const val REQUEST_CODE_READ_CONTACTS = 101
