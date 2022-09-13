@@ -1,16 +1,11 @@
 package com.vados.nasa_photo.ui.support
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentGreetingsBinding
-import com.vados.nasa_photo.ui.picture.PictureOfTheDayFragment
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 
 class GreetingsFragment:Fragment(){
     private var _bindingGreetings: FragmentGreetingsBinding? = null

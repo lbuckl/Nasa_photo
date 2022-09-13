@@ -5,34 +5,24 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.icu.util.Calendar
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.view.drawToBitmap
 import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import coil.Coil
-import coil.ImageLoader
 import coil.load
-import coil.request.ImageRequest
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
@@ -41,19 +31,10 @@ import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
 import com.vados.nasa_photo.viewmodel.AppState
 import com.vados.nasa_photo.viewmodel.PictureViewModel
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
+import java.io.*
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.sql.Time
 import java.time.LocalDate
-import java.time.LocalTime
-import java.time.ZoneId
-import java.util.jar.Manifest
 import kotlin.io.path.Path
 
 /**
@@ -123,7 +104,6 @@ class PictureOfTheDayFragment : Fragment() {
                         binding.imageViewPOTD.load(R.drawable.img)
                         view?.showSnackBarErrorMsg("No photo today")
                     }
-                    //savePicture(binding.imageViewPOTD)
                 }
             }
             is AppState.Loading -> {
@@ -136,11 +116,13 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
+    //функция сохраняет картинку формата drawable в память смартфона
     private fun savePicture(draw:Drawable){
-        val date = LocalDate.now()
-        val fileName = "NasaPicture_$date"
-        val folderToSave = requireContext().filesDir.toString()
-        val pathSave = Paths.get(Path(folderToSave,fileName).toString())
+    //переменные для создания пути сохранения файла в память сматрфона
+    val date = LocalDate.now()
+    val fileName = "NasaPicture_$date" //имя файла
+    val folderToSave = requireContext().filesDir.toString()//директория для сохранения
+    val pathSave = Paths.get(Path(folderToSave,fileName).toString())
 
         if (Files.isRegularFile(pathSave)){
             view?.toast("Файл уже загружен")
@@ -150,7 +132,8 @@ class PictureOfTheDayFragment : Fragment() {
             try {
                 val file = File(folderToSave,fileName)
                 fOut = FileOutputStream(file)
-                draw.toBitmap().compress(Bitmap.CompressFormat.JPEG,85,fOut)
+                //преобразуем в битмап и сохраняем в формате jpeg с 85% сжатием
+                draw.toBitmap().compress(Bitmap.CompressFormat.JPEG,50,fOut)
                 fOut.flush()
                 fOut.close()
                 // регистрация в фотоальбоме

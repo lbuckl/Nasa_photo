@@ -21,7 +21,6 @@ class PictureViewModel(private val liveData: MutableLiveData<AppState> = Mutable
         liveData
     }
 
-    //
     private fun getPictureDTO(){
         repository.getPictureDTO(this,this)
         liveData.postValue(AppState.Loading)
