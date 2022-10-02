@@ -3,12 +3,8 @@ package com.vados.nasa_photo.ui.picture
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -17,7 +13,6 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -27,15 +22,15 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
+import com.vados.nasa_photo.model.ImageToMemoryLoader
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
 import com.vados.nasa_photo.viewmodel.AppState
 import com.vados.nasa_photo.viewmodel.PictureViewModel
-import java.io.*
-import java.nio.file.Files
-import java.nio.file.Paths
-import java.time.LocalDate
-import kotlin.io.path.Path
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 /**
  * Главный фрагмент реализует функции:
@@ -48,6 +43,8 @@ class PictureOfTheDayFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var urlPicture:String? = null
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
+
 
     companion object {
         lateinit var viewModel: PictureViewModel
@@ -116,42 +113,6 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
-    //функция сохраняет картинку формата drawable в память смартфона
-    private fun savePicture(draw:Drawable){
-    //переменные для создания пути сохранения файла в память сматрфона
-    val date = LocalDate.now()
-    val fileName = "NasaPicture_$date" //имя файла
-    val folderToSave = requireContext().filesDir.toString()//директория для сохранения
-    val pathSave = Paths.get(Path(folderToSave,fileName).toString())
-
-        if (Files.isRegularFile(pathSave)){
-            view?.toast("Файл уже загружен")
-        }
-        else{
-            val fOut: OutputStream?
-            try {
-                val file = File(folderToSave,fileName)
-                fOut = FileOutputStream(file)
-                //преобразуем в битмап и сохраняем в формате jpeg с 85% сжатием
-                draw.toBitmap().compress(Bitmap.CompressFormat.JPEG,50,fOut)
-                fOut.flush()
-                fOut.close()
-                // регистрация в фотоальбоме
-                MediaStore.Images.Media.insertImage(requireContext().contentResolver,
-                    file.absolutePath,file.name,file.name)
-                if (file.exists()) view?.toast("Файл удачно загружен")
-            }catch (e:IOException){
-                Log.v("@@@",e.toString())
-                view?.toast("Файл не загружен")
-                e.printStackTrace()
-            }catch (e:NullPointerException){
-                Log.v("@@@",e.toString())
-                view?.toast("Файл не загружен")
-                e.printStackTrace()
-            }
-        }
-    }
-
     //функция инициализирует BottomSheet (Нижнее перетаскиваемое окно)
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
@@ -180,7 +141,10 @@ class PictureOfTheDayFragment : Fragment() {
                     R.id.app_bar_fav -> {
                         binding.imageViewPOTD.load(urlPicture){
                             target {draw ->
-                                savePicture(draw)
+                                coroutineScope.launch {
+                                    //savePicture(draw)
+                                    view?.toast(ImageToMemoryLoader.savePicture(requireContext(),draw))
+                                }
                             }
                         }
                     }
@@ -273,6 +237,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        coroutineScope.cancel()
         _binding = null
     }
 }
