@@ -38,6 +38,7 @@
     <string name="russian">Russian</string>
     <string name="english">English</string>
     <string name="apply">Apply</string>
+    <string name="app_bar_telescope">app_bar_telescope</string>
 
 
 </resources>
