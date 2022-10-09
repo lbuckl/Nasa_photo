@@ -4,17 +4,17 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vados.nasa_photo.model.PictureDTO
-import com.vados.nasa_photo.model.RepositoryRemoteImpl
-import com.vados.nasa_photo.utils.CallbackError
-import com.vados.nasa_photo.utils.CallbackSucces
+import com.vados.nasa_photo.model.retrofit.PictureRequestImpl
+import com.vados.nasa_photo.utils.NASA_PICTURE_API_KEY
+import retrofit2.Call
+import retrofit2.Response
 
 /**
  * ViewModel реализующая бизнес-логику работы фрагмента для отображения
  * фотографии получаемой с сайта NASA
  */
 class PictureViewModel(private val liveData: MutableLiveData<AppState> = MutableLiveData<AppState>()
-): ViewModel(),CallbackSucces,CallbackError {
-    var repository = RepositoryRemoteImpl()
+): ViewModel(){
 
     val getLiveData = {
         getPictureDTO()
@@ -22,17 +22,16 @@ class PictureViewModel(private val liveData: MutableLiveData<AppState> = Mutable
     }
 
     private fun getPictureDTO(){
-        repository.getPictureDTO(this,this)
-        liveData.postValue(AppState.Loading)
-    }
-
-    override fun setError(errorMsg: String) {
-        liveData.postValue(AppState.Error(Exception(errorMsg)))
-        Log.v("@@@", errorMsg)
-    }
-
-    override fun setSucces(pictureDTO: PictureDTO) {
-        Log.v("@@@", "VM:setSucces")
-        liveData.postValue(AppState.Succes(pictureDTO))
+        PictureRequestImpl.getRetrofitImpl().getPicture(NASA_PICTURE_API_KEY).enqueue(object :
+            retrofit2.Callback<PictureDTO>{
+            override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>) {
+                Log.v("@@@", "VM:setSucces")
+                liveData.postValue(AppState.Succes(response.body()!!))
+            }
+            override fun onFailure(call: Call<PictureDTO>, t: Throwable) {
+                liveData.postValue(AppState.Error(Exception("Loading Failure")))
+                Log.v("@@@", "Loading Failure")
+            }
+        })
     }
 }
