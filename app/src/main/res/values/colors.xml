@@ -23,4 +23,7 @@
     <color name="blueSecondaryVariant">#3F8FD2</color>
     <color name="blueBack">#25547B</color>
     <color name="spaceStyleText">#FF9400</color>
+    <!-- Navigation dots. -->
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent40Alfa">#6603DAC5</color>
 </resources>

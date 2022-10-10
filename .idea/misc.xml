@@ -22,10 +22,12 @@
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/drawable/ic_send.xml" value="0.1" />
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/drawable/ic_settings_menu.xml" value="0.1" />
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/drawable/ic_wikipedia.xml" value="0.1" />
+        <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/drawable/swipe_indicator_active.xml" value="0.1" />
+        <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/drawable/swipe_indicator_passive.xml" value="0.1" />
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/activity_main.xml" value="0.3078125" />
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/activity_view_pager.xml" value="0.35555555555555557" />
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_earth.xml" value="0.35555555555555557" />
+        <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_earth.xml" value="0.33" />
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_greetings.xml" value="0.35648148148148145" />
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_loading.xml" value="0.3078125" />
         <entry key="..\:/Users/Vados/AndroidStudioProjects/Nasa_photo/app/src/main/res/layout/fragment_mars.xml" value="0.35555555555555557" />
