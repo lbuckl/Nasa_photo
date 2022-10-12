@@ -11,6 +11,6 @@ class ViewPagerActivity: AppCompatActivity() {
 
         binding = ActivityViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
+        binding.viewPager.adapter = ViewPagerAdapter(this)
     }
 }
