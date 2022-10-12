@@ -1,4 +1,4 @@
-package com.vados.nasa_photo.ui.navigation
+package com.vados.nasa_photo.ui.greetings
 
 import android.os.Bundle
 import android.view.LayoutInflater

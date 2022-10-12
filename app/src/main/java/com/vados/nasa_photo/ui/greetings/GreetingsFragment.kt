@@ -1,4 +1,4 @@
-package com.vados.nasa_photo.ui.support
+package com.vados.nasa_photo.ui.greetings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,10 +17,6 @@ class GreetingsFragment:Fragment(){
     ): View {
         _bindingGreetings = FragmentGreetingsBinding.inflate(inflater)
         return bindingGreetings.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {

@@ -16,8 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -26,7 +24,7 @@ import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.model.ImageToMemoryLoader
 import com.vados.nasa_photo.ui.navigation.BottomNavigationActivity
-import com.vados.nasa_photo.ui.navigation.ViewPagerActivity
+import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
 import com.vados.nasa_photo.viewmodel.AppState
@@ -162,7 +160,7 @@ class PictureOfTheDayFragment : Fragment() {
                     }
                     R.id.app_bar_telescope -> {
                         activity?.let { FragmentActivity ->
-                            startActivity(Intent(FragmentActivity,ViewPagerActivity::class.java))
+                            startActivity(Intent(FragmentActivity, ViewPagerActivity::class.java))
                         }
                     }
                 }

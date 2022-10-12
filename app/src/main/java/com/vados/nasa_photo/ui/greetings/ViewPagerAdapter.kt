@@ -1,4 +1,4 @@
-package com.vados.nasa_photo.ui.navigation
+package com.vados.nasa_photo.ui.greetings
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -13,8 +13,10 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity):
         private const val WEATHER_FRAGMENT = 2
     }
 
-    private val fragments = arrayOf(EarthFragment(), MarsFragment(),
-        WeatherFragment())
+    private val fragments = arrayOf(
+        EarthFragment(), MarsFragment(),
+        WeatherFragment()
+    )
 
 
     override fun getItemCount(): Int {

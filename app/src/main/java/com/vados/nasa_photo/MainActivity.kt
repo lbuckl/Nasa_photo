@@ -4,10 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
-import com.vados.nasa_photo.ui.navigation.ViewPagerActivity
+import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
 import com.vados.nasa_photo.ui.picture.PictureOfTheDayFragment
-import com.vados.nasa_photo.ui.support.GreetingsFragment
+import com.vados.nasa_photo.ui.greetings.GreetingsFragment
 import com.vados.nasa_photo.utils.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -26,7 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         //Проверяем показывали ли мы приветственное окно
         val isFirstActive = getSharedPreferences(INITIALIZATION,Context.MODE_PRIVATE)
-        if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
+        //if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
+        if (true){
                 startActivity(Intent(this, ViewPagerActivity::class.java))
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")

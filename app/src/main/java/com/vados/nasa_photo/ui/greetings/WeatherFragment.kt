@@ -1,4 +1,4 @@
-package com.vados.nasa_photo.ui.navigation
+package com.vados.nasa_photo.ui.greetings
 
 import android.content.Context
 import android.os.Bundle
@@ -24,7 +24,7 @@ class WeatherFragment:Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentWeatherBinding.inflate(inflater)
         return binding.root
     }
