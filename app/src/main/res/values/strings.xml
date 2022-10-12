@@ -45,6 +45,7 @@
     <string name="earth">Earth</string>
     <string name="mars">Mars</string>
     <string name="weather">Weather</string>
+    <string name="letStart">Начнём</string>
 
 
 </resources>

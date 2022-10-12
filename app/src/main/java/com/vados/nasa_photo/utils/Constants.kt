@@ -11,9 +11,17 @@ import com.vados.nasa_photo.BuildConfig
  */
 const val NASA_PICTURE_API_KEY = BuildConfig.NASA_PICTURE_API_KEY
 
+/**
+ * Группа констант для фрагмента "Настройки"
+ */
 const val PREF_SETTINGS = "PREF_SETTINGS"
+//Настройки темы приложения
 const val PREF_THEME_INT = "PREF_THEME_INT"
 const val THEME_LIGHT = 0
 const val THEME_DARK = 1
 const val THEME_RED = 2
 const val THEME_SPACE = 3
+
+//Константа для хранения флага первого запуска приложения
+const val INITIALIZATION = "init"
+const val FIRST_ACTIVE = "first_active"

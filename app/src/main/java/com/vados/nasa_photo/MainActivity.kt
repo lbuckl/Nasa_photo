@@ -1,18 +1,21 @@
 package com.vados.nasa_photo
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import com.vados.nasa_photo.ui.navigation.ViewPagerActivity
 import com.vados.nasa_photo.ui.picture.PictureOfTheDayFragment
 import com.vados.nasa_photo.ui.support.GreetingsFragment
-import com.vados.nasa_photo.utils.PREF_SETTINGS
-import com.vados.nasa_photo.utils.PREF_THEME_INT
-import com.vados.nasa_photo.utils.THEME_LIGHT
+import com.vados.nasa_photo.utils.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+
+    var isFirstActive = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //Устанавливаем тему
@@ -21,17 +24,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, GreetingsFragment())
-                .commitNow()
-        }
-
-        GlobalScope.launch {
-            delay(2000)
+        //Проверяем показывали ли мы приветственное окно
+        val isFirstActive = getSharedPreferences(INITIALIZATION,Context.MODE_PRIVATE)
+        if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
+                startActivity(Intent(this, ViewPagerActivity::class.java))
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
                 .commit()
+        }
+        else{
+            if (savedInstanceState == null) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, GreetingsFragment())
+                    .commitNow()
+            }
+
+            GlobalScope.launch {
+                delay(2000)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
+                    .commit()
+            }
         }
     }
 
