@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         //Проверяем показывали ли мы приветственное окно
         val isFirstActive = getSharedPreferences(INITIALIZATION,Context.MODE_PRIVATE)
-        //if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
-        if (true){
+        if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
                 startActivity(Intent(this, ViewPagerActivity::class.java))
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             GlobalScope.launch {
-                delay(2000)
+                delay(1500)
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
                     .commit()
