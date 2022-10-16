@@ -44,8 +44,9 @@
     <string name="navigation_indicator_3">navigation_indicator_3</string>
     <string name="earth">Earth</string>
     <string name="mars">Mars</string>
-    <string name="weather">Weather</string>
+    <string name="photo">Weather</string>
     <string name="letStart">Начнём</string>
+    <string name="tab_navigation_layout">tab_navigation_layout</string>
 
 
 </resources>

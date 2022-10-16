@@ -23,7 +23,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.model.ImageToMemoryLoader
-import com.vados.nasa_photo.ui.navigation.BottomNavigationActivity
 import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
@@ -184,9 +183,7 @@ class PictureOfTheDayFragment : Fragment() {
                             itView?.showSnackBarInfoMsg("Button Archive")
                         }
                         R.id.navigation_send -> {
-                            //itView?.toast("Button Send")
-                            activity?.let { startActivity(Intent(requireActivity(),
-                                BottomNavigationActivity::class.java)) }
+
                         }
                     }
                     true

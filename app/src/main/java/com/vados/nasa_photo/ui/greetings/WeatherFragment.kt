@@ -5,16 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.vados.nasa_photo.R
-import com.vados.nasa_photo.databinding.FragmentEarthBinding
-import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.databinding.FragmentWeatherBinding
 import com.vados.nasa_photo.utils.FIRST_ACTIVE
 import com.vados.nasa_photo.utils.INITIALIZATION
-import com.vados.nasa_photo.utils.PREF_SETTINGS
-import com.vados.nasa_photo.utils.PREF_THEME_INT
 
 class WeatherFragment:Fragment() {
 

@@ -5,14 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentEarthBinding
-import com.vados.nasa_photo.databinding.FragmentWeatherBinding
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.concurrent.thread
 
 class EarthFragment:Fragment() {
 
