@@ -1,4 +1,4 @@
-package com.vados.nasa_photo.model
+package com.vados.nasa_photo.model.dto
 
 import com.google.gson.annotations.SerializedName
 

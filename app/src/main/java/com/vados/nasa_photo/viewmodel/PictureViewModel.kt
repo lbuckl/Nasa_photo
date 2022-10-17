@@ -3,7 +3,7 @@ package com.vados.nasa_photo.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vados.nasa_photo.model.PictureDTO
+import com.vados.nasa_photo.model.dto.PictureDTO
 import com.vados.nasa_photo.model.retrofit.PictureRequestImpl
 import com.vados.nasa_photo.utils.NASA_PICTURE_API_KEY
 import retrofit2.Call

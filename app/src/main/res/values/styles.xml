@@ -45,4 +45,18 @@
         <item name="android:backgroundTint">?mainBackground</item>
         <item name="android:background">?mainBackground</item>
     </style>
+
+    <!-- Стиль для наименования элемента меню. -->
+    <style name="MenuItemNameStyle">
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Стиль для параметра "описание" элемента меню. -->
+    <style name="MenuItemDescriptionStyle">
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

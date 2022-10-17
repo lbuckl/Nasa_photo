@@ -1,4 +1,4 @@
-package com.vados.nasa_photo.ui.picture
+package com.vados.nasa_photo.ui.navigation
 
 import android.annotation.SuppressLint
 import android.content.Context

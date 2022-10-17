@@ -8,4 +8,9 @@
     <dimen name="bottom_sheet_description_padding_default">10dp</dimen>
     <dimen name="bottom_sheet_description_margin_top">64dp</dimen>
     <dimen name="settingsGeneralMargin">8dp</dimen>
+
+    <dimen name="CardViewRightMargin">8dp</dimen>
+
+    <!-- Размер отступа сверху для работы CollapsingToolbarLayout. -->
+    <dimen name="menuAppMargin">64dp</dimen>
 </resources>
