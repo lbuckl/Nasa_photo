@@ -23,7 +23,7 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
     }
 
     private fun getPictureDTO(){
-        EarthRequestImpl.getRetrofitImpl().getPicture("2022_09_10",NASA_PICTURE_API_KEY).enqueue(object :
+        EarthRequestImpl.getRetrofitImpl().getPicture("2022_08_15",NASA_PICTURE_API_KEY).enqueue(object :
             Callback<EarthPhotoDTO>{
             override fun onResponse(call: Call<EarthPhotoDTO>, response: Response<EarthPhotoDTO>){
                 Log.v("@@@", "VM:setSucces")

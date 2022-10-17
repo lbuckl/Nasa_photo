@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.vados.nasa_photo.ui.greetings.GreetingsFragment
 import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
+import com.vados.nasa_photo.ui.navigation.EarthPhotoFragment
 import com.vados.nasa_photo.ui.navigation.PhotoAlbumMenuFragment
 import com.vados.nasa_photo.ui.navigation.PictureOfTheDayFragment
 import com.vados.nasa_photo.utils.*
@@ -77,16 +78,16 @@ class MainActivity : AppCompatActivity() {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when (tab?.position){
                         0 -> {
-                            val podLastFragment = supportFragmentManager.findFragmentByTag("POD_Fragment")
-                            replaceFragment(podLastFragment, PictureOfTheDayFragment(),"POD_Fragment")
+                            val lastFragment = supportFragmentManager.findFragmentByTag("POD_Fragment")
+                            replaceFragment(lastFragment, PictureOfTheDayFragment(),"POD_Fragment")
                         }
                         1 ->{
-                            val marsLastFragment = supportFragmentManager.findFragmentByTag("Mars_Fragment")
-                            replaceFragment(marsLastFragment, PictureOfTheDayFragment(),"POD_Fragment")
+                            val lastFragment = supportFragmentManager.findFragmentByTag("Earth_Fragment")
+                            replaceFragment(lastFragment, EarthPhotoFragment(),"Earth_Fragment")
                         }
                         2 ->{
-                            val podLastFragment = supportFragmentManager.findFragmentByTag("Photo_Fragment")
-                            replaceFragment(podLastFragment, PhotoAlbumMenuFragment(),"POD_Fragment")
+                            val lastFragment = supportFragmentManager.findFragmentByTag("Photo_Fragment")
+                            replaceFragment(lastFragment, PhotoAlbumMenuFragment(),"Photo_Fragment")
                         }
                     }
                 }
