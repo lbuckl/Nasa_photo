@@ -14,8 +14,8 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity):
     }
 
     private val fragments = arrayOf(
-        EarthFragment(), MarsFragment(),
-        WeatherFragment()
+        GreetingsFirstFragment(), GreetingsSecondFragment(),
+        GreetingsThreethFragment()
     )
 
 

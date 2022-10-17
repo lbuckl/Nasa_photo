@@ -6,20 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.vados.nasa_photo.databinding.FragmentWeatherBinding
+import com.vados.nasa_photo.databinding.FragmentGreetingsTreethBinding
 import com.vados.nasa_photo.utils.FIRST_ACTIVE
 import com.vados.nasa_photo.utils.INITIALIZATION
 
-class WeatherFragment:Fragment() {
+class GreetingsThreethFragment:Fragment() {
 
-    private var _binding: FragmentWeatherBinding? = null
+    private var _binding: FragmentGreetingsTreethBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentWeatherBinding.inflate(inflater)
+        _binding = FragmentGreetingsTreethBinding.inflate(inflater)
         return binding.root
     }
 

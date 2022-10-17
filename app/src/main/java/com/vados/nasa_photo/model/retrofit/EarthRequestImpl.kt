@@ -13,7 +13,7 @@ import java.io.IOException
  * класс для запроса фото дня из API NASA
  * основная функция для запроса: getRetrofitImpl()
  */
-object EarrthRequestImpl {
+object EarthRequestImpl {
     private val baseUrl = "https://images-api.nasa.gov"
     private val podRetrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
