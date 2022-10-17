@@ -157,11 +157,6 @@ class PictureOfTheDayFragment : Fragment() {
                             .addToBackStack("main")
                             .commit()
                     }
-                    R.id.app_bar_telescope -> {
-                        activity?.let { FragmentActivity ->
-                            startActivity(Intent(FragmentActivity, ViewPagerActivity::class.java))
-                        }
-                    }
                 }
                 true
             }
@@ -180,10 +175,8 @@ class PictureOfTheDayFragment : Fragment() {
                 popupMenu.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.navigation_archive -> {
-                            itView?.showSnackBarInfoMsg("Button Archive")
                         }
                         R.id.navigation_send -> {
-
                         }
                     }
                     true

@@ -12,7 +12,7 @@ import retrofit2.http.Query
  * @param keywords - ключевые слова (если имеются)
  * @param media_type - тип медиафайла
  */
-interface MenuRequestInterface {
+interface PhotoAlbumRequestInterface {
     @GET("search")
     fun getMenu(
         @Query("q") q: String,

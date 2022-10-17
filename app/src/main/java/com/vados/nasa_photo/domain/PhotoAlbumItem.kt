@@ -8,12 +8,10 @@ import kotlinx.parcelize.Parcelize
  * @param name - намиенование блюда
  * @param description - описание блюда
  * @param link - ссылка на фото блюда
- * @param price - цена блюда
  */
 @Parcelize
-data class MenuItem(
+data class PhotoAlbumItem(
     val name: String,
     val description: String,
     val link: String,
-    var price: Double
 ): Parcelable

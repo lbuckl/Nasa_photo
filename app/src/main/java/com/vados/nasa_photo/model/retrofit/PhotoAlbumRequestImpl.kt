@@ -12,15 +12,15 @@ import java.io.IOException
  * класс для запроса фото дня из API NASA
  * основная функция для запроса: getRetrofitImpl()
  */
-class MenuRequestImpl {
+class PhotoAlbumRequestImpl {
     private val baseUrl = "https://images-api.nasa.gov"
     private val podRetrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .client(createOkHttpClient(PODInterceptor()))
-        .build().create(MenuRequestInterface::class.java)
+        .build().create(PhotoAlbumRequestInterface::class.java)
 
-    fun getRetrofitImpl(): MenuRequestInterface {
+    fun getRetrofitImpl(): PhotoAlbumRequestInterface {
         return podRetrofit
     }
 

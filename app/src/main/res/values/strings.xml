@@ -49,15 +49,12 @@
     <string name="tab_navigation_layout">tab_navigation_layout</string>
 
     <!-- Строки для contentDescription. -->
-    <string name="spinner_cities">Spinner_cities</string>
-    <string name="ic_qr_scanner">qr_scanner</string>
     <string name="appbar">appbar</string>
-    <string name="scroll_advertising">Scroll advertising</string>
-    <string name="advertising">advertising</string>
     <string name="image_menu_item">image_menu_item</string>
 
     <!-- Строки для фрагмента NASA Photo album. -->
     <string name="NASA_photo_album">Фото альбом NASA</string>
-
-
+    <string name="General_theme">Основная тема</string>
+    <string name="General_description">Доп. описание</string>
+    <string name="Key_word">Ключевое слово</string>
 </resources>

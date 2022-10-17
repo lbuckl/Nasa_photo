@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.vados.nasa_photo.ui.greetings.GreetingsFragment
 import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
-import com.vados.nasa_photo.ui.navigation.MarketMenuFragment
+import com.vados.nasa_photo.ui.navigation.PhotoAlbumMenuFragment
 import com.vados.nasa_photo.ui.navigation.PictureOfTheDayFragment
 import com.vados.nasa_photo.utils.*
 import kotlinx.coroutines.GlobalScope
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         2 ->{
                             val podLastFragment = supportFragmentManager.findFragmentByTag("Photo_Fragment")
-                            replaceFragment(podLastFragment, MarketMenuFragment(),"POD_Fragment")
+                            replaceFragment(podLastFragment, PhotoAlbumMenuFragment(),"POD_Fragment")
                         }
                     }
                 }
