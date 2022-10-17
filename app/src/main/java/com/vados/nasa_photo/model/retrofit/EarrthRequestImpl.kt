@@ -1,6 +1,7 @@
 package molchanov.hammertesttask.model.request
 
 import com.google.gson.GsonBuilder
+import com.vados.nasa_photo.model.retrofit.EarthPictureRequestInterface
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,15 +13,15 @@ import java.io.IOException
  * класс для запроса фото дня из API NASA
  * основная функция для запроса: getRetrofitImpl()
  */
-object PhotoAlbumRequestImpl {
+object EarrthRequestImpl {
     private val baseUrl = "https://images-api.nasa.gov"
     private val podRetrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .client(createOkHttpClient(PODInterceptor()))
-        .build().create(PhotoAlbumRequestInterface::class.java)
+        .build().create(EarthPictureRequestInterface::class.java)
 
-    fun getRetrofitImpl(): PhotoAlbumRequestInterface {
+    fun getRetrofitImpl(): EarthPictureRequestInterface {
         return podRetrofit
     }
 

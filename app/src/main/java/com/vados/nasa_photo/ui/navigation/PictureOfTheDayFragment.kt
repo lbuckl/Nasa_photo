@@ -23,11 +23,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.model.ImageToMemoryLoader
-import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
-import com.vados.nasa_photo.viewmodel.AppState
-import com.vados.nasa_photo.viewmodel.PictureViewModel
+import com.vados.nasa_photo.viewmodel.POTDAppState
+import com.vados.nasa_photo.viewmodel.POTDViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -48,7 +47,7 @@ class PictureOfTheDayFragment : Fragment() {
 
 
     companion object {
-        lateinit var viewModel: PictureViewModel
+        lateinit var viewModel: POTDViewModel
         fun newInstance() = PictureOfTheDayFragment()
         private var isMain = true // Переменная хранящая состояние кнопки FAB
     }
@@ -63,7 +62,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[PictureViewModel::class.java]
+        viewModel = ViewModelProvider(this)[POTDViewModel::class.java]
         viewModel.getLiveData().observe(viewLifecycleOwner) { t -> renderData(t) }
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
 
@@ -82,11 +81,11 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     //Функция работы с состояниями ViewModel
-    private fun renderData(appState: AppState) {
-        when (appState) {
-            is AppState.Succes -> {
+    private fun renderData(POTDAppState: POTDAppState) {
+        when (POTDAppState) {
+            is POTDAppState.Succes -> {
                 binding.progressBarPictureOTD.isVisible = false
-                appState.pictureDTO.let {
+                POTDAppState.pictureDTO.let {
                     urlPicture = it.hdurl
                     if (it.mediaType == "image") {
                         binding.imageViewPOTD.load(urlPicture)
@@ -104,12 +103,12 @@ class PictureOfTheDayFragment : Fragment() {
                     }
                 }
             }
-            is AppState.Loading -> {
+            is POTDAppState.Loading -> {
                 binding.progressBarPictureOTD.isVisible = true
             }
-            is AppState.Error -> {
+            is POTDAppState.Error -> {
                 binding.progressBarPictureOTD.isVisible = false
-                view?.showSnackBarErrorMsg(appState.error.message.toString())
+                view?.showSnackBarErrorMsg(POTDAppState.error.message.toString())
             }
         }
     }

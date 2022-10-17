@@ -13,7 +13,7 @@ import retrofit2.Response
  * ViewModel реализующая бизнес-логику работы фрагмента для отображения
  * фотографии получаемой с сайта NASA
  */
-class PictureViewModel(private val liveData: MutableLiveData<AppState> = MutableLiveData<AppState>()
+class POTDViewModel(private val liveData: MutableLiveData<POTDAppState> = MutableLiveData<POTDAppState>()
 ): ViewModel(){
 
     val getLiveData = {
@@ -24,12 +24,12 @@ class PictureViewModel(private val liveData: MutableLiveData<AppState> = Mutable
     private fun getPictureDTO(){
         PictureRequestImpl.getRetrofitImpl().getPicture(NASA_PICTURE_API_KEY).enqueue(object :
             retrofit2.Callback<PictureDTO>{
-            override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>) {
+            override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>){
                 Log.v("@@@", "VM:setSucces")
-                liveData.postValue(AppState.Succes(response.body()!!))
+                liveData.postValue(POTDAppState.Succes(response.body()!!))
             }
             override fun onFailure(call: Call<PictureDTO>, t: Throwable) {
-                liveData.postValue(AppState.Error(Exception("Loading Failure")))
+                liveData.postValue(POTDAppState.Error(Exception("Loading Failure")))
                 Log.v("@@@", "Loading Failure")
             }
         })

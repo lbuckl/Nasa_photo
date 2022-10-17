@@ -19,7 +19,7 @@ class PhotoAlbumListViewModel(private val liveData: MutableLiveData<PhotoAlbumLi
     private fun getPhotoAlbumItems() {
         liveData.postValue(PhotoAlbumListAppState.Loading)
 
-        PhotoAlbumRequestImpl().getRetrofitImpl().getMenu(
+        PhotoAlbumRequestImpl.getRetrofitImpl().getMenu(
             "earth",
             "earth",
             "russia",

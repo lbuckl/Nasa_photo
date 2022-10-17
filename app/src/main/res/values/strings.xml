@@ -57,4 +57,5 @@
     <string name="General_theme">Основная тема</string>
     <string name="General_description">Доп. описание</string>
     <string name="Key_word">Ключевое слово</string>
+    <string name="Find">Найти</string>
 </resources>
