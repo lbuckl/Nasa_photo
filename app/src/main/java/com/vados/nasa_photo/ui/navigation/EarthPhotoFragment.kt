@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.gb.weather.view.weatherlist.EarthPhotoRecyclerAdapter
@@ -16,7 +17,6 @@ class EarthPhotoFragment:Fragment() {
 
     companion object {
         lateinit var viewModel: EarthPhotoViewModel
-        fun newInstance() = PictureOfTheDayFragment()
     }
 
     private var _binding: FragmentEarthPhotoBinding? = null
@@ -44,12 +44,13 @@ class EarthPhotoFragment:Fragment() {
         when (photoAlbumListAppState){
             is EarthPhotoAppState.Succes ->{
                 binding.recyclerview.adapter = EarthPhotoRecyclerAdapter(photoAlbumListAppState.pictureDTO)
+                binding.progressBar.isVisible = false
             }
             is EarthPhotoAppState.Error -> {
-
+                binding.progressBar.isVisible = false
             }
             is EarthPhotoAppState.Loading -> {
-
+                binding.progressBar.isVisible = true
             }
         }
     }

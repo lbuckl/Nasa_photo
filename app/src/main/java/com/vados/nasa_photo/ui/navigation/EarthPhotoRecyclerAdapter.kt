@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.gb.weather.domain.PhotoAlbumItem
+import com.vados.nasa_photo.databinding.FragmentEarthPhotoItemBinding
 import com.vados.nasa_photo.databinding.FragmentPhotoalbumItemBinding
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTO
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTOItem
@@ -19,7 +20,7 @@ class EarthPhotoRecyclerAdapter (private val itemList:EarthPhotoDTO):
 
     //Создаёт ViewHolder объект опираясь на их количество, но с запасом, чтобы можно было скролить
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-        val binding = FragmentPhotoalbumItemBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = FragmentEarthPhotoItemBinding.inflate(LayoutInflater.from(parent.context))
         return PhotoViewHolder(binding.root)
     }
 
@@ -37,10 +38,9 @@ class EarthPhotoRecyclerAdapter (private val itemList:EarthPhotoDTO):
     inner class PhotoViewHolder(view: View): RecyclerView.ViewHolder(view){
         @SuppressLint("SetTextI18n")
         fun bind(earthPhotoItem: EarthPhotoDTOItem){
-            FragmentPhotoalbumItemBinding.bind(itemView).apply {
-                imageViewItemPicture.load(earthPhotoItem.image)
-                textViewName.text = earthPhotoItem.date
-                textViewDescription.text = earthPhotoItem.caption
+            FragmentEarthPhotoItemBinding.bind(itemView).apply {
+                imageViewItemEarth.load(earthPhotoItem.image)
+                textViewNameEarth.text = earthPhotoItem.date
             }
         }
     }

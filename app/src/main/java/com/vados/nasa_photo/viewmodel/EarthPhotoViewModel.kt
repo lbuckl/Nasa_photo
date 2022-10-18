@@ -32,6 +32,7 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
     }
 
     private fun getPictureDTO(){
+        liveData.postValue(EarthPhotoAppState.Loading)
         EarthRequestImpl.getRetrofitImpl()
             .getPicture(pastDay.getPastDateWithDash(PAST_BIAS_DAY),NASA_PICTURE_API_KEY)
             .enqueue(object : Callback<EarthPhotoDTO>{
