@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_above="@+id/fragment_picture_of_the_day"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -79,6 +80,26 @@
                 app:layout_constraintHorizontal_bias="0.468"
                 app:layout_constraintStart_toStartOf="@+id/image_view_POTD"
                 app:layout_constraintTop_toTopOf="@+id/image_view_POTD" />
+
+            <TextView
+                android:id="@+id/textView_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:text="@string/promt_video_link"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_POTD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout" />
+
+            <TextView
+                android:id="@+id/textView_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/image_view_POTD"
+                app:layout_constraintStart_toStartOf="@+id/image_view_POTD"
+                app:layout_constraintTop_toBottomOf="@+id/textView_prompt" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

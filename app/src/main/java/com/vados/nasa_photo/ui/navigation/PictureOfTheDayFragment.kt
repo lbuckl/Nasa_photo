@@ -98,12 +98,25 @@ class PictureOfTheDayFragment : Fragment() {
                             textView.text = it.explanation
                         }
                     } else {
-                        binding.imageViewPOTD.load(R.drawable.img)
+                        //Если пришло видео вместо фото, то позволяем открыть его поссылке
+                        binding.textViewPrompt.isVisible = true
+                        binding.textViewLink.apply {
+                            isVisible = true
+                            text = urlPicture
+                            setOnClickListener {
+                                startActivity(Intent(Intent.ACTION_VIEW).apply {
+                                    data =
+                                        Uri.parse(urlPicture)
+                                })
+                            }
+                        }
                         view?.showSnackBarErrorMsg("No photo today")
                     }
                 }
             }
             is POTDAppState.Loading -> {
+                binding.textViewLink.isVisible = false
+                binding.textViewPrompt.isVisible = false
                 binding.progressBarPictureOTD.isVisible = true
             }
             is POTDAppState.Error -> {
