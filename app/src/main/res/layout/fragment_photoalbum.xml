@@ -21,7 +21,6 @@
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
                 <!-- Место для ввода данных. -->
 
-
                 <include
                     layout="@layout/photo_search_input_layout"
                     android:layout_width="match_parent"

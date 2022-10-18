@@ -4,22 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.gb.weather.view.weatherlist.PhotoAlbumListRecyclerAdapter
+import com.gb.weather.view.weatherlist.EarthPhotoRecyclerAdapter
 import com.vados.nasa_photo.databinding.FragmentEarthPhotoBinding
-import com.vados.nasa_photo.databinding.FragmentPhotoalbumMenuBinding
-import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import com.vados.nasa_photo.viewmodel.EarthPhotoAppState
 import com.vados.nasa_photo.viewmodel.EarthPhotoViewModel
-import molchanov.hammertesttask.viewmodel.PhotoAlbumListAppState
+import com.vados.nasa_photo.viewmodel.POTDViewModel
 
 class EarthPhotoFragment:Fragment() {
 
     companion object {
         lateinit var viewModel: EarthPhotoViewModel
-        fun newInstance() = EarthPhotoFragment()
+        fun newInstance() = PictureOfTheDayFragment()
     }
 
     private var _binding: FragmentEarthPhotoBinding? = null
@@ -38,6 +35,7 @@ class EarthPhotoFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProvider(this)[EarthPhotoViewModel::class.java]
         viewModel.getLiveData().observe(viewLifecycleOwner) { t -> renderData(t) }
     }
@@ -45,7 +43,7 @@ class EarthPhotoFragment:Fragment() {
     private fun renderData(photoAlbumListAppState: EarthPhotoAppState){
         when (photoAlbumListAppState){
             is EarthPhotoAppState.Succes ->{
-
+                binding.recyclerview.adapter = EarthPhotoRecyclerAdapter(photoAlbumListAppState.pictureDTO)
             }
             is EarthPhotoAppState.Error -> {
 

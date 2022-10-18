@@ -31,4 +31,5 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity):
             else -> fragments[EARTH_FRAGMENT]
         }
     }
+
 }

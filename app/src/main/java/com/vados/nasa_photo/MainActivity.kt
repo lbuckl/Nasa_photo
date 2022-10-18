@@ -9,7 +9,7 @@ import com.google.android.material.tabs.TabLayout
 import com.vados.nasa_photo.ui.greetings.GreetingsFragment
 import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
 import com.vados.nasa_photo.ui.navigation.EarthPhotoFragment
-import com.vados.nasa_photo.ui.navigation.PhotoAlbumMenuFragment
+import com.vados.nasa_photo.ui.navigation.PhotoAlbumFragment
 import com.vados.nasa_photo.ui.navigation.PictureOfTheDayFragment
 import com.vados.nasa_photo.utils.*
 import kotlinx.coroutines.GlobalScope
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         2 ->{
                             val lastFragment = supportFragmentManager.findFragmentByTag("Photo_Fragment")
-                            replaceFragment(lastFragment, PhotoAlbumMenuFragment(),"Photo_Fragment")
+                            replaceFragment(lastFragment, PhotoAlbumFragment(),"Photo_Fragment")
                         }
                     }
                 }

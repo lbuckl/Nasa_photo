@@ -5,12 +5,19 @@ import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.icu.util.GregorianCalendar
 
+/**
+ * класс для работы с форматированной датой(временем)
+ */
 @SuppressLint("SimpleDateFormat")
-class DayTimeData() {
+class DayTimeData {
     private var simpleDateFormatSlash:SimpleDateFormat = SimpleDateFormat("yyyy/MM/dd")
     private var simpleDateFormatDash:SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
     private val gcalendar = GregorianCalendar()
 
+    /**
+     * получить текущую дату
+     * формат разделителя "-"
+     */
     fun getCurrentDate():String{
         simpleDateFormatDash.calendar = gcalendar
         return simpleDateFormatDash.format(gcalendar.time)

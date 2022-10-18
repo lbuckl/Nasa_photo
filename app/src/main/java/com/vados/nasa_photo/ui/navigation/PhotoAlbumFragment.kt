@@ -7,23 +7,23 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.gb.weather.view.weatherlist.PhotoAlbumListRecyclerAdapter
-import com.vados.nasa_photo.databinding.FragmentPhotoalbumMenuBinding
+import com.gb.weather.view.weatherlist.PhotoAlbumRecyclerAdapter
+import com.vados.nasa_photo.databinding.FragmentPhotoalbumBinding
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import molchanov.hammertesttask.viewmodel.PhotoAlbumListAppState
 import molchanov.hammertesttask.viewmodel.PhotoAlbumListViewModel
 
-class PhotoAlbumMenuFragment:Fragment() {
+class PhotoAlbumFragment:Fragment() {
 
     companion object {
         lateinit var viewModel: PhotoAlbumListViewModel
-        fun newInstance() = PhotoAlbumMenuFragment()
+        fun newInstance() = PhotoAlbumFragment()
     }
     var initConnection = false
     var isConnection = true
 
-    private var _binding: FragmentPhotoalbumMenuBinding? = null
-    private val binding: FragmentPhotoalbumMenuBinding
+    private var _binding: FragmentPhotoalbumBinding? = null
+    private val binding: FragmentPhotoalbumBinding
     get() {
         return _binding!!
     }
@@ -32,7 +32,7 @@ class PhotoAlbumMenuFragment:Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View {
-        _binding = FragmentPhotoalbumMenuBinding.inflate(inflater)
+        _binding = FragmentPhotoalbumBinding.inflate(inflater)
         return binding.root
     }
 
@@ -46,7 +46,7 @@ class PhotoAlbumMenuFragment:Fragment() {
         when (photoAlbumListAppState){
             is PhotoAlbumListAppState.Succes ->{
                 binding.progressBar.isVisible = false
-                binding.recyclerview.adapter = PhotoAlbumListRecyclerAdapter(photoAlbumListAppState.menuListDTO)
+                binding.recyclerview.adapter = PhotoAlbumRecyclerAdapter(photoAlbumListAppState.menuListDTO)
             }
             is PhotoAlbumListAppState.Error -> {
                 binding.progressBar.isVisible = false
