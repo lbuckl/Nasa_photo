@@ -63,4 +63,6 @@
     <string name="greetings_first_text_second">Здесь вы сможете увижеть свежите фото Земли</string>
     <string name="greetings_second_text">Увидеть фотографию дня</string>
     <string name="greetings_threeth_text">И просмотреть галерею NASA</string>
+    <string name="Second_theme">Доп. тема</string>
+    <string name="key_word">ключевое слово</string>
 </resources>

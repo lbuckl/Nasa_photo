@@ -47,7 +47,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/NASA_photo_album"
-                    android:textColor="#E1BEE7" />
+                    android:textColor="?customTextColor" />
             </LinearLayout>
 
         </com.google.android.material.appbar.AppBarLayout>

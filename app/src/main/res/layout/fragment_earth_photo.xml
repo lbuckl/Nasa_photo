@@ -42,7 +42,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/Earth_photo"
-                android:textColor="#E1BEE7" />
+                android:textColor="?customTextColor" />
         </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

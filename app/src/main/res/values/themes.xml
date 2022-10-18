@@ -22,6 +22,12 @@
         <!-- FAB. -->
         <item name="fabBackgroundColor">@color/teal_200</item>
         <item name="fab_icon">@drawable/ic_plus_fab</item>
+        <!-- TabLayout. -->
+        <item name="customTextColor">@color/teal_200</item>
+        <item name="customSecondColor">@color/black</item>
+        <!-- TextInput. -->
+        <item name="customEditTextColor">@color/black</item>
+        <item name="customHintEditTextColor">@color/generalHintTextColor</item>
     </style>
 
     <style name="Theme.Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -47,6 +53,12 @@
         <!-- FAB. -->
         <item name="fabBackgroundColor">@color/teal_200</item>
         <item name="fab_icon">@drawable/ic_plus_fab</item>
+        <!-- TabLayout. -->
+        <item name="customTextColor">@color/teal_200</item>
+        <item name="customSecondColor">@color/purple_700</item>
+        <!-- TextInput. -->
+        <item name="customEditTextColor">@color/teal_200</item>
+        <item name="customHintEditTextColor">@color/generalHintTextColor</item>
     </style>
 
     <style name="Theme.Red" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -72,6 +84,12 @@
         <!-- FAB. -->
         <item name="fabBackgroundColor">@color/redPrimaryVariant</item>
         <item name="fab_icon">@drawable/ic_plus_fab</item>
+        <!-- TabLayout. -->
+        <item name="customTextColor">@color/blueBack</item>
+        <item name="customSecondColor">@color/black</item>
+        <!-- TextInput. -->
+        <item name="customEditTextColor">@color/black</item>
+        <item name="customHintEditTextColor">@color/generalHintTextColor</item>
     </style>
 
     <style name="Theme.Space" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -97,6 +115,12 @@
         <!-- FAB. -->
         <item name="fabBackgroundColor">@color/teal_200</item>
         <item name="fab_icon">@drawable/ic_star</item>
+        <!-- TabLayout. -->
+        <item name="customTextColor">@color/spaceStyleText</item>
+        <item name="customSecondColor">@color/blueSecondaryVariant</item>
+        <!-- TextInput. -->
+        <item name="customEditTextColor">@color/spaceStyleText</item>
+        <item name="customHintEditTextColor">@color/generalHintTextColor</item>
     </style>
 </resources>
 

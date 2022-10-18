@@ -5,33 +5,37 @@
     android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textView5"
+            android:id="@+id/textView_general"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="TextView"
-            android:textColor="#E1BEE7"
-            android:textSelectHandleLeft="@string/General_theme">
+            android:hint="@string/General_theme"
+            android:textColor="?customEditTextColor"
+            android:textColorHint="?customHintEditTextColor">
         </com.google.android.material.textfield.TextInputEditText>
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textView6"
+            android:id="@+id/textView_comm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="TextView"
+            android:hint="@string/Second_theme"
             android:minHeight="48dp"
-            android:textColor="#E1BEE7" />
+            android:textColor="?customEditTextColor"
+            android:textColorHint="?customHintEditTextColor"/>
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textView7"
+            android:id="@+id/textView_key"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="TextView"
+            android:hint="@string/key_word"
             android:minHeight="48dp"
-            android:textColor="#E1BEE7" />
+            android:textColor="?customEditTextColor"
+            android:textColorHint="?customHintEditTextColor"/>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?fabBackgroundColor"
+            android:textColor="?customEditTextColor"
             android:text="@string/Find">
         </com.google.android.material.button.MaterialButton>
 </LinearLayout>
