@@ -59,4 +59,8 @@
     <string name="Key_word">Ключевое слово</string>
     <string name="Find">Найти</string>
     <string name="Earth_photo">Фото планеты Земля</string>
+    <string name="greetings_first_text_first">Добро пожаловать в мир NASA</string>
+    <string name="greetings_first_text_second">Здесь вы сможете увижеть свежите фото Земли</string>
+    <string name="greetings_second_text">Увидеть фотографию дня</string>
+    <string name="greetings_threeth_text">И просмотреть галерею NASA</string>
 </resources>

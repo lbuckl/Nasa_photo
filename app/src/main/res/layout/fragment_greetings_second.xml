@@ -53,4 +53,17 @@
             android:layout_marginStart="8dp"
             android:contentDescription="@string/navigation_indicator_3"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/greetingsTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="#1A000000"
+        android:gravity="center"
+        android:text="@string/greetings_second_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

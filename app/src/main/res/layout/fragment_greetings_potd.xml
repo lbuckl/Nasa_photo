@@ -11,8 +11,10 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/view_earth" />
 
     <ImageView
@@ -66,5 +68,29 @@
             android:layout_marginStart="8dp"
             android:contentDescription="@string/navigation_indicator_3"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/greetingsTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#1A000000"
+        android:gravity="center"
+        android:text="@string/greetings_first_text_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_swipe" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/greetingsTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#1A000000"
+        android:gravity="center"
+        android:text="@string/greetings_first_text_second"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
