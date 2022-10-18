@@ -25,3 +25,6 @@ const val THEME_SPACE = 3
 //Константа для хранения флага первого запуска приложения
 const val INITIALIZATION = "init"
 const val FIRST_ACTIVE = "first_active"
+
+//Констната смещение дней в прошлое для запроса фото земли в EarthPhotoViewModel
+const val PAST_BIAS_DAY = 15
