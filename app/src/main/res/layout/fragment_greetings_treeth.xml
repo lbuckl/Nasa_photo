@@ -18,47 +18,48 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="48dp"
         android:background="#1A000000"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottom">
 
         <ImageView
             android:id="@+id/imageView_navi_ind_1"
-            android:background="#1A000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/swipe_indicator_passive"
-            android:contentDescription="@string/navigation_indicator_1"/>
+            android:background="#1A000000"
+            android:contentDescription="@string/navigation_indicator_1"
+            app:srcCompat="@drawable/swipe_indicator_passive" />
 
         <ImageView
             android:id="@+id/imageView_navi_ind_2"
-            android:background="#1A000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="8dp"
-            app:srcCompat="@drawable/swipe_indicator_passive"
-            android:contentDescription="@string/navigation_indicator_2"/>
+            android:layout_weight="1"
+            android:background="#1A000000"
+            android:contentDescription="@string/navigation_indicator_2"
+            app:srcCompat="@drawable/swipe_indicator_passive" />
 
         <ImageView
             android:id="@+id/imageView_navi_ind_3"
-            android:background="#1A000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/swipe_indicator_active"
             android:layout_marginStart="8dp"
-            android:contentDescription="@string/navigation_indicator_3"/>
+            android:layout_weight="1"
+            android:background="#1A000000"
+            android:contentDescription="@string/navigation_indicator_3"
+            app:srcCompat="@drawable/swipe_indicator_active" />
     </LinearLayout>
 
     <Button
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:text="@string/letStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -75,4 +76,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 </androidx.constraintlayout.widget.ConstraintLayout>

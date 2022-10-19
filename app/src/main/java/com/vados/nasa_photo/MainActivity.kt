@@ -18,8 +18,6 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    var isFirstActive = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         //Устанавливаем тему
         setTheme(getAppTheme())
@@ -40,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             initNavigation()
         }
     }
-
 
     private fun getAppTheme():Int{
         return when (getCodeTheme()){

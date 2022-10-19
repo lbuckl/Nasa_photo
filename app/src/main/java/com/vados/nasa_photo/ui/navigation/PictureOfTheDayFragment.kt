@@ -82,6 +82,8 @@ class PictureOfTheDayFragment : Fragment() {
 
     //Функция работы с состояниями ViewModel
     private fun renderData(POTDAppState: POTDAppState) {
+        binding.textViewLink.isVisible = false
+        binding.textViewPrompt.isVisible = false
         when (POTDAppState) {
             is POTDAppState.Succes -> {
                 binding.progressBarPictureOTD.isVisible = false
@@ -115,9 +117,9 @@ class PictureOfTheDayFragment : Fragment() {
                 }
             }
             is POTDAppState.Loading -> {
+                binding.progressBarPictureOTD.isVisible = true
                 binding.textViewLink.isVisible = false
                 binding.textViewPrompt.isVisible = false
-                binding.progressBarPictureOTD.isVisible = true
             }
             is POTDAppState.Error -> {
                 binding.progressBarPictureOTD.isVisible = false
