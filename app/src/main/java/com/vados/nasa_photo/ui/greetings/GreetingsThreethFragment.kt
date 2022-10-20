@@ -33,4 +33,9 @@ class GreetingsThreethFragment:Fragment() {
             requireActivity().finish()
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

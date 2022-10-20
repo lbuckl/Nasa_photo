@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.vados.nasa_photo.ui.greetings.GreetingsFragment
 import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
+import com.vados.nasa_photo.ui.navigation.AnimationFragment
 import com.vados.nasa_photo.ui.navigation.EarthPhotoFragment
 import com.vados.nasa_photo.ui.navigation.PhotoAlbumFragment
 import com.vados.nasa_photo.ui.navigation.PictureOfTheDayFragment
@@ -27,16 +28,16 @@ class MainActivity : AppCompatActivity() {
 
         //Проверяем показывали ли мы приветственное окно
         val isFirstActive = getSharedPreferences(INITIALIZATION,Context.MODE_PRIVATE)
-        //if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
+        if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
             startActivity(Intent(this, ViewPagerActivity::class.java))
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
                 .commit()
-        /*}
+        }
         else{
             runGreetings(savedInstanceState)
             initNavigation()
-        }*/
+        }
     }
 
     private fun getAppTheme():Int{
@@ -85,6 +86,10 @@ class MainActivity : AppCompatActivity() {
                         2 ->{
                             val lastFragment = supportFragmentManager.findFragmentByTag("Photo_Fragment")
                             replaceFragment(lastFragment, PhotoAlbumFragment(),"Photo_Fragment")
+                        }
+                        3 ->{
+                            val lastFragment = supportFragmentManager.findFragmentByTag("Animation")
+                            replaceFragment(lastFragment, AnimationFragment(),"Animation")
                         }
                     }
                 }

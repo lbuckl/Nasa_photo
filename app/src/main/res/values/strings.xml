@@ -42,7 +42,7 @@
     <string name="navigation_indicator_1">navigation_indicator_1</string>
     <string name="navigation_indicator_2">navigation_indicator_2</string>
     <string name="navigation_indicator_3">navigation_indicator_3</string>
-    <string name="earth">Фото Земли</string>
+    <string name="earth">Земля</string>
     <string name="picture">Фото дня</string>
     <string name="photo_album">Галерея</string>
     <string name="letStart">Начнём</string>
@@ -68,4 +68,5 @@
     <string name="promt_video_link">Видео можно открыть по ссылке</string>
 
     <string name="Description">Описание</string>
+    <string name="Animation">Анимация</string>
 </resources>

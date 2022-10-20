@@ -38,7 +38,7 @@
         <item name="android:background">?mainBackground</item>
     </style>
 
-    <!-- PictureOfTheDayFragmentStyle. -->
+    <!-- BottomSheetFragmentStyle. -->
     <style name="BottomSheetFragmentStyle">
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
@@ -66,6 +66,14 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Стиль для Навигации TabLayout . -->
+    <style name="navigationStyle" parent="@style/Widget.Material3.TabLayout">
+        <item name="tabSelectedTextColor">?customTextColor</item>
+        <item name="tabTextColor">?customSecondColor</item>
+        <item name="tabRippleColor">?customSecondColor</item>
+        <item name="tabIconTint">?customSecondColor</item>
     </style>
 
 </resources>
