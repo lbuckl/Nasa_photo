@@ -27,16 +27,16 @@ class MainActivity : AppCompatActivity() {
 
         //Проверяем показывали ли мы приветственное окно
         val isFirstActive = getSharedPreferences(INITIALIZATION,Context.MODE_PRIVATE)
-        if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
+        //if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
             startActivity(Intent(this, ViewPagerActivity::class.java))
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
                 .commit()
-        }
+        /*}
         else{
             runGreetings(savedInstanceState)
             initNavigation()
-        }
+        }*/
     }
 
     private fun getAppTheme():Int{
