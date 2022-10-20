@@ -22,6 +22,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
+import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayStartBinding
 import com.vados.nasa_photo.model.ImageToMemoryLoader
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
@@ -39,7 +40,7 @@ import kotlinx.coroutines.launch
  * - работа перетаскиваемого ифнормационного окна "BottomSheetBehavior"
  */
 class PictureOfTheDayFragment : Fragment() {
-    private var _binding: FragmentPictureOfTheDayBinding? = null
+    private var _binding: FragmentPictureOfTheDayStartBinding? = null
     private val binding get() = _binding!!
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var urlPicture:String? = null
@@ -56,7 +57,7 @@ class PictureOfTheDayFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPictureOfTheDayBinding.inflate(inflater)
+        _binding = FragmentPictureOfTheDayStartBinding.inflate(inflater)
         return binding.root
     }
 

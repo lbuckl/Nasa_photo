@@ -48,8 +48,7 @@
                 app:endIconTintMode="src_in"
                 app:endIconMode="custom"
                 app:helperText="@string/wiki_helper_text"
-                app:layout_constraintEnd_toStartOf="@+id/wiki_button"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -59,7 +58,6 @@
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <com.vados.nasa_photo.utils.EquilateralImageView
                 android:id="@+id/image_view_POTD"
                 android:layout_width="match_parent"
@@ -111,6 +109,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/image_view_POTD"
                 app:layout_constraintStart_toStartOf="@+id/image_view_POTD"
                 app:layout_constraintTop_toBottomOf="@+id/textView_prompt" />
+
+
         </androidx.constraintlayout.motion.widget.MotionLayout>
     </androidx.core.widget.NestedScrollView>
 

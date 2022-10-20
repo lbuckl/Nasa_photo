@@ -16,8 +16,7 @@
             android:layout_height="match_parent"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            app:layoutDescription="@xml/motion_scene"
-            >
+            app:layoutDescription="@xml/motion_scene">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/wiki_button"
