@@ -85,7 +85,7 @@ class PictureOfTheDayFragment : Fragment() {
     private fun renderData(POTDAppState: POTDAppState) {
         when (POTDAppState) {
             is POTDAppState.Succes -> {
-                binding.progressBarPictureOTD.visibility = View.GONE
+                binding.progressBarPictureOTD.isVisible = false
                 POTDAppState.pictureDTO.let {
                     urlPicture = it.hdurl
                     if (it.mediaType == "image") {
@@ -100,9 +100,9 @@ class PictureOfTheDayFragment : Fragment() {
                         }
                     } else {
                         //Если пришло видео вместо фото, то позволяем открыть его поссылке
-                        binding.textViewPrompt.visibility = View.VISIBLE
+                        binding.textViewPrompt.isVisible = true
                         binding.textViewLink.apply {
-                            visibility = View.VISIBLE
+                            isVisible = true
                             text = urlPicture
                             setOnClickListener {
                                 startActivity(Intent(Intent.ACTION_VIEW).apply {
@@ -116,12 +116,12 @@ class PictureOfTheDayFragment : Fragment() {
                 }
             }
             is POTDAppState.Loading -> {
-                binding.textViewPrompt.visibility = View.GONE
-                binding.textViewLink.visibility = View.GONE
-                binding.progressBarPictureOTD.visibility = View.VISIBLE
+                binding.textViewPrompt.isVisible = false
+                binding.textViewLink.isVisible = false
+                binding.progressBarPictureOTD.isVisible = true
             }
             is POTDAppState.Error -> {
-                binding.progressBarPictureOTD.visibility = View.GONE
+                binding.progressBarPictureOTD.isVisible = false
                 view?.showSnackBarErrorMsg(POTDAppState.error.message.toString())
             }
         }
