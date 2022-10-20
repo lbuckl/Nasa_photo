@@ -85,7 +85,7 @@ class PictureOfTheDayFragment : Fragment() {
     private fun renderData(POTDAppState: POTDAppState) {
         when (POTDAppState) {
             is POTDAppState.Succes -> {
-                binding.progressBarPictureOTD.visibility = View.INVISIBLE
+                binding.progressBarPictureOTD.visibility = View.GONE
                 POTDAppState.pictureDTO.let {
                     urlPicture = it.hdurl
                     if (it.mediaType == "image") {
@@ -116,12 +116,12 @@ class PictureOfTheDayFragment : Fragment() {
                 }
             }
             is POTDAppState.Loading -> {
-                binding.textViewPrompt.visibility = View.INVISIBLE
-                binding.textViewLink.visibility = View.INVISIBLE
+                binding.textViewPrompt.visibility = View.GONE
+                binding.textViewLink.visibility = View.GONE
                 binding.progressBarPictureOTD.visibility = View.VISIBLE
             }
             is POTDAppState.Error -> {
-                binding.progressBarPictureOTD.visibility = View.INVISIBLE
+                binding.progressBarPictureOTD.visibility = View.GONE
                 view?.showSnackBarErrorMsg(POTDAppState.error.message.toString())
             }
         }
