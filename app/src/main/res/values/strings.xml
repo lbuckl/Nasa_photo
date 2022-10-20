@@ -66,4 +66,6 @@
     <string name="Second_theme">Доп. тема</string>
     <string name="key_word">ключевое слово</string>
     <string name="promt_video_link">Видео можно открыть по ссылке</string>
+
+    <string name="Description">Описание</string>
 </resources>

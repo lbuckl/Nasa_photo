@@ -107,6 +107,7 @@
         <!-- Customize your theme here. -->
         <item name="mainBackground">@color/blueBack</item>
         <item name="settingsBackground">@color/blueBack</item>
+        <item name="navigationMenuBackground">@color/bluePrimary</item>
         <item name="android:background">@color/bluePrimary</item>
         <item name="android:textColor">@color/spaceStyleText</item>
         <!-- menu. -->
