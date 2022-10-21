@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/view_pager_navi_points_margin_start"
             app:srcCompat="@drawable/swipe_indicator_active"
             android:contentDescription="@string/navigation_indicator_2"/>
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/swipe_indicator_passive"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/view_pager_navi_points_margin_start"
             android:contentDescription="@string/navigation_indicator_3"/>
     </LinearLayout>
 

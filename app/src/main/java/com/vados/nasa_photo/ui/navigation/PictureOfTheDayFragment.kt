@@ -3,10 +3,7 @@ package com.vados.nasa_photo.ui.navigation
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.RenderEffect
-import android.graphics.Shader
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -24,7 +21,6 @@ import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
-import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayBinding
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayStartBinding
 import com.vados.nasa_photo.model.ImageToMemoryLoader
 import com.vados.nasa_photo.ui.support.SettingsFragment

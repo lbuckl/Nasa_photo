@@ -10,7 +10,11 @@ import com.vados.nasa_photo.databinding.FragmentGreetingsTreethBinding
 import com.vados.nasa_photo.utils.FIRST_ACTIVE
 import com.vados.nasa_photo.utils.INITIALIZATION
 
-class GreetingsThreethFragment:Fragment() {
+/**
+ * Третий из трёх приветственных фрагментов
+ * всплывает только при первом запуске
+ */
+class GreetingsThreethFragment : Fragment() {
 
     private var _binding: FragmentGreetingsTreethBinding? = null
     private val binding get() = _binding!!
@@ -27,9 +31,10 @@ class GreetingsThreethFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //Выставляем флаг, что пользователь просмотрел приветственную информацию
         binding.buttonStart.setOnClickListener {
-            val sharedPrefer = requireContext().getSharedPreferences(INITIALIZATION, Context.MODE_PRIVATE)
+            val sharedPrefer =
+                requireContext().getSharedPreferences(INITIALIZATION, Context.MODE_PRIVATE)
             val editor = sharedPrefer.edit()
-            editor.putBoolean(FIRST_ACTIVE,false).apply()
+            editor.putBoolean(FIRST_ACTIVE, false).apply()
             requireActivity().finish()
         }
     }

@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.vados.nasa_photo.databinding.ActivityViewPagerBinding
 
+/**
+ * ViewPager для работы приветственных фрагментов
+ */
 class ViewPagerActivity: AppCompatActivity() {
     private var _binding:ActivityViewPagerBinding? = null
     private val binding get() = _binding!!

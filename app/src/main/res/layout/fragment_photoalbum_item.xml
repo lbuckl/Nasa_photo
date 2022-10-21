@@ -8,9 +8,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp">
+        android:layout_margin="@dimen/photoalbum_cardview_margin"
+        app:cardCornerRadius="@dimen/photoalbum_cardview_corner_radius"
+        app:cardElevation="@dimen/photoalbum_cardview_elevation">
 
         <RelativeLayout
             android:id="@+id/Relative_layout"

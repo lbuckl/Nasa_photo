@@ -12,10 +12,15 @@ import com.vados.nasa_photo.databinding.FragmentSettingsBinding
 import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
 import com.vados.nasa_photo.utils.*
 
-class SettingsFragment:Fragment() {
+/**
+ * Фрагмент реализующий окно настроек приложения
+ */
+class SettingsFragment : Fragment() {
 
     private var _bindingSettings: FragmentSettingsBinding? = null
     private val bindingSettings get() = _bindingSettings!!
+
+    //Переменные по которым вычисляется, была ли изменена тема
     private var oldTheme = THEME_SPACE
     private var newTheme = THEME_SPACE
 
@@ -35,11 +40,10 @@ class SettingsFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initialization()
         //инициализация чип группы для смены темы
-        bindingSettings.chipGroupStyles.setOnCheckedStateChangeListener{
-                chipGroup: ChipGroup,
-                mutableList: MutableList<Int> ->
-            with(bindingSettings){
-                when (chipGroup.checkedChipId){
+        bindingSettings.chipGroupStyles.setOnCheckedStateChangeListener { chipGroup: ChipGroup,
+                                                                          mutableList: MutableList<Int> ->
+            with(bindingSettings) {
+                when (chipGroup.checkedChipId) {
                     chipSpace.id -> newTheme = THEME_SPACE
                     chipLight.id -> newTheme = THEME_LIGHT
                     chipDark.id -> newTheme = THEME_DARK
@@ -54,7 +58,7 @@ class SettingsFragment:Fragment() {
             val lastFragment = requireActivity()
                 .supportFragmentManager.findFragmentByTag("POTD")
 
-            if (oldTheme != newTheme){
+            if (oldTheme != newTheme) {
                 setAppTheme(newTheme)
                 requireActivity().supportFragmentManager
                     .beginTransaction()
@@ -62,8 +66,7 @@ class SettingsFragment:Fragment() {
                     .show(lastFragment!!)
                     .commit()
                 requireActivity().recreate()
-            }
-            else {
+            } else {
                 requireActivity().supportFragmentManager
                     .beginTransaction()
                     .remove(this)
@@ -75,31 +78,32 @@ class SettingsFragment:Fragment() {
         //Кнопка открытия активити с приветствием
         bindingSettings.buttonGreetings.setOnClickListener {
             val intent = Intent(requireActivity().intent)
-            intent.setClass(requireContext(),ViewPagerActivity::class.java)
+            intent.setClass(requireContext(), ViewPagerActivity::class.java)
             requireActivity().startActivity(intent)
         }
     }
 
-    private fun initialization(){
+    private fun initialization() {
         oldTheme = getCodeTheme()
         newTheme = oldTheme
-        when (oldTheme){
+        when (oldTheme) {
             THEME_LIGHT -> bindingSettings.chipLight.isChecked = true
             THEME_DARK -> bindingSettings.chipDark.isChecked = true
-            THEME_RED-> bindingSettings.chipRed.isChecked = true
+            THEME_RED -> bindingSettings.chipRed.isChecked = true
             THEME_SPACE -> bindingSettings.chipSpace.isChecked = true
         }
     }
 
     // Сохранение настроек стиля
-    private fun setAppTheme(styleCode:Int){
-        val sharedPrefer = requireContext().getSharedPreferences(PREF_SETTINGS,Context.MODE_PRIVATE)
+    private fun setAppTheme(styleCode: Int) {
+        val sharedPrefer =
+            requireContext().getSharedPreferences(PREF_SETTINGS, Context.MODE_PRIVATE)
         val editor = sharedPrefer.edit()
-        editor.putInt(PREF_THEME_INT,styleCode).apply()
+        editor.putInt(PREF_THEME_INT, styleCode).apply()
     }
 
-    private fun getCodeTheme():Int{
-        val sharedPref = requireContext().getSharedPreferences(PREF_SETTINGS,Context.MODE_PRIVATE)
+    private fun getCodeTheme(): Int {
+        val sharedPref = requireContext().getSharedPreferences(PREF_SETTINGS, Context.MODE_PRIVATE)
         return sharedPref.getInt(PREF_THEME_INT, THEME_LIGHT)
     }
 

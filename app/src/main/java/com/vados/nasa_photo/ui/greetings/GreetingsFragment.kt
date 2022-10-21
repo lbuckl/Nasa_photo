@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.vados.nasa_photo.databinding.FragmentGreetingsBinding
 
+/**
+ * Общий приветственный фрагмент, всплывает при каждом запуске
+ */
+
 class GreetingsFragment:Fragment(){
     private var _bindingGreetings: FragmentGreetingsBinding? = null
     private val bindingGreetings get() = _bindingGreetings!!

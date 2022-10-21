@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.vados.nasa_photo.R
 
+/**
+ * Второй из трёх приветственных фрагментов
+ * всплывает только при первом запуске
+ */
 class GreetingsSecondFragment:Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,16 +1,16 @@
 package com.vados.nasa_photo.ui.navigation
 
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.gb.weather.view.weatherlist.PhotoAlbumRecyclerAdapter
-import com.google.android.material.appbar.AppBarLayout
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPhotoalbumBinding
 import com.vados.nasa_photo.ui.support.SettingsFragment
@@ -18,11 +18,12 @@ import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import molchanov.hammertesttask.viewmodel.PhotoAlbumListAppState
 import molchanov.hammertesttask.viewmodel.PhotoAlbumListViewModel
 
+/**
+ * Фрагмент для отображения фотографий из альбома API NASA
+ */
 class PhotoAlbumFragment:Fragment() {
-
     companion object {
         lateinit var viewModel: PhotoAlbumListViewModel
-        fun newInstance() = PhotoAlbumFragment()
     }
 
     private var _binding: FragmentPhotoalbumBinding? = null
@@ -48,7 +49,6 @@ class PhotoAlbumFragment:Fragment() {
         //скрываем меню
         setHasOptionsMenu(true)
         initBottomAppBar()
-        initConstraintSet()
     }
 
     private fun renderData(photoAlbumListAppState: PhotoAlbumListAppState){
@@ -110,13 +110,6 @@ class PhotoAlbumFragment:Fragment() {
         }
     }
     //endregion
-
-    private fun initConstraintSet(){
-        with(binding){
-            AppBarAction().layoutDependsOn(mainContent,inputParametersLayout,photoAlbumToolbar)
-        }
-
-    }
 
     override fun onDestroy() {
         super.onDestroy()

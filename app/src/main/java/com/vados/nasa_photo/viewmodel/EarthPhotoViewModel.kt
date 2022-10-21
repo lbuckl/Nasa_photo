@@ -1,16 +1,10 @@
 package com.vados.nasa_photo.viewmodel
 
-import android.annotation.SuppressLint
-import android.icu.text.SimpleDateFormat
-import android.icu.util.Calendar
-import android.icu.util.GregorianCalendar
 import android.util.Log
-import androidx.lifecycle.GeneratedAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vados.nasa_photo.domain.DayTimeData
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTO
-import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTOItem
 import com.vados.nasa_photo.utils.NASA_PICTURE_API_KEY
 import com.vados.nasa_photo.utils.PAST_BIAS_DAY
 import molchanov.hammertesttask.model.request.EarthRequestImpl

@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.gb.weather.domain.PhotoAlbumItem
 import com.vados.nasa_photo.databinding.FragmentEarthPhotoItemBinding
-import com.vados.nasa_photo.databinding.FragmentPhotoalbumItemBinding
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTO
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTOItem
 

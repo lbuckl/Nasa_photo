@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Фрагмент Picture_of_the_day. -->
+    <dimen name="potd_motion_padding">10dp</dimen>
     <dimen name="fabMargin">6dp</dimen>
     <dimen name="behavior_heigh">65dp</dimen>
     <dimen name="bottom_sheet_line_height">1dp</dimen>
@@ -7,11 +9,27 @@
     <dimen name="bottom_sheet_line_margin_top">5dp</dimen>
     <dimen name="bottom_sheet_description_padding_default">10dp</dimen>
     <dimen name="bottom_sheet_description_margin_top">64dp</dimen>
-    <dimen name="settingsGeneralMargin">8dp</dimen>
 
-    <dimen name="CardViewRightMargin">8dp</dimen>
+    <!-- Фрагмент Settings. -->
+    <dimen name="settingsGeneralMargin">8dp</dimen>
 
     <!-- Размер отступа сверху для работы CollapsingToolbarLayout. -->
     <dimen name="menuAppMargin">64dp</dimen>
     <dimen name="padding_bottom_input_layout">12dp</dimen>
+    <dimen name="main_container_top_padding">68dp</dimen>
+
+    <!-- CardView для reciclerView. -->
+    <dimen name="CardViewRightMargin">8dp</dimen>
+
+    <dimen name="earth_photo_cardview_margin">2dp</dimen>
+    <dimen name="earth_photo_cardview_corner_radius">10dp</dimen>
+    <dimen name="earth_photo_cardview_elevation">4dp</dimen>
+
+    <dimen name="photoalbum_cardview_margin">2dp</dimen>
+    <dimen name="photoalbum_cardview_corner_radius">10dp</dimen>
+    <dimen name="photoalbum_cardview_elevation">4dp</dimen>
+
+    <!-- View_pager greetings. -->
+    <dimen name="view_pager_navi_points_margin_start">8dp</dimen>
+    <dimen name="view_pager_navi_points_margin_bottom">48dp</dimen>
 </resources>
