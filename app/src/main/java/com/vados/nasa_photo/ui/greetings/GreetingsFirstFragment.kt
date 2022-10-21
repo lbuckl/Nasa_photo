@@ -2,6 +2,9 @@ package com.vados.nasa_photo.ui.greetings
 
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
+import android.graphics.RenderEffect
+import android.graphics.Shader
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,16 +31,46 @@ class GreetingsFirstFragment:Fragment() {
     ): View {
         _binding = FragmentGreetingsFirstBinding.inflate(inflater)
 
+        //Распределение времени для анимации и скрытия
+        val duration = 1000L
+        val startDelay = 1000L
+        val visionDelay = duration + startDelay + 1500
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val blurEffect = RenderEffect.createBlurEffect(10f, 0f,
+                Shader.TileMode.MIRROR)
+            with(binding){
+                imageViewEarth.setRenderEffect(blurEffect)
+                textViewGeneral.setRenderEffect(blurEffect)
+                textViewSupport.setRenderEffect(blurEffect)
+            }
+            //binding.smoothGroop.setRenderEffect(blurEffect)
+        }
+
         ViewCompat.animate(binding.imageViewSwipe)
             .translationX(-100.0f)
-            .setDuration(1000)
+            .setDuration(duration)
             .setInterpolator(CycleInterpolator(2F))
-            .setStartDelay(1000).start()
+            .setStartDelay(startDelay).start()
 
         GlobalScope.launch {
-            delay(5000)
+            delay(visionDelay)
             binding.imageViewSwipe.visibility = View.INVISIBLE
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val blurEffect = RenderEffect.createBlurEffect(0.1f, 0f,
+                    Shader.TileMode.MIRROR)
+                with(binding){
+                    imageViewEarth.setRenderEffect(blurEffect)
+                    textViewGeneral.setRenderEffect(blurEffect)
+                    textViewSupport.setRenderEffect(blurEffect)
+                }
+
+                //binding.smoothGroop.setRenderEffect(blurEffect)
+            }
         }
+
+
 
         return binding.root
     }

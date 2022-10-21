@@ -4,6 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/smooth_groop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:constraint_referenced_ids="imageView_earth,textView_general,textView_support">
+    </androidx.constraintlayout.widget.Group>
+
     <ImageView
         android:id="@+id/imageView_earth"
         android:layout_width="wrap_content"
@@ -16,6 +26,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/view_earth" />
+
+    <TextView
+        android:id="@+id/textView_general"
+        style="@style/greetingsTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#1A000000"
+        android:gravity="center"
+        android:text="@string/greetings_first_text_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_bottom" />
+
+    <TextView
+        android:id="@+id/textView_support"
+        style="@style/greetingsTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#1A000000"
+        android:gravity="center"
+        android:text="@string/greetings_first_text_second"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_general" />
 
     <ImageView
         android:id="@+id/imageView_swipe"
@@ -68,30 +102,6 @@
             android:contentDescription="@string/navigation_indicator_3"
             app:srcCompat="@drawable/swipe_indicator_passive" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        style="@style/greetingsTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#1A000000"
-        android:gravity="center"
-        android:text="@string/greetings_first_text_first"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_bottom" />
-
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/greetingsTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#1A000000"
-        android:gravity="center"
-        android:text="@string/greetings_first_text_second"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_bottom"
