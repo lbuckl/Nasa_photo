@@ -21,10 +21,48 @@
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
                 <!-- Место для ввода данных. -->
 
-                <include
-                    layout="@layout/photo_search_input_layout"
+                <LinearLayout
+                    android:id="@+id/input_parameters_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textView_general"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/General_theme"
+                        android:textColor="?customEditTextColor"
+                        android:textColorHint="?customHintEditTextColor">
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textView_comm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Second_theme"
+                        android:minHeight="48dp"
+                        android:textColor="?customEditTextColor"
+                        android:textColorHint="?customHintEditTextColor" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textView_key"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/key_word"
+                        android:minHeight="48dp"
+                        android:textColor="?customEditTextColor"
+                        android:textColorHint="?customHintEditTextColor" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?fabBackgroundColor"
+                        android:text="@string/Find"
+                        android:textColor="?customEditTextColor"
+                        android:paddingBottom="@dimen/padding_bottom_input_layout">
+                    </com.google.android.material.button.MaterialButton>
+                </LinearLayout>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/photoAlbum_toolbar"
@@ -33,23 +71,6 @@
                     app:layout_collapseMode="pin" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/white">
-
-                <TextView
-                    android:id="@+id/textView_photoAlbum_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/NASA_photo_album"
-                    android:textColor="?customTextColor" />
-            </LinearLayout>
-
         </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -76,5 +97,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        app:layout_anchor="@id/photoAlbum_appbar"
+        app:layout_anchorGravity="bottom">
+
+        <TextView
+            android:id="@+id/textView_photoAlbum_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/NASA_photo_album"
+            android:textColor="?customTextColor" />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

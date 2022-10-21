@@ -13,4 +13,5 @@
 
     <!-- Размер отступа сверху для работы CollapsingToolbarLayout. -->
     <dimen name="menuAppMargin">64dp</dimen>
+    <dimen name="padding_bottom_input_layout">12dp</dimen>
 </resources>

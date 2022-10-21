@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.gb.weather.view.weatherlist.PhotoAlbumRecyclerAdapter
+import com.google.android.material.appbar.AppBarLayout
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPhotoalbumBinding
 import com.vados.nasa_photo.ui.support.SettingsFragment
@@ -46,6 +48,7 @@ class PhotoAlbumFragment:Fragment() {
         //скрываем меню
         setHasOptionsMenu(true)
         initBottomAppBar()
+        initConstraintSet()
     }
 
     private fun renderData(photoAlbumListAppState: PhotoAlbumListAppState){
@@ -107,6 +110,13 @@ class PhotoAlbumFragment:Fragment() {
         }
     }
     //endregion
+
+    private fun initConstraintSet(){
+        with(binding){
+            AppBarAction().layoutDependsOn(mainContent,inputParametersLayout,photoAlbumToolbar)
+        }
+
+    }
 
     override fun onDestroy() {
         super.onDestroy()
