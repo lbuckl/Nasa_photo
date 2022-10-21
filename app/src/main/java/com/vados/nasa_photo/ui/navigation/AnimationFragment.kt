@@ -53,17 +53,17 @@ class AnimationFragment:Fragment() {
             }
 
             //положение сверху по центру
-            set.connect(listObjects[0].id,TOP, PARENT_ID, TOP)
-            set.connect(listObjects[0].id,LEFT, PARENT_ID, LEFT)
-            set.connect(listObjects[0].id,RIGHT, PARENT_ID, RIGHT)
+            set.connect(listObjects[1].id,TOP, PARENT_ID, TOP)
+            set.connect(listObjects[1].id,START, PARENT_ID, START)
+            set.connect(listObjects[1].id,END, PARENT_ID, END)
 
             //положение внизу слева
-            set.connect(listObjects[1].id,BOTTOM, PARENT_ID, BOTTOM)
-            set.connect(listObjects[1].id,LEFT, PARENT_ID, LEFT)
+            set.connect(listObjects[2].id,BOTTOM, PARENT_ID, BOTTOM)
+            set.connect(listObjects[2].id,START, PARENT_ID, START)
 
             //положение внизу справа
-            set.connect(listObjects[2].id,BOTTOM, PARENT_ID, BOTTOM)
-            set.connect(listObjects[2].id,RIGHT, PARENT_ID, RIGHT)
+            set.connect(listObjects[0].id,BOTTOM, PARENT_ID, BOTTOM)
+            set.connect(listObjects[0].id,END, PARENT_ID, END)
 
             //инверсия объектов
             val bufer = listObjects[2]
@@ -76,8 +76,8 @@ class AnimationFragment:Fragment() {
     private fun clearConstrains(set:ConstraintSet, obj:Button){
         set.clear(obj.id,TOP)
         set.clear(obj.id, BOTTOM)
-        set.clear(obj.id, LEFT)
-        set.clear(obj.id, RIGHT)
+        set.clear(obj.id, START)
+        set.clear(obj.id, END)
     }
 
     override fun onDestroy() {
