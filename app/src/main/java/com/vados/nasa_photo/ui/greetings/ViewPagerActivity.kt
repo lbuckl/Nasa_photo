@@ -5,12 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.vados.nasa_photo.databinding.ActivityViewPagerBinding
 
 class ViewPagerActivity: AppCompatActivity() {
-    private lateinit var binding: ActivityViewPagerBinding
+    private var _binding:ActivityViewPagerBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityViewPagerBinding.inflate(layoutInflater)
+        _binding = ActivityViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.viewPager.adapter = ViewPagerAdapter(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

@@ -46,13 +46,13 @@ class MainActivity : AppCompatActivity() {
             1 -> R.style.Theme_Dark
             2 -> R.style.Theme_Red
             3 -> R.style.Theme_Space
-            else -> R.style.Theme_Nasa_photo
+            else -> R.style.Theme_Space
         }
     }
 
     private fun getCodeTheme():Int{
         val sharedPref = getSharedPreferences(PREF_SETTINGS,Context.MODE_PRIVATE)
-        return sharedPref.getInt(PREF_THEME_INT, THEME_LIGHT)
+        return sharedPref.getInt(PREF_THEME_INT, THEME_SPACE)
     }
 
     private fun runGreetings(savedInstanceState: Bundle?){

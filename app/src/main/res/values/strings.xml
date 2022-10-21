@@ -69,4 +69,5 @@
 
     <string name="Description">Описание</string>
     <string name="Animation">Анимация</string>
+    <string name="watch_greetings_again">Посмотреть приветсвие ещё раз</string>
 </resources>

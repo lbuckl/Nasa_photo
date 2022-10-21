@@ -37,6 +37,13 @@
             android:text="@string/style" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip_space"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/space" />
+
+        <com.google.android.material.chip.Chip
             android:id="@+id/chip_light"
             android:layout_marginStart="@dimen/settingsGeneralMargin"
             style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -58,12 +65,6 @@
             android:layout_height="wrap_content"
             android:text="@string/red" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_space"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/space" />
     </com.google.android.material.chip.ChipGroup>
 
     <RadioGroup
@@ -92,9 +93,16 @@
     </RadioGroup>
 
     <Button
+        android:id="@+id/button_greetings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/watch_greetings_again" />
+
+    <Button
         android:id="@+id/button_apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:text="@string/apply" />
 
 </LinearLayout>
