@@ -96,13 +96,15 @@
         android:id="@+id/button_greetings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/watch_greetings_again" />
+        android:text="@string/watch_greetings_again"
+        android:textColor="?customTextColor"/>
 
     <Button
         android:id="@+id/button_apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="@string/apply" />
+        android:text="@string/apply"
+        android:textColor="?customTextColor"/>
 
 </LinearLayout>
