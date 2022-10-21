@@ -46,7 +46,6 @@ class PictureOfTheDayFragment : Fragment() {
     private var urlPicture:String? = null
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-
     companion object {
         lateinit var viewModel: POTDViewModel
         fun newInstance() = PictureOfTheDayFragment()
@@ -86,6 +85,7 @@ class PictureOfTheDayFragment : Fragment() {
         when (POTDAppState) {
             is POTDAppState.Succes -> {
                 binding.progressBarPictureOTD.isVisible = false
+                binding.textViewPrompt.isVisible = false
                 POTDAppState.pictureDTO.let {
                     urlPicture = it.hdurl
                     if (it.mediaType == "image") {
@@ -100,7 +100,10 @@ class PictureOfTheDayFragment : Fragment() {
                         }
                     } else {
                         //Если пришло видео вместо фото, то позволяем открыть его поссылке
-                        binding.textViewPrompt.isVisible = true
+                        binding.textViewPrompt.apply {
+                            isVisible = true
+                            text = requireContext().resources.getText(R.string.promt_video_link)
+                        }
                         binding.textViewLink.apply {
                             isVisible = true
                             text = urlPicture
@@ -116,13 +119,15 @@ class PictureOfTheDayFragment : Fragment() {
                 }
             }
             is POTDAppState.Loading -> {
+                binding.progressBarPictureOTD.isVisible = true
                 binding.textViewPrompt.isVisible = false
                 binding.textViewLink.isVisible = false
-                binding.progressBarPictureOTD.isVisible = true
             }
             is POTDAppState.Error -> {
                 binding.progressBarPictureOTD.isVisible = false
                 view?.showSnackBarErrorMsg(POTDAppState.error.message.toString())
+                binding.textViewPrompt.isVisible = false
+                binding.textViewLink.isVisible = false
             }
         }
     }
