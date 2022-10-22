@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vados.nasa_photo.model.dto.PictureDTO
-import com.vados.nasa_photo.model.retrofit.PictureRequestImpl
+import com.vados.nasa_photo.model.retrofit.NasaRequestImpl
 import com.vados.nasa_photo.utils.NASA_PICTURE_API_KEY
 import retrofit2.Call
 import retrofit2.Response
@@ -22,7 +22,7 @@ class POTDViewModel(private val liveData: MutableLiveData<POTDAppState> = Mutabl
     }
 
     private fun getPictureDTO(){
-        PictureRequestImpl.getRetrofitImpl().getPictureOfTheDay(NASA_PICTURE_API_KEY).enqueue(object :
+        NasaRequestImpl.getRetrofitImpl().getPictureOfTheDay(NASA_PICTURE_API_KEY).enqueue(object :
             retrofit2.Callback<PictureDTO>{
             override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>){
                 Log.v("@@@", "VM:setSucces")

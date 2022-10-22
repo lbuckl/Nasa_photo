@@ -10,11 +10,15 @@ import retrofit2.http.Query
 
 /**
  * Интерфейс запроса данных с API NASA
+ * ____________________________________________________
+ * Функция getPictureOfTheDay
  * @param apiKey - ключ API NASA
  *
+ * Функция getEarthPicture
  * @param date - дата фото, должна приходить в запросе
  * @param apiKey - ключ API NASA
  *
+ * Функция getPhotoAlbum
  * @param q - основая тема звпроса
  * @param description - доп описание запроса
  * @param keywords - ключевые слова (если имеются)

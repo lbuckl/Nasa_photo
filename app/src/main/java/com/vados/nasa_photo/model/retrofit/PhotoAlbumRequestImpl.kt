@@ -14,7 +14,7 @@ import java.io.IOException
  * основная функция для запроса: getRetrofitImpl()
  */
 object PhotoAlbumRequestImpl {
-    private val baseUrl = "https://images-api.nasa.gov"
+    private const val baseUrl = "https://images-api.nasa.gov"
     private val podRetrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))

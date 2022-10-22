@@ -1,7 +1,6 @@
-package molchanov.hammertesttask.model.request
+package com.vados.nasa_photo.model.retrofit
 
 import com.google.gson.GsonBuilder
-import com.vados.nasa_photo.model.retrofit.NasaRequestInterface
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,7 +12,7 @@ import java.io.IOException
  * класс для запроса фото дня из API NASA
  * основная функция для запроса: getRetrofitImpl()
  */
-object EarthRequestImpl {
+object NasaRequestImpl {
     private const val baseUrl = "https://api.nasa.gov/"
 
     private val podRetrofit = Retrofit.Builder()
@@ -22,7 +21,6 @@ object EarthRequestImpl {
         .client(createOkHttpClient(PODInterceptor()))
         .build().create(NasaRequestInterface::class.java)
 
-    //Возвращает конечную точку API для фото Земли
     fun getRetrofitImpl(): NasaRequestInterface {
         return podRetrofit
     }
@@ -34,7 +32,6 @@ object EarthRequestImpl {
         return httpClient.build()
     }
 
-    //Перехватчик для отлавливания колбэков о результате загрузки
     class PODInterceptor : Interceptor {
         @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
