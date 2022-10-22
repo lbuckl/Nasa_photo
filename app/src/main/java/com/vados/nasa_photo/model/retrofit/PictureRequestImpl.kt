@@ -18,9 +18,9 @@ object PictureRequestImpl {
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .client(createOkHttpClient(PODInterceptor()))
-        .build().create(NasaPictureRequestInterface::class.java)
+        .build().create(NasaRequestInterface::class.java)
 
-    fun getRetrofitImpl(): NasaPictureRequestInterface {
+    fun getRetrofitImpl(): NasaRequestInterface {
         return podRetrofit
     }
 

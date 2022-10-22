@@ -1,7 +1,7 @@
 package molchanov.hammertesttask.model.request
 
 import com.google.gson.GsonBuilder
-import com.vados.nasa_photo.model.retrofit.EarthPictureRequestInterface
+import com.vados.nasa_photo.model.retrofit.NasaRequestInterface
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,14 +14,16 @@ import java.io.IOException
  * основная функция для запроса: getRetrofitImpl()
  */
 object EarthRequestImpl {
-    private val baseUrl = "https://api.nasa.gov"
+    private const val baseUrl = "https://api.nasa.gov/"
+
     private val podRetrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .client(createOkHttpClient(PODInterceptor()))
-        .build().create(EarthPictureRequestInterface::class.java)
+        .build().create(NasaRequestInterface::class.java)
 
-    fun getRetrofitImpl(): EarthPictureRequestInterface {
+    //Возвращает конечную точку API для фото Земли
+    fun getRetrofitImpl(): NasaRequestInterface {
         return podRetrofit
     }
 

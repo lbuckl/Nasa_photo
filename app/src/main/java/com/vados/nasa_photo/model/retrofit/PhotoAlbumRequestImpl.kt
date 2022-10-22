@@ -1,6 +1,7 @@
 package molchanov.hammertesttask.model.request
 
 import com.google.gson.GsonBuilder
+import com.vados.nasa_photo.model.retrofit.NasaRequestInterface
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,9 +19,9 @@ object PhotoAlbumRequestImpl {
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .client(createOkHttpClient(PODInterceptor()))
-        .build().create(PhotoAlbumRequestInterface::class.java)
+        .build().create(NasaRequestInterface::class.java)
 
-    fun getRetrofitImpl(): PhotoAlbumRequestInterface {
+    fun getRetrofitImpl(): NasaRequestInterface {
         return podRetrofit
     }
 
