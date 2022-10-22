@@ -26,14 +26,9 @@ android {
 
     buildTypes.each{
         Properties properties = new Properties()
-        if (project.rootProject.file("apikey.properties").exists()){
-            properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
+            properties.load(project.rootProject.file("apikey_nasa.properties").newDataInputStream())
             def nasaApiKey = properties.getProperty("nasa_api_key","")
             it.buildConfigField "String", "NASA_PICTURE_API_KEY", nasaApiKey
-        }
-        else {
-            it.buildConfigField "String", "NASA_PICTURE_API_KEY", ""
-        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
