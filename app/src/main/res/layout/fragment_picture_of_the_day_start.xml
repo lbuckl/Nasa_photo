@@ -15,8 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
         <androidx.constraintlayout.motion.widget.MotionLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
@@ -117,6 +115,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/image_view_POTD"
                 app:layout_constraintStart_toStartOf="@+id/image_view_POTD"
                 app:layout_constraintTop_toBottomOf="@+id/textView_prompt" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView_zoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#1A000000"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_POTD"
+                app:layout_constraintEnd_toEndOf="@+id/image_view_POTD"
+                app:layout_constraintStart_toStartOf="@+id/image_view_POTD"
+                app:layout_constraintTop_toTopOf="@+id/image_view_POTD"
+                app:srcCompat="@drawable/ic_star" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -144,6 +153,5 @@
         app:layout_anchor="@id/bottom_app_bar"
         app:srcCompat="?fab_icon"
         app:tint="#FFFFFF" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

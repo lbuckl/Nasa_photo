@@ -32,7 +32,7 @@ class GreetingsFirstFragment : Fragment() {
         //Распределение времени для анимации и скрытия
         val duration = 1000L
         val startDelay = 1000L
-        val visionDelay = duration + startDelay + 1500
+        val visionDelay = duration + startDelay + 1000
 
         //включаем рендер эффект
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

@@ -3,9 +3,9 @@ package com.vados.nasa_photo.ui.navigation
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -33,10 +33,7 @@ import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
 import com.vados.nasa_photo.viewmodel.POTDAppState
 import com.vados.nasa_photo.viewmodel.POTDViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * Главный фрагмент реализует функции:
@@ -76,7 +73,6 @@ class PictureOfTheDayFragment : Fragment() {
         initBottomAppBar()
         //Инициализируем работу FAB
         initFAB()
-        initPictureZoom()
 
         //Работа кнопки поиска ВИКИПЕДИЯ
         binding.inputLayout.setEndIconOnClickListener {
@@ -96,7 +92,9 @@ class PictureOfTheDayFragment : Fragment() {
                 POTDAppState.pictureDTO.let {
                     urlPicture = it.hdurl
                     if (it.mediaType == "image") {
-                        binding.imageViewPOTD.load(urlPicture)
+                        binding.imageViewZoom.load(urlPicture).also {
+                            initPictureZoom()
+                        }
                         binding.textViewPhotoName.text = it.title
                         view?.findViewById<TextView>(R.id.bottomSheetDescriptionHeader)
                             ?.let { textView ->
@@ -105,6 +103,7 @@ class PictureOfTheDayFragment : Fragment() {
                         view?.findViewById<TextView>(R.id.bottomSheetDescription)?.let { textView ->
                             textView.text = it.explanation
                         }
+
                     } else {
                         //Если пришло видео вместо фото, то позволяем открыть его поссылке
                         binding.textViewPrompt.apply {
@@ -165,7 +164,7 @@ class PictureOfTheDayFragment : Fragment() {
             it.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.app_bar_fav -> {
-                        binding.imageViewPOTD.load(urlPicture){
+                        binding.imageViewZoom.load(urlPicture){
                             target {draw ->
                                 coroutineScope.launch {
                                     view?.toast(ImageToMemoryLoader.savePicture(requireContext(),draw))
@@ -247,26 +246,39 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
+    //функция для увеличения фотографии дня
     private fun initPictureZoom(){
         binding.imageViewPOTD.setOnClickListener{
+            val changeBounds = ChangeBounds()
+            changeBounds.duration = 1000L
+
+            val changeImageTransform = ChangeImageTransform()
+            changeImageTransform.duration = 1000L
+
             TransitionManager.beginDelayedTransition(
                 binding.root, TransitionSet()
-                    .addTransition(ChangeBounds())
-                    .addTransition(ChangeImageTransform())
+                    .addTransition(changeBounds)
+                    .addTransition(changeImageTransform)
             )
-            val params: ViewGroup.LayoutParams = binding.imageViewPOTD.layoutParams
+
+            val params: ViewGroup.LayoutParams = binding.imageViewZoom.layoutParams
             if (!pictureZoomed){
-                Log.v("@@@","!pictureZoomed")
+                //binding.imageViewZoom.visibility = View.VISIBLE
                 params.height = ViewGroup.LayoutParams.MATCH_PARENT
-                binding.imageViewPOTD.layoutParams = params
-                binding.imageViewPOTD.scaleType = ImageView.ScaleType.CENTER_CROP
+                params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                binding.imageViewZoom.scaleType = ImageView.ScaleType.CENTER_CROP
             }
             else{
-                Log.v("@@@","pictureZoomed")
                 params.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                binding.imageViewPOTD.layoutParams = params
-                binding.imageViewPOTD.scaleType = ImageView.ScaleType.FIT_CENTER
+                params.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                binding.imageViewZoom.scaleType = ImageView.ScaleType.FIT_CENTER
+                coroutineScope.launch {
+                    delay(1000)
+                    //binding.imageViewZoom.visibility = View.GONE
+                }
+
             }
+            binding.imageViewZoom.layoutParams = params
             pictureZoomed = !pictureZoomed
         }
     }
