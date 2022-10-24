@@ -48,6 +48,7 @@ class PictureOfTheDayFragment : Fragment() {
     private var urlPicture:String? = null
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     private var pictureZoomed = false
+    private var tapCount = 0
 
     companion object {
         lateinit var viewModel: POTDViewModel
@@ -246,41 +247,52 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
-    //функция для увеличения фотографии дня
+
+    //Функция инициализации увеличения фото дня
     private fun initPictureZoom(){
         binding.imageViewPOTD.setOnClickListener{
-            val changeBounds = ChangeBounds()
-            changeBounds.duration = 1000L
+            tapCount++
 
-            val changeImageTransform = ChangeImageTransform()
-            changeImageTransform.duration = 1000L
-
-            TransitionManager.beginDelayedTransition(
-                binding.root, TransitionSet()
-                    .addTransition(changeBounds)
-                    .addTransition(changeImageTransform)
-            )
-
-            val params: ViewGroup.LayoutParams = binding.imageViewZoom.layoutParams
-            if (!pictureZoomed){
-                //binding.imageViewZoom.visibility = View.VISIBLE
-                params.height = ViewGroup.LayoutParams.MATCH_PARENT
-                params.width = ViewGroup.LayoutParams.MATCH_PARENT
-                binding.imageViewZoom.scaleType = ImageView.ScaleType.CENTER_CROP
-            }
-            else{
-                params.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                params.width = ViewGroup.LayoutParams.WRAP_CONTENT
-                binding.imageViewZoom.scaleType = ImageView.ScaleType.FIT_CENTER
-                coroutineScope.launch {
-                    delay(1000)
-                    //binding.imageViewZoom.visibility = View.GONE
+            //организация дабл тапа
+            coroutineScope.launch {
+                delay(500)
+                if (tapCount == 2){
+                    pictureZoom()
                 }
-
+                else tapCount = 0
             }
-            binding.imageViewZoom.layoutParams = params
-            pictureZoomed = !pictureZoomed
         }
+    }
+
+    //Функция для увеличения фото дня
+    private fun pictureZoom(){
+        //дейсвия для транзиции увеличения размера
+        val changeBounds = ChangeBounds()
+        changeBounds.duration = 1000L
+
+        val changeImageTransform = ChangeImageTransform()
+        changeImageTransform.duration = 1000L
+
+        TransitionManager.beginDelayedTransition(
+            binding.root, TransitionSet()
+                .addTransition(changeBounds)
+                .addTransition(changeImageTransform)
+        )
+
+        val params: ViewGroup.LayoutParams = binding.imageViewZoom.layoutParams
+        if (!pictureZoomed){
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT
+            binding.imageViewZoom.scaleType = ImageView.ScaleType.CENTER_CROP
+        }
+        else{
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            params.width = ViewGroup.LayoutParams.WRAP_CONTENT
+            binding.imageViewZoom.scaleType = ImageView.ScaleType.FIT_CENTER
+        }
+        binding.imageViewZoom.layoutParams = params
+        pictureZoomed = !pictureZoomed
+        tapCount = 0
     }
 
 
