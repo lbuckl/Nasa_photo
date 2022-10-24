@@ -4,16 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/smooth_groop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:constraint_referenced_ids="imageView_earth,textView_general,textView_support">
-    </androidx.constraintlayout.widget.Group>
-
     <ImageView
         android:id="@+id/imageView_earth"
         android:layout_width="wrap_content"
@@ -30,6 +20,7 @@
     <TextView
         android:id="@+id/textView_general"
         style="@style/greetingsTextStyle"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#1A000000"
@@ -42,6 +33,7 @@
     <TextView
         android:id="@+id/textView_support"
         style="@style/greetingsTextStyle"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#1A000000"

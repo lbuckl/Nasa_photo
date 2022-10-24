@@ -255,7 +255,7 @@ class PictureOfTheDayFragment : Fragment() {
 
             //организация дабл тапа
             coroutineScope.launch {
-                delay(500)
+                delay(750)
                 if (tapCount == 2){
                     pictureZoom()
                 }

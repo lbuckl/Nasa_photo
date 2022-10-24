@@ -25,3 +25,6 @@ const val FIRST_ACTIVE = "first_active"
 
 //Констната смещение дней в прошлое для запроса фото земли в EarthPhotoViewModel
 const val PAST_BIAS_DAY = 15
+
+//Константа задержки появления текста в приветственных фрагментах
+const val VISIBLE_DELAY = 2000L

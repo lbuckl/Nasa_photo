@@ -10,7 +10,12 @@ import android.view.ViewGroup
 import android.view.animation.CycleInterpolator
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.transition.Fade
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.vados.nasa_photo.databinding.FragmentGreetingsFirstBinding
+import com.vados.nasa_photo.utils.VISIBLE_DELAY
 import kotlinx.coroutines.*
 
 /**
@@ -42,8 +47,6 @@ class GreetingsFirstFragment : Fragment() {
             )
             with(binding) {
                 imageViewEarth.setRenderEffect(blurEffect)
-                textViewGeneral.setRenderEffect(blurEffect)
-                textViewSupport.setRenderEffect(blurEffect)
             }
         }
 
@@ -61,13 +64,17 @@ class GreetingsFirstFragment : Fragment() {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val blurEffect = RenderEffect.createBlurEffect(
-                    0.1f, 0f,
+                    0.01f, 0f,
                     Shader.TileMode.MIRROR
                 )
                 with(binding) {
+                    //Снимаем рендер
                     imageViewEarth.setRenderEffect(blurEffect)
-                    textViewGeneral.setRenderEffect(blurEffect)
-                    textViewSupport.setRenderEffect(blurEffect)
+                    //Анимация появления текста
+                    val fade = Fade().setDuration(VISIBLE_DELAY)
+                    TransitionManager.beginDelayedTransition(binding.root,fade)
+                    binding.textViewGeneral.visibility = View.VISIBLE
+                    binding.textViewSupport.visibility = View.VISIBLE
                 }
             }
         }
