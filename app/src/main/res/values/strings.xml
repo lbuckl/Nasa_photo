@@ -51,6 +51,7 @@
     <!-- Строки для contentDescription. -->
     <string name="appbar">appbar</string>
     <string name="image_menu_item">image_menu_item</string>
+    <string name="wiki_button">Wiki_button</string>
 
     <!-- Строки для фрагмента NASA Photo album. -->
     <string name="NASA_photo_album">Фото альбом NASA</string>

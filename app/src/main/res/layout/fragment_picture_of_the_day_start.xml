@@ -30,6 +30,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="10dp"
                 android:visibility="visible"
+                android:contentDescription="@string/wiki_button"
                 app:layout_constraintBottom_toBottomOf="@+id/input_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/input_layout"
@@ -125,7 +126,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/image_view_POTD"
                 app:layout_constraintStart_toStartOf="@+id/image_view_POTD"
                 app:layout_constraintTop_toTopOf="@+id/image_view_POTD"
-                app:srcCompat="@drawable/ic_star" />
+                app:srcCompat="@drawable/ic_no_photo_vector" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -1,7 +1,7 @@
 package com.vados.nasa_photo.ui.navigation
 
 import android.os.Bundle
-import android.transition.TransitionManager
+import androidx.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +11,8 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.ConstraintSet.*
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.transition.ChangeBounds
+import androidx.transition.TransitionSet
 import com.vados.nasa_photo.databinding.FragmentAnimationBinding
 import kotlinx.coroutines.*
 
@@ -56,11 +58,14 @@ class AnimationFragment : Fragment() {
             //Инициализируем объекты для анимации
             listObjects = mutableListOf(imageViewEarthAnim, imageViewMarsAnim, imageViewSaturnAnim)
             //Запускаем подслушку для изменения положения элементов через ConstraintSet
+            val changeBounds = ChangeBounds()
+            changeBounds.duration = 1000L
+
             imageViewSolarSystem.setOnClickListener {
                 ConstraintSet().apply {
                     clone(constraintAnimation)
                     changeConstrains(this)
-                    TransitionManager.beginDelayedTransition(constraintAnimation)
+                    TransitionManager.beginDelayedTransition(constraintAnimation, TransitionSet().addTransition(changeBounds))
                     applyTo(constraintAnimation)
                 }
             }
