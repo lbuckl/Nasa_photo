@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +19,10 @@ import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -44,6 +50,7 @@ class PictureOfTheDayFragment : Fragment() {
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var urlPicture:String? = null
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
+    private var pictureZoomed = false
 
     companion object {
         lateinit var viewModel: POTDViewModel
@@ -69,6 +76,7 @@ class PictureOfTheDayFragment : Fragment() {
         initBottomAppBar()
         //Инициализируем работу FAB
         initFAB()
+        initPictureZoom()
 
         //Работа кнопки поиска ВИКИПЕДИЯ
         binding.inputLayout.setEndIconOnClickListener {
@@ -238,6 +246,31 @@ class PictureOfTheDayFragment : Fragment() {
             }
         }
     }
+
+    private fun initPictureZoom(){
+        binding.imageViewPOTD.setOnClickListener{
+            TransitionManager.beginDelayedTransition(
+                binding.root, TransitionSet()
+                    .addTransition(ChangeBounds())
+                    .addTransition(ChangeImageTransform())
+            )
+            val params: ViewGroup.LayoutParams = binding.imageViewPOTD.layoutParams
+            if (!pictureZoomed){
+                Log.v("@@@","!pictureZoomed")
+                params.height = ViewGroup.LayoutParams.MATCH_PARENT
+                binding.imageViewPOTD.layoutParams = params
+                binding.imageViewPOTD.scaleType = ImageView.ScaleType.CENTER_CROP
+            }
+            else{
+                Log.v("@@@","pictureZoomed")
+                params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                binding.imageViewPOTD.layoutParams = params
+                binding.imageViewPOTD.scaleType = ImageView.ScaleType.FIT_CENTER
+            }
+            pictureZoomed = !pictureZoomed
+        }
+    }
+
 
     private fun getCodeTheme():Int{
         val sharedPref = requireContext().getSharedPreferences(PREF_SETTINGS, Context.MODE_PRIVATE)

@@ -12,9 +12,7 @@ import androidx.constraintlayout.widget.ConstraintSet.*
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.vados.nasa_photo.databinding.FragmentAnimationBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * Фрагмент для отображения окна анимации
@@ -25,6 +23,7 @@ class AnimationFragment : Fragment() {
 
     lateinit var listObjects: MutableList<ImageView> //лист с объектами для анимации
     private val IMAGE_MARGIN = 64 // отсутпы от краёв экрана
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +48,7 @@ class AnimationFragment : Fragment() {
                 .setStartDelay(startDelay).start()
 
             //Скрываем анимированную подсказку
-            GlobalScope.launch {
+            coroutineScope.launch {
                 delay(duration + startDelay + 1000)
                 binding.imageViewClick.visibility = View.INVISIBLE
             }
@@ -105,6 +104,7 @@ class AnimationFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        coroutineScope.cancel()
         _binding = null
     }
 }

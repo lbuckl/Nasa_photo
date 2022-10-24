@@ -11,10 +11,7 @@ import android.view.animation.CycleInterpolator
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.vados.nasa_photo.databinding.FragmentGreetingsFirstBinding
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * Первый из трёх приветственных фрагментов
@@ -24,8 +21,8 @@ class GreetingsFirstFragment : Fragment() {
 
     private var _binding: FragmentGreetingsFirstBinding? = null
     private val binding get() = _binding!!
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,7 +55,7 @@ class GreetingsFirstFragment : Fragment() {
             .setStartDelay(startDelay).start()
 
         //Убираем подсказку и обнуляем рендер
-        GlobalScope.launch {
+        coroutineScope.launch {
             delay(visionDelay)
             binding.imageViewSwipe.visibility = View.INVISIBLE
 
@@ -80,6 +77,7 @@ class GreetingsFirstFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        coroutineScope.cancel()
         _binding = null
     }
 
