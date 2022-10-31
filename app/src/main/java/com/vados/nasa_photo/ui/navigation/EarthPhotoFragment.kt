@@ -14,6 +14,7 @@ import com.gb.weather.view.weatherlist.EarthPhotoRecyclerAdapter
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentEarthPhotoBinding
 import com.vados.nasa_photo.ui.support.SettingsFragment
+import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import com.vados.nasa_photo.viewmodel.EarthPhotoAppState
 import com.vados.nasa_photo.viewmodel.EarthPhotoViewModel
 
@@ -59,6 +60,7 @@ class EarthPhotoFragment : Fragment() {
                 binding.progressBar.isVisible = false
             }
             is EarthPhotoAppState.Error -> {
+                view?.showSnackBarErrorMsg(photoAlbumListAppState.error.message.toString())
                 binding.progressBar.isVisible = false
             }
             is EarthPhotoAppState.Loading -> {

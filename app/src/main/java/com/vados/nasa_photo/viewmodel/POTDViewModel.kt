@@ -22,16 +22,26 @@ class POTDViewModel(private val liveData: MutableLiveData<POTDAppState> = Mutabl
     }
 
     private fun getPictureDTO(){
-        NasaRequestImpl.getRetrofitImpl().getPictureOfTheDay(NASA_PICTURE_API_KEY).enqueue(object :
-            retrofit2.Callback<PictureDTO>{
-            override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>){
-                Log.v("@@@", "VM:setSucces")
-                liveData.postValue(POTDAppState.Succes(response.body()!!))
-            }
-            override fun onFailure(call: Call<PictureDTO>, t: Throwable) {
-                liveData.postValue(POTDAppState.Error(Exception("Loading Failure")))
-                Log.v("@@@", "Loading Failure")
-            }
-        })
+        if (NASA_PICTURE_API_KEY != ""){
+            NasaRequestImpl.getRetrofitImpl().getPictureOfTheDay(NASA_PICTURE_API_KEY).enqueue(object :
+                retrofit2.Callback<PictureDTO>{
+                override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>){
+                    try {
+                        liveData.postValue(POTDAppState.Succes(response.body()!!))
+                    }catch (e:NullPointerException){
+                        e.printStackTrace()
+                        liveData.postValue(POTDAppState.Error(Exception("Loading Failure")))
+                    }
+
+                }
+                override fun onFailure(call: Call<PictureDTO>, t: Throwable) {
+                    liveData.postValue(POTDAppState.Error(Exception("Loading Failure")))
+                }
+            })
+        }
+        else {
+            liveData.postValue(POTDAppState.Error(Exception("Key API Error")))
+            Log.v("@@@", "Key API Error")
+        }
     }
 }

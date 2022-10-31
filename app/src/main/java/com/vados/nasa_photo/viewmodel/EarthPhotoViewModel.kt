@@ -26,20 +26,29 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
     }
 
     private fun getPictureDTO(){
-        liveData.postValue(EarthPhotoAppState.Loading)
-        NasaRequestImpl.getRetrofitImpl()
-            .getEarthPicture(pastDay.getPastDateWithDash(PAST_BIAS_DAY),NASA_PICTURE_API_KEY)
-            .enqueue(object : Callback<EarthPhotoDTO>{
-            override fun onResponse(call: Call<EarthPhotoDTO>, response: Response<EarthPhotoDTO>){
-                Log.v("@@@", "VM:setSucces")
-                val result = replaceLinksInArray(response.body()!!)
-                liveData.postValue(EarthPhotoAppState.Succes(result))
-            }
-            override fun onFailure(call: Call<EarthPhotoDTO>, t: Throwable) {
-                liveData.postValue(EarthPhotoAppState.Error(Exception("Loading Failure")))
-                Log.v("@@@", "Loading Failure")
-            }
-        })
+        if (NASA_PICTURE_API_KEY != ""){
+            liveData.postValue(EarthPhotoAppState.Loading)
+            NasaRequestImpl.getRetrofitImpl()
+                .getEarthPicture(pastDay.getPastDateWithDash(PAST_BIAS_DAY),NASA_PICTURE_API_KEY)
+                .enqueue(object : Callback<EarthPhotoDTO>{
+                    override fun onResponse(call: Call<EarthPhotoDTO>, response: Response<EarthPhotoDTO>){
+                        try {
+                            val result = replaceLinksInArray(response.body()!!)
+                            liveData.postValue(EarthPhotoAppState.Succes(result))
+                        }catch (e:NullPointerException){
+                            e.printStackTrace()
+                            liveData.postValue(EarthPhotoAppState.Error(Exception("Loading Failure")))
+                        }
+
+                    }
+                    override fun onFailure(call: Call<EarthPhotoDTO>, t: Throwable) {
+                        liveData.postValue(EarthPhotoAppState.Error(Exception("Loading Failure")))
+                    }
+                })
+        }else {
+            liveData.postValue(EarthPhotoAppState.Error(Exception("Key API Error")))
+            Log.v("@@@", "Key API Error")
+        }
     }
 
     /**

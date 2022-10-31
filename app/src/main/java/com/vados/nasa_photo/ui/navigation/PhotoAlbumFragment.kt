@@ -59,7 +59,7 @@ class PhotoAlbumFragment:Fragment() {
             }
             is PhotoAlbumListAppState.Error -> {
                 binding.progressBar.isVisible = false
-                view?.showSnackBarErrorMsg("Данные не загружены")
+                view?.showSnackBarErrorMsg(photoAlbumListAppState.error.message.toString())
             }
             is PhotoAlbumListAppState.Loading -> {
                 binding.progressBar.isVisible = true

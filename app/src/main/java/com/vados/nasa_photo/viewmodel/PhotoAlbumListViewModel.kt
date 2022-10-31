@@ -26,8 +26,13 @@ class PhotoAlbumListViewModel(private val liveData: MutableLiveData<PhotoAlbumLi
             "image"
         ).enqueue(object : retrofit2.Callback<MenuDTO> {
             override fun onResponse(call: Call<MenuDTO>, response: Response<MenuDTO>) {
-                val listResponce = PhotoAlbumListAppState.Succes(menuDTOtoListAlbumItem(response.body()!!))
-                liveData.postValue(listResponce)
+                try {
+                    val listResponce = PhotoAlbumListAppState.Succes(menuDTOtoListAlbumItem(response.body()!!))
+                    liveData.postValue(listResponce)
+                }catch (e:NullPointerException){
+                    e.printStackTrace()
+                    liveData.postValue(PhotoAlbumListAppState.Error(Exception("Loading Failure")))
+                }
             }
 
             override fun onFailure(call: Call<MenuDTO>, t: Throwable) {
