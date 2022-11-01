@@ -26,7 +26,7 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
     }
 
     private fun getPictureDTO(){
-        if (NASA_PICTURE_API_KEY != ""){
+        if (NASA_PICTURE_API_KEY.isNotEmpty()){
             liveData.postValue(EarthPhotoAppState.Loading)
             NasaRequestImpl.getRetrofitImpl()
                 .getEarthPicture(pastDay.getPastDateWithDash(PAST_BIAS_DAY),NASA_PICTURE_API_KEY)

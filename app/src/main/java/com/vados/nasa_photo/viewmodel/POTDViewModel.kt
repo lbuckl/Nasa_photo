@@ -22,7 +22,7 @@ class POTDViewModel(private val liveData: MutableLiveData<POTDAppState> = Mutabl
     }
 
     private fun getPictureDTO(){
-        if (NASA_PICTURE_API_KEY != ""){
+        if (NASA_PICTURE_API_KEY.isNotEmpty()){
             NasaRequestImpl.getRetrofitImpl().getPictureOfTheDay(NASA_PICTURE_API_KEY).enqueue(object :
                 retrofit2.Callback<PictureDTO>{
                 override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>){

@@ -29,6 +29,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayStartBinding
 import com.vados.nasa_photo.model.ImageToMemoryLoader
+import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
+import com.vados.nasa_photo.ui.notebook.NoteBookActivity
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
 import com.vados.nasa_photo.viewmodel.POTDAppState
@@ -121,7 +123,7 @@ class PictureOfTheDayFragment : Fragment() {
                                 })
                             }
                         }
-                        view?.showSnackBarErrorMsg("No photo today")
+                        view?.toast("No photo today")
                     }
                 }
             }
@@ -132,7 +134,7 @@ class PictureOfTheDayFragment : Fragment() {
             }
             is POTDAppState.Error -> {
                 binding.progressBarPictureOTD.isVisible = false
-                view?.showSnackBarErrorMsg(POTDAppState.error.message.toString())
+                view?.toast(POTDAppState.error.message.toString())
                 binding.textViewPrompt.isVisible = false
                 binding.textViewLink.isVisible = false
             }
@@ -180,6 +182,13 @@ class PictureOfTheDayFragment : Fragment() {
                             .add(R.id.container, SettingsFragment.newInstance())
                             .addToBackStack("main")
                             .commit()
+                    }
+                    R.id.app_bar_noteboook -> {
+                        //requireActivity().startActivity(Intent(requireContext(), NoteBookActivity::class.java))
+
+                        val intent = Intent(requireActivity().intent)
+                        intent.setClass(requireContext(), NoteBookActivity::class.java)
+                        requireActivity().startActivity(intent)
                     }
                 }
                 true

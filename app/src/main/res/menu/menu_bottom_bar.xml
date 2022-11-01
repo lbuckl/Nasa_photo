@@ -4,6 +4,12 @@
     android:id="@+id/menu_bottom_bar"
     android:background="?attr/mainBackground">
     <item
+        android:id="@+id/app_bar_noteboook"
+        android:title="@string/notebook"
+        android:icon="@drawable/ic_notebook"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/app_bar_fav"
         android:title="@string/like"
         android:icon="@drawable/ic_favourite_menu"
@@ -13,4 +19,6 @@
         android:title="@string/settings"
         android:icon="@drawable/ic_settings_menu"
         app:showAsAction="ifRoom"/>
+
+
 </menu>
