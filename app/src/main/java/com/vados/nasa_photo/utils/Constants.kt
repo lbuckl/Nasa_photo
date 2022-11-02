@@ -28,3 +28,6 @@ const val PAST_BIAS_DAY = 15
 
 //Константа задержки появления текста в приветственных фрагментах
 const val VISIBLE_DELAY = 2000L
+
+//Константы для работы room
+const val NOTEBOOK_ROOM_DB_NAME = "notebook_items_db"
