@@ -23,7 +23,7 @@
             app:backgroundTint="@color/design_default_color_primary"
             app:fabAlignmentMode="center"
             app:fabCradleMargin="@dimen/fabMargin"
-            app:layout_anchorGravity="bottom"></com.google.android.material.bottomappbar.BottomAppBar>
+            app:layout_anchorGravity="bottom"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -38,6 +38,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <FrameLayout
+        android:id="@+id/notebook_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/notebook_coordinator_layout"

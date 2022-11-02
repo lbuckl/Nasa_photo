@@ -6,12 +6,16 @@ import com.gb.weather.model.room.NoteBookHistoryDatabase
 import com.vados.nasa_photo.utils.NOTEBOOK_ROOM_DB_NAME
 
 class MyApp:Application() {
+    override fun onCreate() {
+        super.onCreate()
+        myApp = this
+    }
+
     companion object {
         private var myApp: MyApp? = null
-        fun getMyApp() = myApp!!
-
         private var noteBookHistoryDatabase: NoteBookHistoryDatabase? = null
 
+        fun getMyApp() = myApp!!
         fun getNotesFromDatabase(): NoteBookHistoryDatabase {
             if (noteBookHistoryDatabase == null) {
                 noteBookHistoryDatabase = Room.databaseBuilder(
@@ -25,8 +29,5 @@ class MyApp:Application() {
         }
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        myApp = this
-    }
+
 }

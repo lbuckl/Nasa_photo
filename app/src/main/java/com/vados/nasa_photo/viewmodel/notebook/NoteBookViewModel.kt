@@ -2,6 +2,8 @@ package com.vados.nasa_photo.viewmodel.notebook
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.gb.weather.model.NotebookRepository
+import com.gb.weather.model.room.NoteItemEntity
 
 /**
  * ViewModel реализующая бизнес-логику работы фрагмента для отображения
@@ -11,6 +13,24 @@ class NoteBookViewModel(private val liveData: MutableLiveData<NoteBookAppState> 
 ): ViewModel(){
 
     val getLiveData = {
+        getNotebookList()
         liveData
+    }
+
+    private fun getActualAppState(){
+        when (liveData.value){
+            is NoteBookAppState.Success -> {
+
+            }
+        }
+    }
+
+    private fun getNotebookList(){
+        liveData.postValue(NoteBookAppState.Success(NotebookRepository.getHistoryList()))
+    }
+
+    fun addNoteItemToDB(item:NoteItemEntity){
+        NotebookRepository.addItemToHistory(item)
+        getNotebookList()
     }
 }

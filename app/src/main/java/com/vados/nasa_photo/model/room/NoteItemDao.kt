@@ -6,7 +6,7 @@ import androidx.room.*
 interface NoteItemDao {
     //region общие запросы
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(menuItemEntity: NoteItemEntity)
+    fun insert(noteItemEntity: NoteItemEntity)
 
     @Update
     fun update(menuItemEntity: NoteItemEntity)
@@ -21,5 +21,5 @@ interface NoteItemDao {
 
     //Возвращает всю базу в обратном порядке
     @Query("SELECT * FROM NoteItemEntity ORDER BY id DESC")
-    fun getEntityListInvert(): ArrayList<NoteItemEntity>
+    fun getEntityListInvert(): MutableList<NoteItemEntity>
 }

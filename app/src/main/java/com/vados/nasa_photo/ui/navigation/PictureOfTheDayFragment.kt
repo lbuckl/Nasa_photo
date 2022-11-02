@@ -28,7 +28,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayStartBinding
 import com.vados.nasa_photo.model.ImageToMemoryLoader
-import com.vados.nasa_photo.ui.notebook.NoteBookActivity
+import com.vados.nasa_photo.ui.notebook.NotebookActivity
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
 import com.vados.nasa_photo.viewmodel.navigation.POTDAppState
@@ -185,7 +185,7 @@ class PictureOfTheDayFragment : Fragment() {
                         //requireActivity().startActivity(Intent(requireContext(), NoteBookActivity::class.java))
 
                         val intent = Intent(requireActivity().intent)
-                        intent.setClass(requireContext(), NoteBookActivity::class.java)
+                        intent.setClass(requireContext(), NotebookActivity::class.java)
                         requireActivity().startActivity(intent)
                     }
                 }

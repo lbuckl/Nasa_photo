@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.databinding.FragmentEarthPhotoItemBinding
 import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
 import com.vados.nasa_photo.domain.NoteItem
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTOItem
 
-class NotebookRecyclerAdapter(private val items:ArrayList<NoteItem>):
+class NotebookRecyclerAdapter(private val items:MutableList<NoteItemEntity>):
     RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>() {
 
     //Создаёт ViewHolder объект опираясь на их количество, но с запасом, чтобы можно было скролить
@@ -30,8 +31,11 @@ class NotebookRecyclerAdapter(private val items:ArrayList<NoteItem>):
     }
     //Класс который непосредственно отображает данные в каждом элементе recyclerview
     inner class NoteItemHolder(view: View): RecyclerView.ViewHolder(view){
-        fun bind(noteItem: NoteItem){
-
+        fun bind(noteItem: NoteItemEntity){
+            FragmentNotebookItemBinding.bind(itemView).apply {
+                itemNumber.text = noteItem.header
+                content.text = noteItem.description
+            }
         }
     }
 }
