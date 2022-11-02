@@ -15,8 +15,8 @@ import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentEarthPhotoBinding
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
-import com.vados.nasa_photo.viewmodel.EarthPhotoAppState
-import com.vados.nasa_photo.viewmodel.EarthPhotoViewModel
+import com.vados.nasa_photo.viewmodel.navigation.EarthPhotoAppState
+import com.vados.nasa_photo.viewmodel.navigation.EarthPhotoViewModel
 
 /**
  * Фрагмент для отображения фотографий земли из API NASA
@@ -54,7 +54,7 @@ class EarthPhotoFragment : Fragment() {
 
     private fun renderData(photoAlbumListAppState: EarthPhotoAppState) {
         when (photoAlbumListAppState) {
-            is EarthPhotoAppState.Succes -> {
+            is EarthPhotoAppState.Success -> {
                 binding.recyclerview.adapter =
                     EarthPhotoRecyclerAdapter(photoAlbumListAppState.pictureDTO)
                 binding.progressBar.isVisible = false

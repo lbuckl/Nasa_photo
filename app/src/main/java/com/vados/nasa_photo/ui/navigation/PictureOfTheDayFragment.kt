@@ -3,7 +3,6 @@ package com.vados.nasa_photo.ui.navigation
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,12 +28,11 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPictureOfTheDayStartBinding
 import com.vados.nasa_photo.model.ImageToMemoryLoader
-import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
 import com.vados.nasa_photo.ui.notebook.NoteBookActivity
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.*
-import com.vados.nasa_photo.viewmodel.POTDAppState
-import com.vados.nasa_photo.viewmodel.POTDViewModel
+import com.vados.nasa_photo.viewmodel.navigation.POTDAppState
+import com.vados.nasa_photo.viewmodel.navigation.POTDViewModel
 import kotlinx.coroutines.*
 
 /**
@@ -89,7 +87,7 @@ class PictureOfTheDayFragment : Fragment() {
     //Функция работы с состояниями ViewModel
     private fun renderData(POTDAppState: POTDAppState) {
         when (POTDAppState) {
-            is POTDAppState.Succes -> {
+            is POTDAppState.Success -> {
                 binding.progressBarPictureOTD.isVisible = false
                 binding.textViewPrompt.isVisible = false
                 POTDAppState.pictureDTO.let {

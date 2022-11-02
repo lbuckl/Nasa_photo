@@ -15,8 +15,8 @@ import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPhotoalbumBinding
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
-import molchanov.hammertesttask.viewmodel.PhotoAlbumListAppState
-import molchanov.hammertesttask.viewmodel.PhotoAlbumListViewModel
+import com.vados.nasa_photo.viewmodel.navigation.PhotoAlbumListAppState
+import com.vados.nasa_photo.viewmodel.navigation.PhotoAlbumListViewModel
 
 /**
  * Фрагмент для отображения фотографий из альбома API NASA
@@ -53,7 +53,7 @@ class PhotoAlbumFragment:Fragment() {
 
     private fun renderData(photoAlbumListAppState: PhotoAlbumListAppState){
         when (photoAlbumListAppState){
-            is PhotoAlbumListAppState.Succes ->{
+            is PhotoAlbumListAppState.Success ->{
                 binding.progressBar.isVisible = false
                 binding.recyclerview.adapter = PhotoAlbumRecyclerAdapter(photoAlbumListAppState.menuListDTO)
             }

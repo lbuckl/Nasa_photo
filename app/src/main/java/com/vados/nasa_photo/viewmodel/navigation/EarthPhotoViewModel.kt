@@ -1,9 +1,9 @@
-package com.vados.nasa_photo.viewmodel
+package com.vados.nasa_photo.viewmodel.navigation
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vados.nasa_photo.domain.DayTimeData
+import com.vados.nasa_photo.utils.DayTimeData
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTO
 import com.vados.nasa_photo.model.retrofit.NasaRequestImpl
 import com.vados.nasa_photo.utils.NASA_PICTURE_API_KEY
@@ -34,7 +34,7 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
                     override fun onResponse(call: Call<EarthPhotoDTO>, response: Response<EarthPhotoDTO>){
                         try {
                             val result = replaceLinksInArray(response.body()!!)
-                            liveData.postValue(EarthPhotoAppState.Succes(result))
+                            liveData.postValue(EarthPhotoAppState.Success(result))
                         }catch (e:NullPointerException){
                             e.printStackTrace()
                             liveData.postValue(EarthPhotoAppState.Error(Exception("Loading Failure")))

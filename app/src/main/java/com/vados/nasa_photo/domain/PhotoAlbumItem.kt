@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 /**
  * Класс хранящий данные элементов меню
- * @param name - намиенование блюда
- * @param description - описание блюда
- * @param link - ссылка на фото блюда
+ * @param name - намиенование фото
+ * @param description - описание фото
+ * @param link - ссылка на фото
  */
 @Parcelize
 data class PhotoAlbumItem(

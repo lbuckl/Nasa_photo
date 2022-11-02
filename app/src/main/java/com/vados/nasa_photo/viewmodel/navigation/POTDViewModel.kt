@@ -1,4 +1,4 @@
-package com.vados.nasa_photo.viewmodel
+package com.vados.nasa_photo.viewmodel.navigation
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -27,7 +27,7 @@ class POTDViewModel(private val liveData: MutableLiveData<POTDAppState> = Mutabl
                 retrofit2.Callback<PictureDTO>{
                 override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>){
                     try {
-                        liveData.postValue(POTDAppState.Succes(response.body()!!))
+                        liveData.postValue(POTDAppState.Success(response.body()!!))
                     }catch (e:NullPointerException){
                         e.printStackTrace()
                         liveData.postValue(POTDAppState.Error(Exception("Loading Failure")))

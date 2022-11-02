@@ -1,8 +1,9 @@
-package molchanov.hammertesttask.viewmodel
+package com.vados.nasa_photo.viewmodel.navigation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gb.weather.domain.PhotoAlbumItem
+import com.vados.nasa_photo.viewmodel.navigation.PhotoAlbumListAppState
 import molchanov.hammertesttask.model.dto.MenuDTO
 import molchanov.hammertesttask.model.request.PhotoAlbumRequestImpl
 import retrofit2.Call
@@ -26,7 +27,7 @@ class PhotoAlbumListViewModel(private val liveData: MutableLiveData<PhotoAlbumLi
         ).enqueue(object : retrofit2.Callback<MenuDTO> {
             override fun onResponse(call: Call<MenuDTO>, response: Response<MenuDTO>) {
                 try {
-                    val listResponce = PhotoAlbumListAppState.Succes(menuDTOtoListAlbumItem(response.body()!!))
+                    val listResponce = PhotoAlbumListAppState.Success(menuDTOtoListAlbumItem(response.body()!!))
                     liveData.postValue(listResponce)
                 }catch (e:NullPointerException){
                     e.printStackTrace()
