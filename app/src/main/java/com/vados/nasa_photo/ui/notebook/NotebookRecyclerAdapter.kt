@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
 
-class NotebookRecyclerAdapter(private val items: MutableList<NoteItemEntity>):
+class NotebookRecyclerAdapter(private var items: MutableList<NoteItemEntity>):
     RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>() {
 
     //Создаёт ViewHolder объект опираясь на их количество, но с запасом, чтобы можно было скролить
@@ -36,6 +36,7 @@ class NotebookRecyclerAdapter(private val items: MutableList<NoteItemEntity>):
     }
 
     fun addItem(newItems: MutableList<NoteItemEntity>){
-
+        items = newItems
+        notifyItemInserted(0)
     }
 }

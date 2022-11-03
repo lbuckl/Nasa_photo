@@ -2,6 +2,7 @@ package com.vados.nasa_photo.ui.notebook
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -9,21 +10,20 @@ import com.gb.weather.model.NotebookRepository
 import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.ActivityNotebookBinding
+import com.vados.nasa_photo.viewmodel.notebook.NoteBookAppState
 import com.vados.nasa_photo.viewmodel.notebook.NoteBookViewModel
 
 class NotebookActivity: AppCompatActivity() {
     private var _binding: ActivityNotebookBinding? = null
     private val binding get() = _binding!!
+    lateinit var adapter: NotebookRecyclerAdapter
 
     companion object{
         lateinit var viewModel: NoteBookViewModel
     }
 
-    val notebookFragment = NotebookFragment()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.v("@@@","Notebook")
         _binding = ActivityNotebookBinding.inflate(layoutInflater)
         setContentView(binding.root)
         onCreated()
@@ -32,15 +32,20 @@ class NotebookActivity: AppCompatActivity() {
     private fun onCreated(){
 
         viewModel = ViewModelProvider(this)[NoteBookViewModel::class.java]
-
-        supportFragmentManager.beginTransaction()
-            .add(R.id.notebook_container,NotebookFragment())
-            .addToBackStack("First")
-            .commitAllowingStateLoss()
+        viewModel.getLiveData().observeForever { t -> renderData(t) }
 
         binding.fab.setOnClickListener {
             val lastFragment = supportFragmentManager.findFragmentByTag("add_note")
             replaceFragment(lastFragment,NotebookEnterNoteFragment(callbackAdd),"add_note")
+        }
+    }
+
+    private fun renderData(appState: NoteBookAppState){
+        when(appState){
+            is NoteBookAppState.Success ->{
+                adapter = NotebookRecyclerAdapter(appState.notes)
+                binding.notebookRecyclerNoteList.adapter = adapter
+            }
         }
     }
 
@@ -60,13 +65,21 @@ class NotebookActivity: AppCompatActivity() {
                     .commitAllowingStateLoss()
             }
         }
+        binding.fab.visibility = View.GONE
+        binding.notebookRecyclerNoteList.visibility = View.GONE
     }
 
+    /**
+     * Коллбэк для добавления новой заметки
+     */
     private val callbackAdd = AddItemCB {
         NotebookRepository.addItemToHistory(it)
-        NotebookRepository.getHistoryList()
-    }
 
+        adapter.addItem(NotebookRepository.getHistoryList())
+
+        binding.notebookRecyclerNoteList.visibility = View.VISIBLE
+        binding.fab.visibility = View.VISIBLE
+    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -1,6 +1,7 @@
 package com.vados.nasa_photo.ui.notebook
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ class NotebookEnterNoteFragment(val callbackAddItemCB: AddItemCB):Fragment() {
     ): View {
         _binding = FragmentNotebookEnterNoteBinding.inflate(inflater)
         initContent()
+        Log.v("@@@","onCreateView")
         return binding.root
     }
 
