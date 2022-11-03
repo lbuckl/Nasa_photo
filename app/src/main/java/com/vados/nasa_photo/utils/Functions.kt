@@ -3,6 +3,7 @@ package com.vados.nasa_photo.utils
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import com.gb.weather.model.room.NoteItemEntity
 import com.google.android.material.snackbar.Snackbar
 import com.vados.nasa_photo.R
 
@@ -29,4 +30,10 @@ fun View.toast(string: String?) {
         setGravity(Gravity.BOTTOM, 0, 250)
         show()
     }
+}
+
+fun getEmptyNoteList():MutableList<NoteItemEntity>{
+    return mutableListOf(
+        NoteItemEntity(0,"","","")
+    )
 }

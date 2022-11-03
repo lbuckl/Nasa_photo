@@ -1,15 +1,15 @@
 package com.vados.nasa_photo.ui.notebook
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.gb.weather.model.NotebookRepository
-import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.ActivityNotebookBinding
+import com.vados.nasa_photo.utils.getEmptyNoteList
 import com.vados.nasa_photo.viewmodel.notebook.NoteBookAppState
 import com.vados.nasa_photo.viewmodel.notebook.NoteBookViewModel
 
@@ -33,6 +33,9 @@ class NotebookActivity: AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[NoteBookViewModel::class.java]
         viewModel.getLiveData().observeForever { t -> renderData(t) }
+
+        adapter = NotebookRecyclerAdapter(getEmptyNoteList())
+        ItemTouchHelper(ItemTouchHelperCB(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
 
         binding.fab.setOnClickListener {
             val lastFragment = supportFragmentManager.findFragmentByTag("add_note")

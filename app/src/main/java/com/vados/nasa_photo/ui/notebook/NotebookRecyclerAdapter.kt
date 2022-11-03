@@ -1,5 +1,6 @@
 package com.vados.nasa_photo.ui.notebook
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
 
 class NotebookRecyclerAdapter(private var items: MutableList<NoteItemEntity>):
-    RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>() {
+    RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>(),ItemTouchHelperAdapter {
 
     //Создаёт ViewHolder объект опираясь на их количество, но с запасом, чтобы можно было скролить
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemHolder {
@@ -38,5 +39,13 @@ class NotebookRecyclerAdapter(private var items: MutableList<NoteItemEntity>):
     fun addItem(newItems: MutableList<NoteItemEntity>){
         items = newItems
         notifyItemInserted(0)
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        Log.v("@@@","onItemMove")
+    }
+
+    override fun onItemDismiss(position: Int) {
+        Log.v("@@@","onItemDismiss")
     }
 }
