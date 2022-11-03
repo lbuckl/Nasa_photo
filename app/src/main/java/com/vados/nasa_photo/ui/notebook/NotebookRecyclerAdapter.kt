@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
 
-class NotebookRecyclerAdapter(private val items:MutableList<NoteItemEntity>):
+class NotebookRecyclerAdapter(private val items: MutableList<NoteItemEntity>):
     RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>() {
 
     //Создаёт ViewHolder объект опираясь на их количество, но с запасом, чтобы можно было скролить
@@ -24,6 +24,7 @@ class NotebookRecyclerAdapter(private val items:MutableList<NoteItemEntity>):
     override fun getItemCount(): Int {
         return items.size
     }
+
     //Класс который непосредственно отображает данные в каждом элементе recyclerview
     inner class NoteItemHolder(view: View): RecyclerView.ViewHolder(view){
         fun bind(noteItem: NoteItemEntity){
@@ -32,5 +33,9 @@ class NotebookRecyclerAdapter(private val items:MutableList<NoteItemEntity>):
                 content.text = noteItem.description
             }
         }
+    }
+
+    fun addItem(newItems: MutableList<NoteItemEntity>){
+
     }
 }

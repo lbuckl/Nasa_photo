@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Nasa_photo</string>
-    <string name="info">Info</string>
-    <string name="error">Error</string>
+    <string name="info">Инфо:</string>
+    <string name="error">Ошибка</string>
     <string name="photo_of_the_day_stub">Photo of the day</string>
     <string name="search_wiki">Найти в Википедии</string>
     <string name="wiki_helper_text">Поищите термин в википедии</string>
@@ -37,7 +37,6 @@
     <string name="language">Language</string>
     <string name="russian">Russian</string>
     <string name="english">English</string>
-    <string name="apply">Apply</string>
     <string name="app_bar_telescope">app_bar_telescope</string>
     <string name="navigation_indicator_1">navigation_indicator_1</string>
     <string name="navigation_indicator_2">navigation_indicator_2</string>
@@ -46,12 +45,13 @@
     <string name="picture">Фото дня</string>
     <string name="photo_album">Галерея</string>
     <string name="letStart">Начнём</string>
-    <string name="tab_navigation_layout">tab_navigation_layout</string>
+
 
     <!-- Строки для contentDescription. -->
     <string name="appbar">appbar</string>
     <string name="image_menu_item">image_menu_item</string>
     <string name="wiki_button">Wiki_button</string>
+    <string name="tab_navigation_layout">tab_navigation_layout</string>
 
     <!-- Строки для фрагмента NASA Photo album. -->
     <string name="NASA_photo_album">Фото альбом NASA</string>
@@ -68,8 +68,17 @@
     <string name="key_word">ключевое слово</string>
     <string name="promt_video_link">Видео можно открыть по ссылке</string>
 
+    <!-- Строки для фрагмента Settings. -->
     <string name="Description">Описание</string>
     <string name="Animation">Анимация</string>
     <string name="watch_greetings_again">Посмотреть приветсвие ещё раз</string>
+
+    <!-- Строки для фрагментов Notebook  -->
     <string name="notebook">Notebook</string>
+    <string name="date" translatable="false">Дата</string>
+    <string name="noteName" translatable="false">Наименование</string>
+    <string name="description" translatable="false">Описание</string>
+    <string name="select" translatable="false">Выбрать</string>
+    <string name="apply">Применить</string>
+    <string name="delete">Удалить</string>
 </resources>

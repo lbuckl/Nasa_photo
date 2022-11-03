@@ -3,6 +3,7 @@ package com.vados.nasa_photo.ui.notebook
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.gb.weather.model.NotebookRepository
 import com.gb.weather.model.room.NoteItemEntity
@@ -38,11 +39,32 @@ class NotebookActivity: AppCompatActivity() {
             .commitAllowingStateLoss()
 
         binding.fab.setOnClickListener {
-            val a = NotebookRepository.getHistoryList()
-            viewModel.deleteNoteItemFromDB(NoteItemEntity(
-                a[1].id,"Header","Description_new","date-date"
-            ))
+            val lastFragment = supportFragmentManager.findFragmentByTag("add_note")
+            replaceFragment(lastFragment,NotebookEnterNoteFragment(callbackAdd),"add_note")
         }
+    }
+
+    /**
+     * Функция для замены фрагмента в контейнере
+     * если фрагмент ещё живой, то возвращает его в контейнер
+     * если фрагмента нет, то создаёт новый
+     */
+    fun replaceFragment(findFragment: Fragment?, newFragment: Fragment, flag:String){
+        supportFragmentManager.beginTransaction().apply {
+            if (findFragment == null) {
+                add(R.id.notebook_container, newFragment, flag)
+                    .addToBackStack("Contacts")
+                    .commitAllowingStateLoss()
+            } else {
+                replace(R.id.notebook_container, findFragment, flag)
+                    .commitAllowingStateLoss()
+            }
+        }
+    }
+
+    private val callbackAdd = AddItemCB {
+        NotebookRepository.addItemToHistory(it)
+        NotebookRepository.getHistoryList()
     }
 
 
