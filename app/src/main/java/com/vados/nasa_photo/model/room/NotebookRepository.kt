@@ -6,21 +6,21 @@ import com.vados.nasa_photo.model.room.NotebookRequestInterface
 
 object NotebookRepository: NotebookRequestInterface {
 
-    //Вернуть список отсортированный в порядке обратном добавлению объектов
-    override fun getHistoryList(): MutableList<NoteItemEntity> {
-        return MyApp.getNotesFromDatabase().weatherDao().getEntityListInvert()
-    }
-
     override fun addItemToHistory(item: NoteItemEntity) {
         MyApp.getNotesFromDatabase().weatherDao().insert(item)
     }
 
-    override fun deleteItemFromHistory(item: NoteItemEntity) {
-        return MyApp.getNotesFromDatabase().weatherDao().insert(item)
+    override fun replaceItemInHistory(item: NoteItemEntity) {
+        MyApp.getNotesFromDatabase().weatherDao().update(item)
     }
 
-    override fun replaceItemInHistory(item: NoteItemEntity) {
-        //TODO("Not yet implemented")
+    override fun deleteItemFromHistory(item: NoteItemEntity) {
+        return MyApp.getNotesFromDatabase().weatherDao().deleteItemById(item.id)
+    }
+
+    //Вернуть список отсортированный в порядке обратном добавлению объектов
+    override fun getHistoryList(): MutableList<NoteItemEntity> {
+        return MyApp.getNotesFromDatabase().weatherDao().getEntityListInvert()
     }
 
     fun clearHistory() {

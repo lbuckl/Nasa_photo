@@ -22,4 +22,9 @@ interface NoteItemDao {
     //Возвращает всю базу в обратном порядке
     @Query("SELECT * FROM NoteItemEntity ORDER BY id DESC")
     fun getEntityListInvert(): MutableList<NoteItemEntity>
+
+    //Возвращает всю базу в обратном порядке
+    @Query("DELETE FROM NoteItemEntity WHERE id = :idDelete")
+    fun deleteItemById(idDelete: Long)
+
 }

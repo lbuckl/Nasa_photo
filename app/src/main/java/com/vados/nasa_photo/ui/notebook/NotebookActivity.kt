@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.gb.weather.model.NotebookRepository
 import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.ActivityNotebookBinding
@@ -37,8 +38,9 @@ class NotebookActivity: AppCompatActivity() {
             .commitAllowingStateLoss()
 
         binding.fab.setOnClickListener {
-            viewModel.addNoteItemToDB(NoteItemEntity(
-                0,"Header","Description","date-date"
+            val a = NotebookRepository.getHistoryList()
+            viewModel.deleteNoteItemFromDB(NoteItemEntity(
+                a[1].id,"Header","Description_new","date-date"
             ))
         }
     }

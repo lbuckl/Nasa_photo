@@ -33,4 +33,14 @@ class NoteBookViewModel(private val liveData: MutableLiveData<NoteBookAppState> 
         NotebookRepository.addItemToHistory(item)
         getNotebookList()
     }
+
+    fun replaceNoteItemToDB(item:NoteItemEntity){
+        NotebookRepository.replaceItemInHistory(item)
+        getNotebookList()
+    }
+
+    fun deleteNoteItemFromDB(item:NoteItemEntity){
+        NotebookRepository.deleteItemFromHistory(item)
+        getNotebookList()
+    }
 }
