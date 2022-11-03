@@ -41,7 +41,6 @@ class POTDViewModel(private val liveData: MutableLiveData<POTDAppState> = Mutabl
         }
         else {
             liveData.postValue(POTDAppState.Error(Exception("Key API Error")))
-            Log.v("@@@", "Key API Error")
         }
     }
 }

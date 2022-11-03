@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.gb.weather.model.NotebookRepository
 import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
 
-class NotebookRecyclerAdapter(private var items: MutableList<NoteItemEntity>):
+class NotebookRecyclerAdapter(
+    private var items: MutableList<NoteItemEntity>,
+    private val callbackDel:RemoveItemCB
+    ):
     RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>(),ItemTouchHelperAdapter {
 
     //Создаёт ViewHolder объект опираясь на их количество, но с запасом, чтобы можно было скролить
@@ -46,6 +50,8 @@ class NotebookRecyclerAdapter(private var items: MutableList<NoteItemEntity>):
     }
 
     override fun onItemDismiss(position: Int) {
-        Log.v("@@@","onItemDismiss")
+        NotebookRepository.deleteItemFromHistory(items[position])
+        items = NotebookRepository.getHistoryList()
+        notifyItemRemoved(position)
     }
 }

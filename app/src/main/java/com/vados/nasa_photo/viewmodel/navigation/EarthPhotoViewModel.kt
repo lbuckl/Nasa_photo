@@ -47,7 +47,6 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
                 })
         }else {
             liveData.postValue(EarthPhotoAppState.Error(Exception("Key API Error")))
-            Log.v("@@@", "Key API Error")
         }
     }
 

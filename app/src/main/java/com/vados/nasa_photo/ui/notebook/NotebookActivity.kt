@@ -34,8 +34,8 @@ class NotebookActivity: AppCompatActivity() {
         viewModel = ViewModelProvider(this)[NoteBookViewModel::class.java]
         viewModel.getLiveData().observeForever { t -> renderData(t) }
 
-        adapter = NotebookRecyclerAdapter(getEmptyNoteList())
-        ItemTouchHelper(ItemTouchHelperCB(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
+        //adapter = NotebookRecyclerAdapter(getEmptyNoteList(),removeItemCB)
+        //ItemTouchHelper(ItemTouchHelperCB(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
 
         binding.fab.setOnClickListener {
             val lastFragment = supportFragmentManager.findFragmentByTag("add_note")
@@ -46,8 +46,9 @@ class NotebookActivity: AppCompatActivity() {
     private fun renderData(appState: NoteBookAppState){
         when(appState){
             is NoteBookAppState.Success ->{
-                adapter = NotebookRecyclerAdapter(appState.notes)
+                adapter = NotebookRecyclerAdapter(appState.notes,removeItemCB)
                 binding.notebookRecyclerNoteList.adapter = adapter
+                ItemTouchHelper(ItemTouchHelperCB(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
             }
         }
     }
@@ -77,11 +78,16 @@ class NotebookActivity: AppCompatActivity() {
      */
     private val callbackAdd = AddItemCB {
         NotebookRepository.addItemToHistory(it)
-
         adapter.addItem(NotebookRepository.getHistoryList())
-
         binding.notebookRecyclerNoteList.visibility = View.VISIBLE
         binding.fab.visibility = View.VISIBLE
+    }
+
+    /**
+     * Коллбэк для удаления заметки заметки
+     */
+    private val removeItemCB = RemoveItemCB {
+        NotebookRepository.deleteItemFromHistory(it)
     }
 
     override fun onDestroy() {
