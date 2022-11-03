@@ -11,7 +11,7 @@ import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
 
 class NotebookRecyclerAdapter(
     private var items: MutableList<NoteItemEntity>,
-    private val callbackDel:RemoveItemCB
+    private val callbackDel:CBremoveItem
     ):
     RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>(),ItemTouchHelperAdapter {
 
@@ -46,7 +46,8 @@ class NotebookRecyclerAdapter(
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
-        Log.v("@@@","onItemMove")
+        notifyItemMoved(fromPosition,toPosition)
+
     }
 
     override fun onItemDismiss(position: Int) {

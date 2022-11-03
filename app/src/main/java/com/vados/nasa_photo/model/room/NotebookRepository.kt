@@ -26,4 +26,8 @@ object NotebookRepository: NotebookRequestInterface {
     fun clearHistory() {
         Thread{MyApp.getNotesFromDatabase().weatherDao().clearHistory()}.start()
     }
+
+    fun repalceItemPosition(){
+
+    }
 }

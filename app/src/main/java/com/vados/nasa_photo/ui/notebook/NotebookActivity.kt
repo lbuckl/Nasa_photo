@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.gb.weather.model.NotebookRepository
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.ActivityNotebookBinding
-import com.vados.nasa_photo.utils.getEmptyNoteList
 import com.vados.nasa_photo.viewmodel.notebook.NoteBookAppState
 import com.vados.nasa_photo.viewmodel.notebook.NoteBookViewModel
 
@@ -46,9 +45,9 @@ class NotebookActivity: AppCompatActivity() {
     private fun renderData(appState: NoteBookAppState){
         when(appState){
             is NoteBookAppState.Success ->{
-                adapter = NotebookRecyclerAdapter(appState.notes,removeItemCB)
+                adapter = NotebookRecyclerAdapter(appState.notes,CBremoveItem)
                 binding.notebookRecyclerNoteList.adapter = adapter
-                ItemTouchHelper(ItemTouchHelperCB(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
+                ItemTouchHelper(CBitemTouchHelper(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
             }
         }
     }
@@ -76,7 +75,7 @@ class NotebookActivity: AppCompatActivity() {
     /**
      * Коллбэк для добавления новой заметки
      */
-    private val callbackAdd = AddItemCB {
+    private val callbackAdd = CBaddItem {
         NotebookRepository.addItemToHistory(it)
         adapter.addItem(NotebookRepository.getHistoryList())
         binding.notebookRecyclerNoteList.visibility = View.VISIBLE
@@ -86,7 +85,7 @@ class NotebookActivity: AppCompatActivity() {
     /**
      * Коллбэк для удаления заметки заметки
      */
-    private val removeItemCB = RemoveItemCB {
+    private val CBremoveItem = CBremoveItem {
         NotebookRepository.deleteItemFromHistory(it)
     }
 

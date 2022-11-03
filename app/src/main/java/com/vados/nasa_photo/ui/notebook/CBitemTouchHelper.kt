@@ -3,7 +3,7 @@ package com.vados.nasa_photo.ui.notebook
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class ItemTouchHelperCB(private val callback: ItemTouchHelperAdapter): ItemTouchHelper.Callback() {
+class CBitemTouchHelper(private val callback: ItemTouchHelperAdapter): ItemTouchHelper.Callback() {
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
