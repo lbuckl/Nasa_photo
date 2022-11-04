@@ -7,11 +7,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gb.weather.model.NotebookRepository
 import com.gb.weather.model.room.NoteItemEntity
-import com.vados.nasa_photo.MyApp
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 
 class NotebookRecyclerAdapter(
     private var items: MutableList<NoteItemEntity>,
@@ -63,7 +60,7 @@ class NotebookRecyclerAdapter(
         notifyItemInserted(items.size-1)
     }
 
-    //Добавление элемента в список
+    //Изменение элемента в списке
     fun replaceItem(newItems: MutableList<NoteItemEntity>){
         items = newItems
         replacePosition?.let { notifyItemChanged(it) }

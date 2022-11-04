@@ -1,7 +1,6 @@
 package com.vados.nasa_photo.ui.notebook
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +37,7 @@ class NotebookEnterNoteFragment(
             binding.textInputNoteDescription.setText(last.description)
         }
 
+        //Добавляется новый элемент или заменяется существующий
         binding.buttonApply.setOnClickListener{
             NoteItemEntity(
                 0,
