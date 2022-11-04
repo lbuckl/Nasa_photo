@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Entity
 data class NoteItemEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    var id: Long,
     val header: String,
     val description:String,
     val date: String

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.gb.weather.model.NotebookRepository
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.ActivityNotebookBinding
+import com.vados.nasa_photo.utils.getAppTheme
 import com.vados.nasa_photo.viewmodel.notebook.NoteBookAppState
 import com.vados.nasa_photo.viewmodel.notebook.NoteBookViewModel
 
@@ -22,6 +23,7 @@ class NotebookActivity: AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(getAppTheme())
         super.onCreate(savedInstanceState)
         _binding = ActivityNotebookBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,9 +34,6 @@ class NotebookActivity: AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[NoteBookViewModel::class.java]
         viewModel.getLiveData().observeForever { t -> renderData(t) }
-
-        //adapter = NotebookRecyclerAdapter(getEmptyNoteList(),removeItemCB)
-        //ItemTouchHelper(ItemTouchHelperCB(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
 
         binding.fab.setOnClickListener {
             val lastFragment = supportFragmentManager.findFragmentByTag("add_note")

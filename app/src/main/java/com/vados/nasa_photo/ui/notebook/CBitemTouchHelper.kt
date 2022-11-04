@@ -25,4 +25,16 @@ class CBitemTouchHelper(private val callback: ItemTouchHelperAdapter): ItemTouch
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         callback.onItemDismiss(viewHolder.adapterPosition)
     }
+
+    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+        viewHolder?.let {
+            (it as NotebookRecyclerAdapter.NoteItemHolder).onItemSelect()
+        }
+        super.onSelectedChanged(viewHolder, actionState)
+    }
+
+    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+        super.clearView(recyclerView, viewHolder)
+        (viewHolder as NotebookRecyclerAdapter.NoteItemHolder).onItemClear()
+    }
 }

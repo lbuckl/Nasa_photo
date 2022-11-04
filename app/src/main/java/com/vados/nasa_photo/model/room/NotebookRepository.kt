@@ -18,16 +18,28 @@ object NotebookRepository: NotebookRequestInterface {
         return MyApp.getNotesFromDatabase().weatherDao().deleteItemById(item.id)
     }
 
-    //Вернуть список отсортированный в порядке обратном добавлению объектов
+    //Вернуть отсортированный список
     override fun getHistoryList(): MutableList<NoteItemEntity> {
-        return MyApp.getNotesFromDatabase().weatherDao().getEntityListInvert()
+        return MyApp.getNotesFromDatabase().weatherDao().getEntityList()
     }
 
     fun clearHistory() {
         Thread{MyApp.getNotesFromDatabase().weatherDao().clearHistory()}.start()
     }
 
-    fun repalceItemPosition(){
+    //Заменяет местами записи в БД путём переставления местами id
+    fun replaceItemPosition(fromPosition: Int, toPosition: Int){
+        MyApp.getNotesFromDatabase().weatherDao().also {
 
+        val list = if (fromPosition > toPosition) it.getEntityListLimited(toPosition,2)
+        else it.getEntityListLimited(fromPosition,2)
+
+        val buf = list[1].id
+        list[1].id = list[0].id
+        list[0].id = buf
+
+        it.update(list[0])
+        it.update(list[1])
+        }
     }
 }
