@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -132,7 +133,7 @@ class PictureOfTheDayFragment : Fragment() {
             }
             is POTDAppState.Error -> {
                 binding.progressBarPictureOTD.isVisible = false
-                view?.toast(POTDAppState.error.message.toString())
+                view?.showSnackBarErrorMsg(POTDAppState.error.message.toString())
                 binding.textViewPrompt.isVisible = false
                 binding.textViewLink.isVisible = false
             }
