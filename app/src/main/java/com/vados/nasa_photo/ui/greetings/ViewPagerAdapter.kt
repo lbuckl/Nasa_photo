@@ -2,10 +2,7 @@ package com.vados.nasa_photo.ui.greetings
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.vados.nasa_photo.databinding.FragmentGreetingsTreethBinding
 
 /**
  * Адаптер ViewPager для работы приветственных фрагментов

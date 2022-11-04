@@ -9,9 +9,13 @@ import androidx.fragment.app.Fragment
 import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.databinding.FragmentNotebookEnterNoteBinding
 
+/**
+ * Фрагмент для добавления и редактирования заметок
+ */
 class NotebookEnterNoteFragment(val callbackCBaddItem: CBaddItem):Fragment() {
     private var _binding: FragmentNotebookEnterNoteBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,10 +23,10 @@ class NotebookEnterNoteFragment(val callbackCBaddItem: CBaddItem):Fragment() {
     ): View {
         _binding = FragmentNotebookEnterNoteBinding.inflate(inflater)
         initContent()
-        Log.v("@@@","onCreateView")
         return binding.root
     }
 
+    //Основная функция инициализации
     private fun initContent(){
         binding.buttonApply.setOnClickListener{
             NoteItemEntity(

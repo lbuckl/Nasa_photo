@@ -1,5 +1,6 @@
 package com.vados.nasa_photo.ui.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.gb.weather.view.weatherlist.PhotoAlbumRecyclerAdapter
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentPhotoalbumBinding
+import com.vados.nasa_photo.ui.notebook.NotebookActivity
 import com.vados.nasa_photo.ui.support.SettingsFragment
 import com.vados.nasa_photo.utils.showSnackBarErrorMsg
 import com.vados.nasa_photo.viewmodel.navigation.PhotoAlbumListAppState
@@ -103,6 +105,11 @@ class PhotoAlbumFragment:Fragment() {
                             .add(R.id.container, SettingsFragment.newInstance())
                             .addToBackStack("main")
                             .commit()
+                    }
+                    R.id.app_bar_noteboook -> {
+                        val intent = Intent(requireActivity().intent)
+                        intent.setClass(requireContext(), NotebookActivity::class.java)
+                        requireActivity().startActivity(intent)
                     }
                 }
                 true

@@ -1,7 +1,6 @@
 package com.vados.nasa_photo.ui.navigation
 
 import android.os.Bundle
-import androidx.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintSet.*
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.transition.ChangeBounds
+import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import com.vados.nasa_photo.databinding.FragmentAnimationBinding
 import kotlinx.coroutines.*

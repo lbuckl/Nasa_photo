@@ -23,23 +23,21 @@ object NotebookRepository: NotebookRequestInterface {
         return MyApp.getNotesFromDatabase().weatherDao().getEntityList()
     }
 
-    fun clearHistory() {
-        Thread{MyApp.getNotesFromDatabase().weatherDao().clearHistory()}.start()
-    }
-
     //Заменяет местами записи в БД путём переставления местами id
     fun replaceItemPosition(fromPosition: Int, toPosition: Int){
         MyApp.getNotesFromDatabase().weatherDao().also {
+        try {
+            val list = if (fromPosition > toPosition) it.getEntityListLimited(toPosition,2)
+            else it.getEntityListLimited(fromPosition,2)
 
-        val list = if (fromPosition > toPosition) it.getEntityListLimited(toPosition,2)
-        else it.getEntityListLimited(fromPosition,2)
+            val buf = list[1].id
+            list[1].id = list[0].id
+            list[0].id = buf
 
-        val buf = list[1].id
-        list[1].id = list[0].id
-        list[0].id = buf
-
-        it.update(list[0])
-        it.update(list[1])
-        }
+            it.update(list[0])
+            it.update(list[1])
+        }catch (e:IndexOutOfBoundsException){
+            e.printStackTrace()
+        }}
     }
 }

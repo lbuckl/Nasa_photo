@@ -1,6 +1,5 @@
 package com.vados.nasa_photo.viewmodel.navigation
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vados.nasa_photo.model.dto.PictureDTO

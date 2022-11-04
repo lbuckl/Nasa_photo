@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gb.weather.model.NotebookRepository
 import com.gb.weather.model.room.NoteItemEntity
+import java.io.IOException
 
 /**
  * ViewModel реализующая бизнес-логику работы фрагмента для отображения
@@ -17,15 +18,13 @@ class NoteBookViewModel(private val liveData: MutableLiveData<NoteBookAppState> 
         liveData
     }
 
-    private fun getActualAppState(){
-        when (liveData.value){
-            is NoteBookAppState.Success -> {
-
-            }
-        }
-    }
-
     private fun getNotebookList(){
-        liveData.postValue(NoteBookAppState.Success(NotebookRepository.getHistoryList()))
+        try {
+            val listItems = NotebookRepository.getHistoryList()
+            liveData.postValue(NoteBookAppState.Success(listItems))
+        }catch (e:IOException){
+            e.printStackTrace()
+            liveData.value = NoteBookAppState.Error("Ошибка запроса из БД")
+        }
     }
 }

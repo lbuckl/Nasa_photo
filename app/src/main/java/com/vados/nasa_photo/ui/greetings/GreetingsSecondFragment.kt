@@ -8,8 +8,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.transition.Fade
 import androidx.transition.TransitionManager
-import com.vados.nasa_photo.R
-import com.vados.nasa_photo.databinding.FragmentGreetingsFirstBinding
 import com.vados.nasa_photo.databinding.FragmentGreetingsSecondBinding
 import com.vados.nasa_photo.utils.VISIBLE_DELAY
 

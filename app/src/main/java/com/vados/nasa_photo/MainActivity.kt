@@ -12,7 +12,9 @@ import com.vados.nasa_photo.ui.navigation.AnimationFragment
 import com.vados.nasa_photo.ui.navigation.EarthPhotoFragment
 import com.vados.nasa_photo.ui.navigation.PhotoAlbumFragment
 import com.vados.nasa_photo.ui.navigation.PictureOfTheDayFragment
-import com.vados.nasa_photo.utils.*
+import com.vados.nasa_photo.utils.FIRST_ACTIVE
+import com.vados.nasa_photo.utils.INITIALIZATION
+import com.vados.nasa_photo.utils.getAppTheme
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

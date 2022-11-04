@@ -3,7 +3,6 @@ package com.vados.nasa_photo.viewmodel.navigation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gb.weather.domain.PhotoAlbumItem
-import com.vados.nasa_photo.viewmodel.navigation.PhotoAlbumListAppState
 import molchanov.hammertesttask.model.dto.MenuDTO
 import molchanov.hammertesttask.model.request.PhotoAlbumRequestImpl
 import retrofit2.Call

@@ -11,9 +11,7 @@ import android.view.animation.CycleInterpolator
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.transition.Fade
-import androidx.transition.Transition
 import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
 import com.vados.nasa_photo.databinding.FragmentGreetingsFirstBinding
 import com.vados.nasa_photo.utils.VISIBLE_DELAY
 import kotlinx.coroutines.*

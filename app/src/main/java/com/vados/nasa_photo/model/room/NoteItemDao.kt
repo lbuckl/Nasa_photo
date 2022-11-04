@@ -2,29 +2,41 @@ package com.gb.weather.model.room
 
 import androidx.room.*
 
+/**
+ * Интерфейс работы с БД SQLite посредствам Room
+ */
 @Dao
 interface NoteItemDao {
-
+    //region Добавление элементов
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(noteItemEntity: NoteItemEntity)
+    //endregion_______________________________________________________
 
-    @Update
+    //region Изменение элементов
+    @Update // Изменяет Entity элемент
     fun update(menuItemEntity: NoteItemEntity)
+    //endregion_______________________________________________________
 
-    @Delete
+    //region Удаление элементов
+    @Delete // удаляет коркретный Entity элемент
     fun delete(menuItemEntity: List<NoteItemEntity> )
+
+    /**
+     * Удаляет элемент по id
+     * @param idDelete - id элемента по которому будет удалён элемент
+     */
+    @Query("DELETE FROM NoteItemEntity WHERE id = :idDelete")
+    fun deleteItemById(idDelete: Long)
 
     //Чистит всю базу
     @Query ("DELETE FROM NoteItemEntity")
     fun clearHistory()
+    //endregion_______________________________________________________
 
-    //Возвращает всю базу в обратном порядке
+    //region Запрос элементов
+    //Возвращает всю базу в прямом порядке
     @Query("SELECT * FROM NoteItemEntity ORDER BY id")
     fun getEntityList(): MutableList<NoteItemEntity>
-
-    //Возвращает всю базу в обратном порядке
-    @Query("SELECT * FROM NoteItemEntity ORDER BY id DESC")
-    fun getEntityListInvert(): MutableList<NoteItemEntity>
 
     /**
      * Возвращает выборку со смещением
@@ -33,9 +45,5 @@ interface NoteItemDao {
      */
     @Query("SELECT * FROM NoteItemEntity LIMIT :offset,:amount")
     fun getEntityListLimited(offset:Int,amount:Int): MutableList<NoteItemEntity>
-
-    //Удаляет элемент по id
-    @Query("DELETE FROM NoteItemEntity WHERE id = :idDelete")
-    fun deleteItemById(idDelete: Long)
-
+    //endregion_______________________________________________________
 }

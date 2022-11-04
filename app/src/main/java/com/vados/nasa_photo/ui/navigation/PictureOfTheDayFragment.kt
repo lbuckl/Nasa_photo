@@ -182,8 +182,6 @@ class PictureOfTheDayFragment : Fragment() {
                             .commit()
                     }
                     R.id.app_bar_noteboook -> {
-                        //requireActivity().startActivity(Intent(requireContext(), NoteBookActivity::class.java))
-
                         val intent = Intent(requireActivity().intent)
                         intent.setClass(requireContext(), NotebookActivity::class.java)
                         requireActivity().startActivity(intent)
@@ -247,7 +245,6 @@ class PictureOfTheDayFragment : Fragment() {
                     else{
                         setFABicon(R.drawable.ic_plus_fab)
                     }
-
                     initBottomAppBar()
                 }
             }
