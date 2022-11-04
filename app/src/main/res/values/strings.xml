@@ -80,5 +80,5 @@
     <string name="description" translatable="false">Описание</string>
     <string name="select" translatable="false">Выбрать</string>
     <string name="apply">Применить</string>
-    <string name="delete">Удалить</string>
+    <string name="cancel">Отмена</string>
 </resources>

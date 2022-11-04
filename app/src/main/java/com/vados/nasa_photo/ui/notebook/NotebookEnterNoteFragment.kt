@@ -12,10 +12,15 @@ import com.vados.nasa_photo.databinding.FragmentNotebookEnterNoteBinding
 /**
  * Фрагмент для добавления и редактирования заметок
  */
-class NotebookEnterNoteFragment(val callbackCBaddItem: CBaddItem):Fragment() {
+class NotebookEnterNoteFragment(
+    private val noteContent: NoteItemEntity?,
+    private val callbackAddItem: CBaddItem,
+    private val callbackReplaceItem: CBreplaceItem,
+    private val callbackCancel: CBcancel
+    ):Fragment() {
+
     private var _binding: FragmentNotebookEnterNoteBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +33,11 @@ class NotebookEnterNoteFragment(val callbackCBaddItem: CBaddItem):Fragment() {
 
     //Основная функция инициализации
     private fun initContent(){
+        noteContent?.let { last ->
+            binding.textInputNoteName.setText(last.header)
+            binding.textInputNoteDescription.setText(last.description)
+        }
+
         binding.buttonApply.setOnClickListener{
             NoteItemEntity(
                 0,
@@ -35,13 +45,26 @@ class NotebookEnterNoteFragment(val callbackCBaddItem: CBaddItem):Fragment() {
                 binding.textInputNoteDescription.text.toString(),
                 "date"
             ).apply {
-                callbackCBaddItem.add(this)
+                if (noteContent == null) callbackAddItem.add(this)
+                else{
+                    this.id = noteContent.id
+                    callbackReplaceItem.replace(this)
+                }
             }
 
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .remove(this)
                 .commitAllowingStateLoss()
+        }
+
+        binding.buttonCancel.setOnClickListener {
+            requireActivity().supportFragmentManager
+                .beginTransaction()
+                .remove(this)
+                .commitAllowingStateLoss()
+
+            callbackCancel.cancel()
         }
     }
 

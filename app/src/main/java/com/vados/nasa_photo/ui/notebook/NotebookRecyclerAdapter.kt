@@ -7,11 +7,18 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gb.weather.model.NotebookRepository
 import com.gb.weather.model.room.NoteItemEntity
+import com.vados.nasa_photo.MyApp
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
-class NotebookRecyclerAdapter(private var items: MutableList<NoteItemEntity>):
+class NotebookRecyclerAdapter(
+    private var items: MutableList<NoteItemEntity>,
+    private val callbackReplace:CBreplaceItem):
     RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>(),ItemTouchHelperAdapter {
+
+    var replacePosition: Int? = null
 
     //Создаёт ViewHolder объект опираясь на их количество, но с запасом, чтобы можно было скролить
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemHolder {
@@ -22,6 +29,10 @@ class NotebookRecyclerAdapter(private var items: MutableList<NoteItemEntity>):
     //Связываем используемые текстовые метки с данными
     override fun onBindViewHolder(holder: NoteItemHolder, position: Int) {
         holder.bind(items[position])
+        holder.itemView.setOnClickListener{
+            callbackReplace.replace(items[position])
+            replacePosition = position
+        }
     }
 
     override fun getItemCount(): Int {
@@ -50,6 +61,12 @@ class NotebookRecyclerAdapter(private var items: MutableList<NoteItemEntity>):
     fun addItem(newItems: MutableList<NoteItemEntity>){
         items = newItems
         notifyItemInserted(items.size-1)
+    }
+
+    //Добавление элемента в список
+    fun replaceItem(newItems: MutableList<NoteItemEntity>){
+        items = newItems
+        replacePosition?.let { notifyItemChanged(it) }
     }
 
     //Действие при изменении положения элемента в списке
