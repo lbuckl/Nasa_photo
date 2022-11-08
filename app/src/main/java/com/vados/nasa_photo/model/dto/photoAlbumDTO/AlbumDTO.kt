@@ -7,6 +7,6 @@ package molchanov.hammertesttask.model.dto
  * Иерархия: Item -> Data (данные имя элемента и описание)
  *                -> Links (хранит ссылку на фото)
  */
-data class MenuDTO(
+data class AlbumDTO(
     val collection: Collection
 )

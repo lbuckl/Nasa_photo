@@ -2,7 +2,7 @@ package com.vados.nasa_photo.model.retrofit
 
 import com.vados.nasa_photo.model.dto.PictureDTO
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTO
-import molchanov.hammertesttask.model.dto.MenuDTO
+import molchanov.hammertesttask.model.dto.AlbumDTO
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -40,5 +40,5 @@ interface NasaRequestInterface {
         @Query("description") description: String,
         @Query("keywords") keywords: String,
         @Query("media_type") media_type: String,
-    ): Call<MenuDTO>
+    ): Call<AlbumDTO>
 }

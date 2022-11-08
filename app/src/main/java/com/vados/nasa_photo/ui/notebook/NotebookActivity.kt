@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.gb.weather.model.NotebookRepository
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.ActivityNotebookBinding
+import com.vados.nasa_photo.ui.notebook.callbacks.AddItemCallback
+import com.vados.nasa_photo.ui.notebook.callbacks.ItemTouchHelperCallback
+import com.vados.nasa_photo.ui.notebook.callbacks.ReplaceItemCallback
+import com.vados.nasa_photo.ui.notebook.callbacks.CancelCallback
 import com.vados.nasa_photo.utils.getAppTheme
 import com.vados.nasa_photo.utils.toast
 import com.vados.nasa_photo.viewmodel.notebook.NoteBookAppState
@@ -28,7 +32,9 @@ class NotebookActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(getAppTheme())
+
         super.onCreate(savedInstanceState)
+
         _binding = ActivityNotebookBinding.inflate(layoutInflater)
         setContentView(binding.root)
         onCreated()
@@ -54,7 +60,7 @@ class NotebookActivity: AppCompatActivity() {
             is NoteBookAppState.Success -> {
                 adapter = NotebookRecyclerAdapter(appState.notes,callbackReplaceAdapter)
                 binding.notebookRecyclerNoteList.adapter = adapter
-                ItemTouchHelper(CBitemTouchHelper(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
+                ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(binding.notebookRecyclerNoteList)
             }
             is NoteBookAppState.Error -> {
                 binding.notebookRecyclerNoteList.toast(appState.error)
@@ -93,7 +99,7 @@ class NotebookActivity: AppCompatActivity() {
     /**
      * Коллбэк для добавления новой заметки
      */
-    private val callbackAdd = CBaddItem {
+    private val callbackAdd = AddItemCallback {
         NotebookRepository.addItemToHistory(it)
         adapter.addItem(NotebookRepository.getHistoryList())
         binding.notebookRecyclerNoteList.visibility = View.VISIBLE
@@ -103,8 +109,7 @@ class NotebookActivity: AppCompatActivity() {
     /**
      * Коллбэк для изменения заметки от адаптера
      */
-    private val callbackReplaceAdapter = CBreplaceItem {
-        Log.v("@@@","callbackReplace")
+    private val callbackReplaceAdapter = ReplaceItemCallback {
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.notebook_container, NotebookEnterNoteFragment(
@@ -121,7 +126,7 @@ class NotebookActivity: AppCompatActivity() {
     /**
      * Коллбэк для изменения заметки от фрагмента
      */
-    private val callbackReplace = CBreplaceItem{
+    private val callbackReplace = ReplaceItemCallback{
         NotebookRepository.replaceItemInHistory(it)
         adapter.replaceItem(NotebookRepository.getHistoryList())
         binding.notebookRecyclerNoteList.visibility = View.VISIBLE
@@ -131,7 +136,7 @@ class NotebookActivity: AppCompatActivity() {
     /**
      * Коллбэк для отмены действий по добавлению или изменению заметок
      */
-    private val callbackCancel = object : CBcancel {
+    private val callbackCancel = object : CancelCallback {
         override fun cancel() {
             binding.notebookRecyclerNoteList.visibility = View.VISIBLE
             binding.fab.visibility = View.VISIBLE

@@ -42,7 +42,9 @@ class GreetingsThreethFragment : Fragment() {
         binding.buttonStart.setOnClickListener {
             val sharedPrefer =
                 requireContext().getSharedPreferences(INITIALIZATION, Context.MODE_PRIVATE)
+
             val editor = sharedPrefer.edit()
+
             editor.putBoolean(FIRST_ACTIVE, false).apply()
             requireActivity().finish()
         }

@@ -5,6 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+/**
+ * Класс хранящий данные о заметке
+ * @param id - id в БД room
+ * @param header - оглавление
+ * @param description - содержание
+ * @param date - дата
+ */
 @Parcelize
 @Entity
 data class NoteItemEntity(

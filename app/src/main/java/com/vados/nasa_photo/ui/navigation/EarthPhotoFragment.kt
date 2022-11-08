@@ -76,25 +76,27 @@ class EarthPhotoFragment : Fragment() {
     private fun initBottomAppBar() {
         binding.bottomAppBar.let {
             it.replaceMenu(R.menu.menu_bottom_bar)
+
             onMenuItemSelected(it.menu)
+
             it.setNavigationOnClickListener { itView ->
-                val popupMenu = PopupMenu(context, itView)
-                requireActivity().menuInflater.inflate(
-                    R.menu.menu_bottom_navigation,
-                    popupMenu.menu
-                )
-                popupMenu.setOnMenuItemClickListener { item ->
-                    when (item.itemId) {
-                        R.id.navigation_archive -> {
-                            //TODO
+                PopupMenu(context, itView).apply {
+                    requireActivity().menuInflater.inflate(
+                        R.menu.menu_bottom_navigation,
+                        this.menu
+                    )
+                    this.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.navigation_archive -> {
+                                //Nothing TODO
+                            }
+                            R.id.navigation_send -> {
+                                //Nothing TODO
+                            }
                         }
-                        R.id.navigation_send -> {
-                            //TODO
-                        }
+                        true
                     }
-                    true
-                }
-                popupMenu.show()
+                }.show()
             }
         }
     }

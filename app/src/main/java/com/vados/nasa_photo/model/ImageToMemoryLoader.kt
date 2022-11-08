@@ -17,10 +17,11 @@ import kotlin.concurrent.thread
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+/**
+ * Объект реализующий функции для сохранения фотографий в память смартфона
+ */
 object ImageToMemoryLoader {
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
-
-
 
     //функция сохраняет картинку формата drawable в память смартфона
     suspend fun savePicture(context: Context, draw: Drawable) = suspendCoroutine<String>{
@@ -38,22 +39,24 @@ object ImageToMemoryLoader {
             thread{
                 val fOut: OutputStream?
                 try {
+                    //Открывает поток
                     fOut = FileOutputStream(file)
+
                     //преобразуем в битмап и сохраняем в формате jpeg с 50% сжатием
                     draw.toBitmap().compress(Bitmap.CompressFormat.JPEG,50,fOut)
+
+                    //закрываем поток
                     fOut.flush()
                     fOut.close()
+
                     // регистрация в фотоальбоме
-                    Log.v("@@@",file.absolutePath)
                     MediaStore.Images.Media.insertImage(context.contentResolver,
                         file.absolutePath,file.name,file.name)
                     if (file.isFile) it.resume("Файл удачно загружен")
                 }catch (e: IOException){
-                    Log.v("@@@",e.toString())
                     it.resume("Файл не загружен!!!")
                     e.printStackTrace()
                 }catch (e:NullPointerException){
-                    Log.v("@@@",e.toString())
                     it.resume("Файл не загружен!!!")
                     e.printStackTrace()
                 }

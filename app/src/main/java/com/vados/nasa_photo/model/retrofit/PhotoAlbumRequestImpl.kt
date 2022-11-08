@@ -26,9 +26,11 @@ object PhotoAlbumRequestImpl {
     }
 
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
-        val httpClient = OkHttpClient.Builder()
-        httpClient.addInterceptor(interceptor)
-        httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        val httpClient = OkHttpClient.Builder().let {
+            it.addInterceptor(interceptor)
+            it.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        }
+
         return httpClient.build()
     }
 

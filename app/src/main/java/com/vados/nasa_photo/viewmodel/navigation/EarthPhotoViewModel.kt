@@ -24,12 +24,14 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
         liveData
     }
 
+    //Функция получения фотографий земли
     private fun getPictureDTO(){
         if (NASA_PICTURE_API_KEY.isNotEmpty()){
             liveData.postValue(EarthPhotoAppState.Loading)
             NasaRequestImpl.getRetrofitImpl()
                 .getEarthPicture(pastDay.getPastDateWithDash(PAST_BIAS_DAY),NASA_PICTURE_API_KEY)
                 .enqueue(object : Callback<EarthPhotoDTO>{
+                    //Действие при удачном получении данных
                     override fun onResponse(call: Call<EarthPhotoDTO>, response: Response<EarthPhotoDTO>){
                         try {
                             val result = replaceLinksInArray(response.body()!!)
@@ -40,6 +42,7 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
                         }
 
                     }
+                    //Действие при ошибке
                     override fun onFailure(call: Call<EarthPhotoDTO>, t: Throwable) {
                         liveData.postValue(EarthPhotoAppState.Error(Exception("Loading Failure")))
                     }

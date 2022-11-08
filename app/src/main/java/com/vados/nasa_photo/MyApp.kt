@@ -16,6 +16,7 @@ class MyApp:Application() {
         private var noteBookHistoryDatabase: NoteBookHistoryDatabase? = null
 
         fun getMyApp() = myApp!!
+
         fun getNotesFromDatabase(): NoteBookHistoryDatabase {
             if (noteBookHistoryDatabase == null) {
                 noteBookHistoryDatabase = Room.databaseBuilder(

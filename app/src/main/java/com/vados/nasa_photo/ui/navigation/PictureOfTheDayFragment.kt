@@ -72,6 +72,7 @@ class PictureOfTheDayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[POTDViewModel::class.java]
         viewModel.getLiveData().observe(viewLifecycleOwner) { t -> renderData(t) }
+
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
 
         //Инициализируем работу нижнего меню
@@ -155,9 +156,10 @@ class PictureOfTheDayFragment : Fragment() {
             }
             is POTDAppState.Error -> {
                 binding.progressBarPictureOTD.isVisible = false
-                view?.showSnackBarErrorMsg(POTDAppState.error.message.toString())
                 binding.textViewPrompt.isVisible = false
                 binding.textViewLink.isVisible = false
+
+                view?.showSnackBarErrorMsg(POTDAppState.error.message.toString())
             }
         }
     }
@@ -166,6 +168,7 @@ class PictureOfTheDayFragment : Fragment() {
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -220,7 +223,9 @@ class PictureOfTheDayFragment : Fragment() {
     private fun initBottomAppBar() {
         binding.bottomAppBar.let {
             it.replaceMenu(R.menu.menu_bottom_bar)
+
             onMenuItemSelected(it.menu)
+
             it.setNavigationOnClickListener { itView ->
                 val popupMenu = PopupMenu(context,itView)
                 requireActivity().menuInflater.inflate(R.menu.menu_bottom_navigation, popupMenu.menu)
@@ -244,32 +249,35 @@ class PictureOfTheDayFragment : Fragment() {
     //Функция инициализирует и устанавливает логику работы FAB
     @SuppressLint("ResourceType")
     private fun initFAB() {
+        binding.fab.setOnClickListener {
+            actionOnFabClick()
+        }
+    }
+
+    fun actionOnFabClick(){
         with(binding) {
-            fab.setOnClickListener {
-                if (isMain) {
-                    isMain = false
-                    bottomAppBar.navigationIcon = null
-                    //Перемещаем fab вправо
-                    bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                    setFABicon(R.drawable.ic_back_fab)
-                    bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+            if (isMain) {
+                isMain = false
+                bottomAppBar.navigationIcon = null
+                //Перемещаем fab вправо
+                bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                setFABicon(R.drawable.ic_back_fab)
+                bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+            } else {
+                isMain = true
+                bottomAppBar.navigationIcon =
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_hamburger_menu_bottom_bar
+                    )
+                //Перемещаем fab в центр
+                bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                if (getCodeTheme() == THEME_SPACE) {
+                    setFABicon(R.drawable.ic_star)
                 } else {
-                    isMain = true
-                    bottomAppBar.navigationIcon =
-                        ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.ic_hamburger_menu_bottom_bar
-                        )
-                    //Перемещаем fab в центр
-                    bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    if (getCodeTheme() == THEME_SPACE){
-                        setFABicon(R.drawable.ic_star)
-                    }
-                    else{
-                        setFABicon(R.drawable.ic_plus_fab)
-                    }
-                    initBottomAppBar()
+                    setFABicon(R.drawable.ic_plus_fab)
                 }
+                initBottomAppBar()
             }
         }
     }

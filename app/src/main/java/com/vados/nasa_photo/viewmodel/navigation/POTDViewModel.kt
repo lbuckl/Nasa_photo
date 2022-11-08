@@ -20,10 +20,12 @@ class POTDViewModel(private val liveData: MutableLiveData<POTDAppState> = Mutabl
         liveData
     }
 
+    //Функция получения фото дня
     private fun getPictureDTO(){
         if (NASA_PICTURE_API_KEY.isNotEmpty()){
             NasaRequestImpl.getRetrofitImpl().getPictureOfTheDay(NASA_PICTURE_API_KEY).enqueue(object :
                 retrofit2.Callback<PictureDTO>{
+                //Действие при удачном получении данных
                 override fun onResponse(call: Call<PictureDTO>, response: Response<PictureDTO>){
                     try {
                         liveData.postValue(POTDAppState.Success(response.body()!!))
@@ -33,6 +35,7 @@ class POTDViewModel(private val liveData: MutableLiveData<POTDAppState> = Mutabl
                     }
 
                 }
+                //Действие при ошибке
                 override fun onFailure(call: Call<PictureDTO>, t: Throwable) {
                     liveData.postValue(POTDAppState.Error(Exception("Loading Failure")))
                 }

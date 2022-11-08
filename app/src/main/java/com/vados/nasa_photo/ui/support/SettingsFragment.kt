@@ -99,6 +99,7 @@ class SettingsFragment : Fragment() {
         val sharedPrefer =
             requireContext().getSharedPreferences(PREF_SETTINGS, Context.MODE_PRIVATE)
         val editor = sharedPrefer.edit()
+
         editor.putInt(PREF_THEME_INT, styleCode).apply()
     }
 

@@ -24,7 +24,7 @@ class AnimationFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var listObjects: MutableList<ImageView> //лист с объектами для анимации
-    private val IMAGE_MARGIN = 64 // отсутпы от краёв экрана
+    private val imageMargin = 64 // отсутпы от краёв экрана
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
@@ -80,17 +80,17 @@ class AnimationFragment : Fragment() {
         }
 
         //положение сверху по центру
-        set.connect(listObjects[1].id, TOP, PARENT_ID, TOP, IMAGE_MARGIN)
+        set.connect(listObjects[1].id, TOP, PARENT_ID, TOP, imageMargin)
         set.connect(listObjects[1].id, START, PARENT_ID, START)
         set.connect(listObjects[1].id, END, PARENT_ID, END)
 
         //положение внизу слева
-        set.connect(listObjects[2].id, BOTTOM, PARENT_ID, BOTTOM, IMAGE_MARGIN)
-        set.connect(listObjects[2].id, START, PARENT_ID, START, IMAGE_MARGIN)
+        set.connect(listObjects[2].id, BOTTOM, PARENT_ID, BOTTOM, imageMargin)
+        set.connect(listObjects[2].id, START, PARENT_ID, START, imageMargin)
 
         //положение внизу справа
-        set.connect(listObjects[0].id, BOTTOM, PARENT_ID, BOTTOM, IMAGE_MARGIN)
-        set.connect(listObjects[0].id, END, PARENT_ID, END, IMAGE_MARGIN)
+        set.connect(listObjects[0].id, BOTTOM, PARENT_ID, BOTTOM, imageMargin)
+        set.connect(listObjects[0].id, END, PARENT_ID, END, imageMargin)
 
         //инверсия объектов
         val bufer = listObjects[0]

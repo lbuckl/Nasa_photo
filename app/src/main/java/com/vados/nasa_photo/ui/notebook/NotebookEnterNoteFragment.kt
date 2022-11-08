@@ -7,15 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.databinding.FragmentNotebookEnterNoteBinding
+import com.vados.nasa_photo.ui.notebook.callbacks.AddItemCallback
+import com.vados.nasa_photo.ui.notebook.callbacks.ReplaceItemCallback
+import com.vados.nasa_photo.ui.notebook.callbacks.CancelCallback
 
 /**
  * Фрагмент для добавления и редактирования заметок
  */
 class NotebookEnterNoteFragment(
     private val noteContent: NoteItemEntity?,
-    private val callbackAddItem: CBaddItem,
-    private val callbackReplaceItem: CBreplaceItem,
-    private val callbackCancel: CBcancel
+    private val callbackAddItem: AddItemCallback,
+    private val callbackReplaceItem: ReplaceItemCallback,
+    private val callbackCancel: CancelCallback
     ):Fragment() {
 
     private var _binding: FragmentNotebookEnterNoteBinding? = null
@@ -26,7 +29,9 @@ class NotebookEnterNoteFragment(
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNotebookEnterNoteBinding.inflate(inflater)
+
         initContent()
+
         return binding.root
     }
 

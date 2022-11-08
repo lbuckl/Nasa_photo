@@ -9,10 +9,12 @@ import com.gb.weather.model.NotebookRepository
 import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.R
 import com.vados.nasa_photo.databinding.FragmentNotebookItemBinding
+import com.vados.nasa_photo.ui.notebook.callbacks.ReplaceItemCallback
 
 class NotebookRecyclerAdapter(
     private var items: MutableList<NoteItemEntity>,
-    private val callbackReplace:CBreplaceItem):
+    private val callbackReplace: ReplaceItemCallback
+):
     RecyclerView.Adapter<NotebookRecyclerAdapter.NoteItemHolder>(),ItemTouchHelperAdapter {
 
     var replacePosition: Int? = null

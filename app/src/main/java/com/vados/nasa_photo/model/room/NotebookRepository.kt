@@ -4,21 +4,27 @@ import com.gb.weather.model.room.NoteItemEntity
 import com.vados.nasa_photo.MyApp
 import com.vados.nasa_photo.model.room.NotebookRequestInterface
 
+/**
+ * Репозиторий для работы с БД заметок
+ */
 object NotebookRepository: NotebookRequestInterface {
 
+    //Функция добавления заметки в историю
     override fun addItemToHistory(item: NoteItemEntity) {
         MyApp.getNotesFromDatabase().weatherDao().insert(item)
     }
 
+    //Функция изменения заметки в истории
     override fun replaceItemInHistory(item: NoteItemEntity) {
         MyApp.getNotesFromDatabase().weatherDao().update(item)
     }
 
+    //Функция удаления заметки из истории
     override fun deleteItemFromHistory(item: NoteItemEntity) {
         return MyApp.getNotesFromDatabase().weatherDao().deleteItemById(item.id)
     }
 
-    //Вернуть отсортированный список
+    //Вернуть список заметок
     override fun getHistoryList(): MutableList<NoteItemEntity> {
         return MyApp.getNotesFromDatabase().weatherDao().getEntityList()
     }

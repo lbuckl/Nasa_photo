@@ -1,7 +1,9 @@
-package com.vados.nasa_photo.ui.notebook
+package com.vados.nasa_photo.ui.notebook.callbacks
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.vados.nasa_photo.ui.notebook.ItemTouchHelperAdapter
+import com.vados.nasa_photo.ui.notebook.NotebookRecyclerAdapter
 
 /**
  * Класс для организации перемещения и свайпа элементов recyclerView
@@ -9,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
  * - о перемещении (вверх/вниз) fun onMove
  * - о смещении/свайпе (влево/вправо) fun onSwiped
  */
-class CBitemTouchHelper(private val callback: ItemTouchHelperAdapter): ItemTouchHelper.Callback() {
+class ItemTouchHelperCallback(private val callback: ItemTouchHelperAdapter): ItemTouchHelper.Callback() {
     //Функция задаёт варианты взаимодействия с элементами recyclerView
     override fun getMovementFlags(
         recyclerView: RecyclerView,

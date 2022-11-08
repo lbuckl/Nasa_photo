@@ -3,7 +3,7 @@ package com.vados.nasa_photo.viewmodel.navigation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gb.weather.domain.PhotoAlbumItem
-import molchanov.hammertesttask.model.dto.MenuDTO
+import molchanov.hammertesttask.model.dto.AlbumDTO
 import molchanov.hammertesttask.model.request.PhotoAlbumRequestImpl
 import retrofit2.Call
 import retrofit2.Response
@@ -16,6 +16,7 @@ class PhotoAlbumListViewModel(private val liveData: MutableLiveData<PhotoAlbumLi
         liveData
     }
 
+    //Функция получения данных фотоальбома NASA
     private fun getPhotoAlbumItems() {
         liveData.postValue(PhotoAlbumListAppState.Loading)
         PhotoAlbumRequestImpl.getRetrofitImpl().getPhotoAlbum(
@@ -23,8 +24,9 @@ class PhotoAlbumListViewModel(private val liveData: MutableLiveData<PhotoAlbumLi
             "earth",
             "russia",
             "image"
-        ).enqueue(object : retrofit2.Callback<MenuDTO> {
-            override fun onResponse(call: Call<MenuDTO>, response: Response<MenuDTO>) {
+        ).enqueue(object : retrofit2.Callback<AlbumDTO> {
+            //Действие при удачном получении данных
+            override fun onResponse(call: Call<AlbumDTO>, response: Response<AlbumDTO>) {
                 try {
                     val listResponce = PhotoAlbumListAppState.Success(menuDTOtoListAlbumItem(response.body()!!))
                     liveData.postValue(listResponce)
@@ -33,15 +35,17 @@ class PhotoAlbumListViewModel(private val liveData: MutableLiveData<PhotoAlbumLi
                     liveData.postValue(PhotoAlbumListAppState.Error(Exception("Loading Failure")))
                 }
             }
-
-            override fun onFailure(call: Call<MenuDTO>, t: Throwable) {
+            //Действие при ошибке
+            override fun onFailure(call: Call<AlbumDTO>, t: Throwable) {
                 liveData.postValue(PhotoAlbumListAppState.Error(Exception("Loading Failure")))
             }
         })
     }
 
-    private fun menuDTOtoListAlbumItem(collection: MenuDTO): List<PhotoAlbumItem> {
+    //функция преобразующая данные в полученные от API в данные для отображения
+    private fun menuDTOtoListAlbumItem(collection: AlbumDTO): List<PhotoAlbumItem> {
         val listMenu: MutableList<PhotoAlbumItem> = mutableListOf()
+
         for (item in collection.collection.items) {
             listMenu.add(
                 PhotoAlbumItem(
@@ -51,6 +55,7 @@ class PhotoAlbumListViewModel(private val liveData: MutableLiveData<PhotoAlbumLi
                 )
             )
         }
+
         return listMenu
     }
 }
