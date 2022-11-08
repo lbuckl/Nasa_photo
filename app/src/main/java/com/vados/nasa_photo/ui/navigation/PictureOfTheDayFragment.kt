@@ -103,21 +103,30 @@ class PictureOfTheDayFragment : Fragment() {
                             initPictureZoom()
                         }
 
-                        val spannable = SpannableString(it.title)
-                        spannable.setSpan(
-                            ForegroundColorSpan(resources.getColor(R.color.redPrimaryVariant)),
-                            0,it.title!!.length,
-                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                        )
-                        binding.textViewPhotoName.text = spannable
+                        it.title?.let { txt->
+                            val spannable = SpannableString(txt)
+                            spannable.setSpan(
+                                ForegroundColorSpan(
+                                    resources.getColor(R.color.redPrimaryVariant, requireContext().theme)),
+                                0,txt.length,
+                                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            )
+                            binding.textViewPhotoName.text = spannable
+                        }
 
                         view?.findViewById<TextView>(R.id.bottomSheetDescriptionHeader)
                             ?.let { textView ->
                                 textView.text = it.title
                             }
 
+                        val span = setSpanColorByWord(
+                            it.explanation!!,
+                            "galaxies",
+                            resources.getColor(R.color.redPrimaryVariant, requireContext().theme)
+                        )
+
                         view?.findViewById<TextView>(R.id.bottomSheetDescription)?.let { textView ->
-                            textView.text = it.explanation
+                            textView.text = span
                         }
 
                     } else {
