@@ -54,6 +54,5 @@
             android:layout_height="wrap_content"
             android:text="@string/Animation"
             android:icon="@drawable/ic_animation"/>
-
     </com.google.android.material.tabs.TabLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,7 @@
         <!-- TextInput. -->
         <item name="customEditTextColor">@color/black</item>
         <item name="customHintEditTextColor">@color/generalHintTextColor</item>
+        <item name="fontFamily">@font/unineueheavy_italic</item>
     </style>
 
     <style name="Theme.Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -59,6 +60,7 @@
         <!-- TextInput. -->
         <item name="customEditTextColor">@color/teal_200</item>
         <item name="customHintEditTextColor">@color/generalHintTextColor</item>
+        <item name="fontFamily">@font/unineueheavy_italic</item>
     </style>
 
     <style name="Theme.Red" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -90,6 +92,7 @@
         <!-- TextInput. -->
         <item name="customEditTextColor">@color/black</item>
         <item name="customHintEditTextColor">@color/generalHintTextColor</item>
+        <item name="fontFamily">@font/unineueheavy_italic</item>
     </style>
 
     <style name="Theme.Space" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -122,6 +125,7 @@
         <!-- TextInput. -->
         <item name="customEditTextColor">@color/spaceStyleText</item>
         <item name="customHintEditTextColor">@color/generalHintTextColor</item>
+        <item name="fontFamily">@font/unineueheavy_italic</item>
     </style>
 </resources>
 

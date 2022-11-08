@@ -31,3 +31,6 @@ const val VISIBLE_DELAY = 2000L
 
 //Константы для работы room
 const val NOTEBOOK_ROOM_DB_NAME = "notebook_items_db"
+
+//Переменная для выведения отладочной информации
+val APP_IN_DEBUG = true
