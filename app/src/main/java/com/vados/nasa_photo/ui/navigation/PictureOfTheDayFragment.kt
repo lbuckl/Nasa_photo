@@ -121,7 +121,10 @@ class PictureOfTheDayFragment : Fragment() {
 
                         val span = setSpanColorByWord(
                             it.explanation!!,
-                            "galaxies",
+                            listOf(
+                                "galaxy",
+                                "galaxies"
+                            ),
                             resources.getColor(R.color.redPrimaryVariant, requireContext().theme)
                         )
 

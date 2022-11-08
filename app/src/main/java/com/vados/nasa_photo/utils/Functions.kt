@@ -54,18 +54,20 @@ fun getAppTheme():Int{
 }
 
 /**
- * Функция ищет в [text] все слова [searchWord] и раскрашивает их в цвет [color]
+ * Функция ищет в [text] все слова списка[searchWords] и раскрашивает их в цвет [color]
  * вовращает SpannableString
  */
-fun setSpanColorByWord(text: String, searchWord:String, color: Int):SpannableString =
+fun setSpanColorByWord(text: String, searchWords:List<String>, color: Int):SpannableString =
     SpannableString(text).apply {
-        text.indexesOf(searchWord,true).forEach {
-            this.setSpan(
-                ForegroundColorSpan(
-                    color),
-                it,it + searchWord.length,
-                33
-            )
+        searchWords.forEach { word ->
+            text.indexesOf(word,true).forEach {
+                this.setSpan(
+                    ForegroundColorSpan(
+                        color),
+                    it,it + word.length,
+                    33
+                )
+            }
         }
     }
 
