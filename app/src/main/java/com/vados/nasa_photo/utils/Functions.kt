@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.Gravity
@@ -53,11 +54,14 @@ fun getAppTheme():Int{
     }
 }
 
+//region
 /**
  * Функция ищет в [text] все слова списка[searchWords] и раскрашивает их в цвет [color]
+ * @param color - цвет в формате int
+ * @param spanFlag - флаг библиотеки Span (например Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
  * вовращает SpannableString
  */
-fun setSpanColorByWord(text: String, searchWords:List<String>, color: Int):SpannableString =
+fun setSpanColorByWord(text: String, searchWords:List<String>, color: Int, spanFlag:Int):SpannableString =
     SpannableString(text).apply {
         searchWords.forEach { word ->
             text.indexesOf(word,true).forEach {
@@ -65,12 +69,13 @@ fun setSpanColorByWord(text: String, searchWords:List<String>, color: Int):Spann
                     ForegroundColorSpan(
                         color),
                     it,it + word.length,
-                    33
+                    spanFlag
                 )
             }
         }
     }
 
+//Фунция ищет слово в тексте и возвращает массив первых индексов
 fun String.indexesOf(substr: String, ignoreCase: Boolean = true): List<Int> =
     (if (ignoreCase) Regex(substr, RegexOption.IGNORE_CASE) else Regex(substr))
         .findAll(this).map { it.range.first }.toList()

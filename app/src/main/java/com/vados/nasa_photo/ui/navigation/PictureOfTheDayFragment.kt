@@ -125,7 +125,8 @@ class PictureOfTheDayFragment : Fragment() {
                                 "galaxy",
                                 "galaxies"
                             ),
-                            resources.getColor(R.color.redPrimaryVariant, requireContext().theme)
+                            resources.getColor(R.color.redPrimaryVariant, requireContext().theme),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
 
                         view?.findViewById<TextView>(R.id.bottomSheetDescription)?.let { textView ->
