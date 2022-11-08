@@ -5,6 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -91,17 +94,28 @@ class PictureOfTheDayFragment : Fragment() {
             is POTDAppState.Success -> {
                 binding.progressBarPictureOTD.isVisible = false
                 binding.textViewPrompt.isVisible = false
+
                 POTDAppState.pictureDTO.let {
                     urlPicture = it.hdurl
+
                     if (it.mediaType == "image") {
                         binding.imageViewZoom.load(urlPicture).also {
                             initPictureZoom()
                         }
-                        binding.textViewPhotoName.text = it.title
+
+                        val spannable = SpannableString(it.title)
+                        spannable.setSpan(
+                            ForegroundColorSpan(resources.getColor(R.color.redPrimaryVariant)),
+                            0,it.title!!.length,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        binding.textViewPhotoName.text = spannable
+
                         view?.findViewById<TextView>(R.id.bottomSheetDescriptionHeader)
                             ?.let { textView ->
                                 textView.text = it.title
                             }
+
                         view?.findViewById<TextView>(R.id.bottomSheetDescription)?.let { textView ->
                             textView.text = it.explanation
                         }
