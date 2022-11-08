@@ -3,7 +3,6 @@ package com.vados.nasa_photo.viewmodel.notebook
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gb.weather.model.NotebookRepository
-import com.gb.weather.model.room.NoteItemEntity
 import java.io.IOException
 
 /**

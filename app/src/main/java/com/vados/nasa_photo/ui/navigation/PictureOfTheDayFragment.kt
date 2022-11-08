@@ -5,10 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -103,22 +103,17 @@ class PictureOfTheDayFragment : Fragment() {
                             initPictureZoom()
                         }
 
-                        it.title?.let { txt->
-                            val spannable = SpannableString(txt)
-                            spannable.setSpan(
-                                ForegroundColorSpan(
-                                    resources.getColor(R.color.redPrimaryVariant, requireContext().theme)),
-                                0,txt.length,
-                                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                            )
-                            binding.textViewPhotoName.text = spannable
-                        }
+                        binding.textViewPhotoName.text = Html.fromHtml(
+                            "<u>${it.title}</u>",
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
 
                         view?.findViewById<TextView>(R.id.bottomSheetDescriptionHeader)
                             ?.let { textView ->
                                 textView.text = it.title
                             }
 
+                        //ищем в тексте слова и раскрашиваем их
                         val span = setSpanColorByWord(
                             it.explanation!!,
                             listOf(

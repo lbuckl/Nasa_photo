@@ -1,17 +1,11 @@
 package com.vados.nasa_photo.utils
 
 import android.content.Context
-import android.graphics.Color
-import android.text.Spannable
 import android.text.SpannableString
-import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
-import androidx.core.text.set
-import com.gb.weather.model.room.NoteItemEntity
 import com.google.android.material.snackbar.Snackbar
 import com.vados.nasa_photo.MyApp
 import com.vados.nasa_photo.R
