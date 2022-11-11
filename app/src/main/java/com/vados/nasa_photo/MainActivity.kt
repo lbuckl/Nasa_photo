@@ -3,11 +3,12 @@ package com.vados.nasa_photo
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
-import com.vados.nasa_photo.ui.greetings.GreetingsFragment
 import com.vados.nasa_photo.ui.greetings.ViewPagerActivity
+import com.vados.nasa_photo.ui.greetings.splash.MySplashActivity
 import com.vados.nasa_photo.ui.navigation.AnimationFragment
 import com.vados.nasa_photo.ui.navigation.EarthPhotoFragment
 import com.vados.nasa_photo.ui.navigation.PhotoAlbumFragment
@@ -15,9 +16,6 @@ import com.vados.nasa_photo.ui.navigation.PictureOfTheDayFragment
 import com.vados.nasa_photo.utils.FIRST_ACTIVE
 import com.vados.nasa_photo.utils.INITIALIZATION
 import com.vados.nasa_photo.utils.getAppTheme
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,35 +26,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Проверяем показывали ли мы приветственное окно
-        val isFirstActive = getSharedPreferences(INITIALIZATION,Context.MODE_PRIVATE)
-        if (isFirstActive.getBoolean(FIRST_ACTIVE, true)){
-            startActivity(Intent(this, ViewPagerActivity::class.java))
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
-                .commit()
-        }
-        else{
-            runGreetings(savedInstanceState)
-            initNavigation()
-        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
+            .commit()
+
+        initNavigation()
     }
 
-    private fun runGreetings(savedInstanceState: Bundle?){
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, GreetingsFragment())
-                .commitNow()
-        }
-
-        GlobalScope.launch {
-            delay(1500)
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
-                .commit()
-        }
-    }
-
+    //функция инициализации верхней навигации
     private fun initNavigation(){
         findViewById<TabLayout>(R.id.tab_layout)
             .addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
@@ -82,11 +59,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    //TODO("Not yet implemented")
+                    //Nothing TODO
                 }
 
                 override fun onTabReselected(tab: TabLayout.Tab?) {
-                    //TODO("Not yet implemented")
+                    //Nothing TODO
                 }
             })
     }

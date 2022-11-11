@@ -21,10 +21,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.greetings.ViewPagerActivity"
@@ -33,6 +30,14 @@
         <activity
             android:name=".ui.notebook.NotebookActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.greetings.splash.MySplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
