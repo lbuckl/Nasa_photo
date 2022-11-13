@@ -10,14 +10,13 @@ import com.vados.nasa_photo.ui.navigation.PhotoAlbumFragment
 import com.vados.nasa_photo.ui.navigation.PictureOfTheDayFragment
 import com.vados.nasa_photo.utils.getAppTheme
 
-class MainActivity: AppCompatActivity() {
+class MainActivity: AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //Устанавливаем тему
         setTheme(getAppTheme())
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
