@@ -28,6 +28,7 @@
     <dimen name="photoalbum_cardview_margin">2dp</dimen>
     <dimen name="photoalbum_cardview_corner_radius">10dp</dimen>
     <dimen name="photoalbum_cardview_elevation">4dp</dimen>
+    <dimen name="photoalbum_recycler_marginTop">8dp</dimen>
 
     <!-- View_pager greetings. -->
     <dimen name="view_pager_navi_points_margin_start">8dp</dimen>

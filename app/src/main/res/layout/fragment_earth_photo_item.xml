@@ -30,7 +30,7 @@
 
             <TextView
                 android:id="@+id/textView_name_earth"
-                style="@style/MenuItemNameStyle"
+                style="@style/AlbumItemNameStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageView_Item_earth" />

@@ -47,7 +47,7 @@
     </style>
 
     <!-- Стиль для наименования элемента reciclerView. -->
-    <style name="MenuItemNameStyle">
+    <style name="AlbumItemNameStyle">
         <item name="android:paddingStart">8dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
@@ -55,9 +55,10 @@
     </style>
 
     <!-- Стиль для параметра "описание" элемента reciclerView. -->
-    <style name="MenuItemDescriptionStyle">
+    <style name="AlbumItemDescriptionStyle">
         <item name="android:paddingStart">8dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?secondaryTextColor</item>
     </style>
 
     <!-- Стиль текста для привественных окон greetings. -->

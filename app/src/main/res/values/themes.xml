@@ -16,6 +16,7 @@
         <item name="settingsBackground">@color/white</item>
         <item name="android:background">@color/purple_500</item>
         <item name="android:textColor">@color/black</item>
+        <item name="secondaryTextColor">@color/blackSecondary</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/white</item>
         <item name="popupMenuStyle">@style/Theme.Nasa_photo</item>
@@ -48,6 +49,7 @@
         <item name="mainBackground">@color/black</item>
         <item name="settingsBackground">@color/black</item>
         <item name="android:textColor">@color/white</item>
+        <item name="secondaryTextColor">@color/whiteSecondary</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/cardview_dark_background</item>
         <item name="popupMenuStyle">@style/Theme.Dark</item>
@@ -80,6 +82,7 @@
         <item name="settingsBackground">@color/redBack</item>
         <item name="android:background">@color/redPrimary</item>
         <item name="android:textColor">@color/black</item>
+        <item name="secondaryTextColor">@color/blackSecondary</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/redBack</item>
         <item name="popupMenuStyle">@style/Theme.Red</item>
@@ -113,6 +116,7 @@
         <item name="navigationMenuBackground">@color/bluePrimary</item>
         <item name="android:background">@color/bluePrimary</item>
         <item name="android:textColor">@color/spaceStyleText</item>
+        <item name="secondaryTextColor">@color/spaceStyleSecondaryText</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/blueBack</item>
         <item name="popupMenuStyle">@style/Theme.Space</item>

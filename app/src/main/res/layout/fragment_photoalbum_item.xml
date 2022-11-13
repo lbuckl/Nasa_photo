@@ -30,7 +30,7 @@
 
             <TextView
                 android:id="@+id/textView_name"
-                style="@style/MenuItemNameStyle"
+                style="@style/AlbumItemNameStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -38,7 +38,7 @@
 
             <TextView
                 android:id="@+id/textView_description"
-                style="@style/MenuItemDescriptionStyle"
+                style="@style/AlbumItemDescriptionStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_name"

@@ -6,7 +6,9 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="blackSecondary">#AA000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="whiteSecondary">#AAFFFFFF</color>
     <!-- DarkStyle. -->
     <color name="DarkPrimary">#512882</color>
     <color name="DarkPrimaryVariant">#360570</color>
@@ -23,6 +25,7 @@
     <color name="blueSecondaryVariant">#3F8FD2</color>
     <color name="blueBack">#25547B</color>
     <color name="spaceStyleText">#FF9400</color>
+    <color name="spaceStyleSecondaryText">#CCFF9400</color>
     <!-- Navigation dots. -->
     <color name="colorAccent">#03DAC5</color>
     <color name="colorAccent40Alfa">#6603DAC5</color>

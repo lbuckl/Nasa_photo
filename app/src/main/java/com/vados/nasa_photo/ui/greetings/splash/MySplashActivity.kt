@@ -39,7 +39,6 @@ class MySplashActivity:AppCompatActivity() {
             startActivity(Intent(this, ViewPagerActivity::class.java))
         }
         else{
-
             coroutineScope.launch {
                 val fade = Fade().setDuration(visibleDelay)
                 delay(animationDelay)
