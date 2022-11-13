@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.greetings.splash.MySplashActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView"
@@ -15,5 +17,84 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/main_picture" />
+
+    <ImageView
+        android:id="@+id/imageView_star_three"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/greeting_stars"
+        android:background="#00000000"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_star_three"
+        app:layout_constraintStart_toStartOf="@+id/guideline_star_three"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top_text"
+        app:srcCompat="@drawable/image_star_animate" />
+
+    <ImageView
+        android:id="@+id/imageView_star_two"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:contentDescription="@string/greeting_stars"
+        android:background="#00000000"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_star_two"
+        app:layout_constraintStart_toStartOf="@+id/guideline_star_two"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top_text"
+        app:srcCompat="@drawable/image_star_animate" />
+
+    <ImageView
+        android:id="@+id/imageView_star_one"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
+        android:contentDescription="@string/greeting_stars"
+        android:background="#00000000"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_star_one"
+        app:layout_constraintStart_toStartOf="@+id/guideline_star_one"
+        app:layout_constraintTop_toTopOf="@+id/guideline_top_text"
+        app:srcCompat="@drawable/image_star_animate" />
+
+    <TextView
+        android:id="@+id/text_greetings"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/greetingsTextStyle"
+        android:background="#00000000"
+        android:text="@string/app_name_text"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_top_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_star_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_star_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_star_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.64" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
