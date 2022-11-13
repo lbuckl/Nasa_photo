@@ -18,9 +18,11 @@ class MainActivity: AppCompatActivity(R.layout.activity_main) {
 
         super.onCreate(savedInstanceState)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
-            .commit()
+        if (savedInstanceState == null){
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, PictureOfTheDayFragment.newInstance(),"POTD")
+                .commit()
+        }
 
         initNavigation()
     }
