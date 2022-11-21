@@ -27,7 +27,7 @@ import retrofit2.http.Query
 interface NasaRequestInterface {
     @GET("planetary/apod")
     fun getPictureOfTheDay(@Query("api_key") apiKey: String): Call<PictureDTO>
-
+ 
     @GET("EPIC/api/enhanced/date/{date}")
     fun getEarthPicture(
         @Path("date") date:String,

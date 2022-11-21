@@ -38,14 +38,18 @@ fun View.toast(string: String?) {
 
 //Фунция возвращающая сохранённую в настрйоках тему
 fun getAppTheme():Int{
-    MyApp.getMyApp().getSharedPreferences(PREF_SETTINGS, Context.MODE_PRIVATE).let {
-        return when (it.getInt(PREF_THEME_INT, THEME_SPACE)){
-            0 -> R.style.Theme_Nasa_photo
-            1 -> R.style.Theme_Dark
-            2 -> R.style.Theme_Red
-            3 -> R.style.Theme_Space
-            else -> R.style.Theme_Space
-        }
+    val themeId = MyApp.getMyApp().getSharedPreferences(PREF_SETTINGS, Context.MODE_PRIVATE)
+        .getInt(PREF_THEME_INT, THEME_SPACE)
+    return returnThemeByID(themeId)
+}
+
+fun returnThemeByID(id:Int):Int{
+    return when (id){
+        0 -> R.style.Theme_Nasa_photo
+        1 -> R.style.Theme_Dark
+        2 -> R.style.Theme_Red
+        3 -> R.style.Theme_Space
+        else -> R.style.Theme_Space
     }
 }
 
