@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.vados.nasa_photo.databinding.FragmentEarthPhotoItemBinding
-import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTO
 import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTOItem
 
 /**
  * Кастомный адаптер для вывода списка элементов меню в recyclerview
  */
-class EarthPhotoRecyclerAdapter (private val itemList:EarthPhotoDTO):
+class EarthPhotoRecyclerAdapter (private val itemList:ArrayList<EarthPhotoDTOItem>):
     RecyclerView.Adapter<EarthPhotoRecyclerAdapter.PhotoViewHolder>() {
 
     //Создаёт ViewHolder объект опираясь на их количество, но с запасом, чтобы можно было скролить

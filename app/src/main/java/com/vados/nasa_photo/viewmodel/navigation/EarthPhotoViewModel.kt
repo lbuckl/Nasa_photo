@@ -2,7 +2,7 @@ package com.vados.nasa_photo.viewmodel.navigation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTO
+import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTOItem
 import com.vados.nasa_photo.model.retrofit.NasaRequestImpl
 import com.vados.nasa_photo.utils.DayTimeData
 import com.vados.nasa_photo.utils.NASA_PICTURE_API_KEY
@@ -30,9 +30,9 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
             liveData.postValue(EarthPhotoAppState.Loading)
             NasaRequestImpl.getRetrofitImpl()
                 .getEarthPicture(pastDay.getPastDateWithDash(PAST_BIAS_DAY),NASA_PICTURE_API_KEY)
-                .enqueue(object : Callback<EarthPhotoDTO>{
+                .enqueue(object : Callback<ArrayList<EarthPhotoDTOItem>>{
                     //Действие при удачном получении данных
-                    override fun onResponse(call: Call<EarthPhotoDTO>, response: Response<EarthPhotoDTO>){
+                    override fun onResponse(call: Call<ArrayList<EarthPhotoDTOItem>>, response: Response<ArrayList<EarthPhotoDTOItem>>){
                         try {
                             val result = replaceLinksInArray(response.body()!!)
                             liveData.postValue(EarthPhotoAppState.Success(result))
@@ -43,7 +43,7 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
 
                     }
                     //Действие при ошибке
-                    override fun onFailure(call: Call<EarthPhotoDTO>, t: Throwable) {
+                    override fun onFailure(call: Call<ArrayList<EarthPhotoDTOItem>>, t: Throwable) {
                         liveData.postValue(EarthPhotoAppState.Error(Exception("Loading Failure")))
                     }
                 })
@@ -56,7 +56,7 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
      * в параметре "image" NASA высылает толко название фото.
      * Функция реализует склейку прямой ссылки на фото по дате и названию
      */
-    fun replaceLinksInArray(list: EarthPhotoDTO):EarthPhotoDTO{
+    fun replaceLinksInArray(list: ArrayList<EarthPhotoDTOItem>):ArrayList<EarthPhotoDTOItem>{
         for(item in list){
             val date = item.date.split(" ")[0].replace("-","/")
             item.image = "https://epic.gsfc.nasa.gov/archive/enhanced/$date/png/${item.image}.png"

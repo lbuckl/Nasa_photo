@@ -1,7 +1,7 @@
 package com.vados.nasa_photo.model.retrofit
 
 import com.vados.nasa_photo.model.dto.PictureDTO
-import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTO
+import com.vados.nasa_photo.model.dto.earthDTO.EarthPhotoDTOItem
 import molchanov.hammertesttask.model.dto.AlbumDTO
 import retrofit2.Call
 import retrofit2.http.GET
@@ -32,7 +32,7 @@ interface NasaRequestInterface {
     fun getEarthPicture(
         @Path("date") date:String,
         @Query("api_key") apiKey: String
-    ): Call<EarthPhotoDTO>
+    ): Call<ArrayList<EarthPhotoDTOItem>>
 
     @GET("search")
     fun getPhotoAlbum(
