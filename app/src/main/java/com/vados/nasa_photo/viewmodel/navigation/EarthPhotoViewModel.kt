@@ -56,8 +56,7 @@ class EarthPhotoViewModel(private val liveData: MutableLiveData<EarthPhotoAppSta
      * в параметре "image" NASA высылает толко название фото.
      * Функция реализует склейку прямой ссылки на фото по дате и названию
      */
-    private fun replaceLinksInArray(list: EarthPhotoDTO):EarthPhotoDTO{
-        //val date = pastDay.getPastDateWithSlash(PAST_BIAS_DAY)
+    fun replaceLinksInArray(list: EarthPhotoDTO):EarthPhotoDTO{
         for(item in list){
             val date = item.date.split(" ")[0].replace("-","/")
             item.image = "https://epic.gsfc.nasa.gov/archive/enhanced/$date/png/${item.image}.png"

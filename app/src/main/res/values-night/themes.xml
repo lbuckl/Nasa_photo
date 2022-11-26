@@ -16,12 +16,19 @@
         <item name="settingsBackground">@color/DarkBack</item>
         <item name="android:background">@color/blueBack</item>
         <item name="android:textColor">@color/white</item>
+        <item name="secondaryTextColor">@color/white</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/white</item>
         <item name="popupMenuStyle">@style/Theme.Nasa_photo</item>
         <!-- FAB. -->
         <item name="fabBackgroundColor">@color/teal_700</item>
         <item name="fab_icon">@drawable/ic_plus_fab</item>
+        <!-- TabLayout. -->
+        <item name="customTextColor">@color/teal_200</item>
+        <item name="customSecondColor">@color/black</item>
+        <!-- TextInput. -->
+        <item name="customEditTextColor">@color/black</item>
+        <item name="customHintEditTextColor">@color/generalHintTextColor</item>
         <item name="fontFamily">@font/unineueheavy_italic</item>
     </style>
 
@@ -42,12 +49,19 @@
         <item name="mainBackground">@color/black</item>
         <item name="settingsBackground">@color/black</item>
         <item name="android:textColor">@color/white</item>
+        <item name="secondaryTextColor">@color/whiteSecondary</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/cardview_dark_background</item>
         <item name="popupMenuStyle">@style/Theme.Dark</item>
         <!-- FAB. -->
         <item name="fabBackgroundColor">@color/teal_200</item>
         <item name="fab_icon">@drawable/ic_plus_fab</item>
+        <!-- TabLayout. -->
+        <item name="customTextColor">@color/teal_200</item>
+        <item name="customSecondColor">@color/purple_700</item>
+        <!-- TextInput. -->
+        <item name="customEditTextColor">@color/teal_200</item>
+        <item name="customHintEditTextColor">@color/generalHintTextColor</item>
         <item name="fontFamily">@font/unineueheavy_italic</item>
     </style>
 
@@ -68,12 +82,19 @@
         <item name="settingsBackground">@color/redBack</item>
         <item name="android:background">@color/redPrimary</item>
         <item name="android:textColor">@color/black</item>
+        <item name="secondaryTextColor">@color/blackSecondary</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/redBack</item>
         <item name="popupMenuStyle">@style/Theme.Red</item>
         <!-- FAB. -->
         <item name="fabBackgroundColor">@color/redPrimaryVariant</item>
         <item name="fab_icon">@drawable/ic_plus_fab</item>
+        <!-- TabLayout. -->
+        <item name="customTextColor">@color/blueBack</item>
+        <item name="customSecondColor">@color/black</item>
+        <!-- TextInput. -->
+        <item name="customEditTextColor">@color/black</item>
+        <item name="customHintEditTextColor">@color/generalHintTextColor</item>
         <item name="fontFamily">@font/unineueheavy_italic</item>
     </style>
 
@@ -92,14 +113,22 @@
         <!-- Customize your theme here. -->
         <item name="mainBackground">@color/blueBack</item>
         <item name="settingsBackground">@color/blueBack</item>
+        <item name="navigationMenuBackground">@color/bluePrimary</item>
         <item name="android:background">@color/bluePrimary</item>
         <item name="android:textColor">@color/spaceStyleText</item>
+        <item name="secondaryTextColor">@color/spaceStyleSecondaryText</item>
         <!-- menu. -->
         <item name="popupMenuBackground">@color/blueBack</item>
         <item name="popupMenuStyle">@style/Theme.Space</item>
         <!-- FAB. -->
         <item name="fabBackgroundColor">@color/teal_200</item>
         <item name="fab_icon">@drawable/ic_star</item>
+        <!-- TabLayout. -->
+        <item name="customTextColor">@color/spaceStyleText</item>
+        <item name="customSecondColor">@color/blueSecondaryVariant</item>
+        <!-- TextInput. -->
+        <item name="customEditTextColor">@color/spaceStyleText</item>
+        <item name="customHintEditTextColor">@color/generalHintTextColor</item>
         <item name="fontFamily">@font/unineueheavy_italic</item>
     </style>
 </resources>
